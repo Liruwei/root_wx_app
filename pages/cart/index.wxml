@@ -1,5 +1,19 @@
 <!--pages/cart/index.wxml-->
-<import src="../template/cart_item/index.wxml"/>
-<block wx:for='{{items}}' wx:key='index'>
-  <template is='cart_item'/>
-</block>
+<import src="../template/cart_item/index.wxml" />
+<view class="bg" style='height: calc({{navigationBarHeight}} + 100px)'></view>
+<view class="cart" style="margin-top: {{navigationBarHeight}}">
+	<view class="header">
+    12件
+  </view>
+	<block wx:for='{{items}}' wx:key='index'>
+		<template is='cart_item' />
+	</block>
+  <view class="footer">
+    <view class="count">
+      <view class="count-title">合计：</view>
+      <view class="money">100</view>
+      <view class="old">120</view>
+    </view>
+    <view class="paybtn">支付</view>
+  </view>
+</view>

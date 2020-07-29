@@ -1,21 +1,18 @@
-// pages/cart/index.js
-const app =  getApp();
-
+// pages/order/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    navigationBarHeight: app.globalData.navigationBarHeight,
-    items: [
-      { id: 1},
-      { id: 2},
-      { id: 3},
-      { id: 4},
-      { id: 5},
-      { id: 6},
-      { id: 7},
+    goods: [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
     ]
   },
 

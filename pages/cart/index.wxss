@@ -1,2 +1,85 @@
 /* pages/cart/index.wxss */
 @import "../template/cart_item/index.wxss";
+page {
+  padding-bottom: 40rpx;
+  background-color: #f2f4f5;
+}
+.bg {
+  position: fixed;
+  z-index: -1;
+  background-color: #ededed;
+  top: 0;
+  width: 100vw;
+  height: 150px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  margin: 0 30rpx 0 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 10rpx 30rpx -10rpx #ededed;
+  background-color: #ffffff;
+}
+
+.header {
+  border-bottom: solid 0.5px #f2f4f5;
+  height: 60rpx;
+  width: 100%;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  font-size: small;
+  color: #ededed;
+  padding: 0 20rpx 0 20rpx;
+  box-sizing: border-box;
+}
+
+.footer {
+  margin-top: 20rpx;
+  border-top: solid 0.5px #f2f4f5;
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20rpx 0 20rpx;
+}
+
+.count {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.count-title {
+  font-size:  medium;
+  color: #ededed;
+}
+
+.money {
+  font-size: medium;
+  font-weight: bold;
+  color: #ededed;
+}
+
+.old {
+  margin-left: 10rpx;
+  font-size: small;
+  color: #ededed;
+  text-decoration: line-through;
+}
+
+.paybtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70rpx;
+  width: 120rpx;
+  border-radius: 35rpx;
+  background-color: #ededed;
+  color: #ffffff;
+  font-size: small;
+}

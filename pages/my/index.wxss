@@ -1,1 +1,109 @@
 /* pages/my/index.wxss */
+page {
+  padding-bottom: 40rpx;
+  background-color: #f2f4f5;
+}
+.bg {
+  position: fixed;
+  z-index: -1;
+  background-color: #ededed;
+  top: 0;
+  width: 100vw;
+  height: 150px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.header {
+  margin: 0 30rpx 0 30rpx;
+  display: flex;
+  align-items: center;
+  height: 200rpx;
+}
+
+.avatar {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50rpx;
+  background-color: #ffffff;
+}
+
+.name {
+  font-size: medium;
+  margin-left: 20rpx;
+  color: #ffffff;
+}
+
+.toolbar {
+  height: 160rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  background-color: #ffffff;
+  box-shadow: 0 10rpx 30rpx -10rpx #ededed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.toolbar-line {
+  height: 140rpx;
+  width: 2rpx;
+  color: #f2f4f5;
+}
+
+.toolbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: calc((100vw - 70rpx) / 2.0);
+}
+
+.toolbar-item .top {
+  display: flex;
+  align-items: baseline;
+}
+
+.toolbar-item .value {
+  font-size: medium;
+  color: #ededed;
+}
+
+.toolbar-item .unit {
+  font-size: small;
+  color: #ededed;
+}
+
+.toolbar-item .bottom {
+  font-size: medium;
+  color: #ededed;
+}
+
+.item-row {
+  margin: 20rpx 30rpx 0 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  box-shadow: 0 10rpx 30rpx -10rpx #ededed;
+  padding: 0 10rpx 0 10rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  overflow: hidden;
+  height: 88rpx;
+}
+
+.item-row .name {
+  font-size: medium;
+  color: #ededed;
+}
+
+.item-row .icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+

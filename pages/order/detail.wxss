@@ -1,0 +1,141 @@
+/* pages/order/detail.wxss */
+page {
+  padding-top: 20rpx;
+  padding-bottom: 40rpx;
+  background-color: #f2f4f5;
+}
+
+.top {
+  margin: 0 30rpx 30rpx 30rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+}
+
+.top .order {
+  font-size: small;
+  color: #ededed;
+  padding: 20rpx 0 20rpx 0;
+}
+
+.top .goods {
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx 0 10rpx 0;
+}
+
+.top .goods .img {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+  background-color: #ededed;
+}
+
+.top .goods .right-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.top .goods .row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top .goods .name {
+  font-size: medium;
+  font-weight: bold;
+  color: #ededed;
+}
+
+.top .goods .right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.top .goods .right .num {
+  font-size: small;
+  color: #ededed;
+  margin-right: 20rpx;
+}
+
+.top .goods .right .price {
+  font-size: medium;
+  color: #ededed;
+}
+
+.top .goods .info {
+  font-size: small;
+  color: #ededed;
+}
+
+.top .line {
+  width: 100%;
+  height: 1px;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  background-color: #ededed;
+}
+
+.top .discounts {
+  display: flex;
+  margin-top: 20rpx;
+  justify-content: space-between;
+}
+
+.top .discounts .name {
+  font-size: small;
+  color: #ededed;
+}
+
+.top .discounts .value {
+  font-size: medium;
+  color: #ededed;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer .title {
+  font-size: small;
+  color: #ededed;
+}
+
+.footer .right {
+  display: flex;
+  align-items: baseline;
+}
+
+.footer .right .tip {
+  font-size: small;
+  color: #ededed;
+  margin-right: 10rpx;
+}
+
+.footer .right .value {
+  font-size: medium;
+  font-weight: bold;
+  color: #ededed;
+}
+
+.times {
+  margin: 0 30rpx 30rpx 30rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+}
+
+.times .value {
+  font-size: small;
+  color: #ededed;
+}
+

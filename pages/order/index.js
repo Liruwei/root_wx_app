@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orders: [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
   },
 
   /**
@@ -62,5 +73,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onOrderTap: function(e) {
+    wx.navigateTo({
+      url: '/pages/order/detail',
+    })
   }
 })

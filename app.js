@@ -32,8 +32,22 @@ App({
         }
       }
     })
+    this.initGlobalDataSync();
+  },
+  initGlobalDataSync: function() {
+    let info = wx.getSystemInfoSync();
+    let navigationBarHeight = info.statusBarHeight;
+    if (info.system.includes('iOS')) {
+      navigationBarHeight += 44;
+    } else {
+      navigationBarHeight += 48;
+    }
+    this.globalData.navigationBarHeight = `${navigationBarHeight}px`;
+    this.globalData.statusBarHeight = `${info.statusBarHeight}px`;
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    navigationBarHeight: 60,
+    statusBarHeight: 20,
   }
 })

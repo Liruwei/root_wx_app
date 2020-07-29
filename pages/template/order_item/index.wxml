@@ -1,0 +1,26 @@
+<template name='order_item'>
+	<view class="order_item">
+    <view class="order_item-top">
+      <view class="order_item-topleft">
+        <view class="order_item-tag">线上</view>
+      </view>
+      <view class="order_item-status">已完成</view>
+    </view>
+    <view class="order_item-center">
+      <view class="order_item-img"></view>
+      <view class="order_item-centerright">
+        <view class="order_item-row">
+          <view class="order_item-name">Name</view>
+          <view class="order_item-num">x 1</view>
+        </view>
+        <view class="order_item-row">
+          <view class="order_item-info">Info</view>
+        </view>
+      </view>
+    </view>
+    <view class="order_item-footer">
+      <view class="order_item-time">2019-09-01 20:10:21</view>
+      <view class="order_item-total">共1件商品 合计：¥5</view>
+    </view>
+  </view>
+</template>

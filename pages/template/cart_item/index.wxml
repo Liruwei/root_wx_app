@@ -4,14 +4,25 @@
 			<view class="cart_item-radiodot"></view>
 		</view>
 		<view class="cart_item-img"></view>
-		<view class="cart_item-center"></view>
 		<view class="cart_item-right">
-			<view class="cart_item-btn">
-				<view class="cart_item-delbtn"></view>
+			<view class="cart_item-column">
+				<view class="cart_item-name">name</view>
+				<view class="cart_item-info">info</view>
 			</view>
-			<text class="cart_item-num">1</text>
-			<view class="cart_item-btn">
-				<view class="cart_item-addbtn"></view>
+			<view class="cart_item-row">
+				<view class='cart_item-price'>
+					<view class="cart_item-now">10.0</view>
+					<view class="cart_item-old">12.0</view>
+				</view>
+				<view class="cart_item-control">
+					<view class="cart_item-btn">
+						<view class="cart_item-delbtn">-</view>
+					</view>
+					<view class="cart_item-num">1</view>
+					<view class="cart_item-btn">
+						<view class="cart_item-addbtn">+</view>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>
