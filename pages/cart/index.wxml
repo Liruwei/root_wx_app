@@ -1,0 +1,5 @@
+<!--pages/cart/index.wxml-->
+<import src="../template/cart_item/index.wxml"/>
+<block wx:for='{{items}}' wx:key='index'>
+  <template is='cart_item'/>
+</block>

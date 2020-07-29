@@ -1,0 +1,31 @@
+{
+  "pages":[
+    "pages/cart/index",
+    "pages/home/index",
+    "pages/order/index",
+    "pages/my/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/home/index",
+      "text": "-"
+    },{
+      "pagePath": "pages/cart/index",
+      "text": "-"
+    },{
+      "pagePath": "pages/order/index",
+      "text": "-"
+    },{
+      "pagePath": "pages/my/index",
+      "text": "-"
+    }]
+  }
+}

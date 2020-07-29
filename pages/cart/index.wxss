@@ -1,0 +1,2 @@
+/* pages/cart/index.wxss */
+@import "../template/cart_item/index.wxss";
