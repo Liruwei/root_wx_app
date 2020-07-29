@@ -1,0 +1,46 @@
+.normal_goods {
+  display: flex;
+  /* border: solid 1rpx white; */
+  margin: 30rpx 30rpx;
+  border-radius: 20rpx;
+  height: 200rpx;
+  overflow: hidden;
+  box-shadow: 10rpx 10rpx 10rpx #ededed;
+}
+
+.normal_goods-left {
+  width:  200rpx;
+  height: 200rpx;
+  background-color: #ededed;
+}
+
+.normal_goods-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  padding-right: 20rpx;
+}
+
+.normal_goods-right .normal_goods-name {
+  font-size: medium;
+}
+
+.normal_goods-right .normal_goods-price {
+  font-size: large;
+  color: red;
+}
+
+.normal_goods-right .normal_goods-btn {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: medium;
+  color: white;
+}
+

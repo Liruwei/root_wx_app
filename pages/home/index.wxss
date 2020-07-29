@@ -1,1 +1,36 @@
 /* pages/home/index.wxss */
+@import "../template/normal_goods/index.wxss";
+
+.home-left {
+  width: 100rpx;
+  height: 100vh;
+  position: fixed;
+  background-color: #ededed;
+  left: 0;
+  top: 0;
+}
+
+.home-right {
+  margin-left: 100rpx;
+}
+
+.home-left .home-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  height: 80rpx;
+}
+
+.home-left .home-item .home-icon {
+  width: 60rpx;
+  height: 60rpx;
+  background-color: lightpink;
+}
+
+.home-left .home-item .home-icontext {
+  font-size: 20rpx;
+  color: gray;
+}

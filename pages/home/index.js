@@ -5,14 +5,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    categorys: [
+      { id: 1, name: '分类1', img: '', price: 19.0},
+      { id: 2, name: '分类1', img: '', price: 19.0},
+      { id: 3, name: '分类1', img: '', price: 19.0},
+      { id: 4, name: '分类1', img: '', price: 19.0},
+      { id: 5, name: '分类1', img: '', price: 19.0},
+      { id: 6, name: '分类1', img: '', price: 19.0}
+    ],
+    goods: [
+      { id: 1, name: '商品1', img: '', price: 19.0},
+      { id: 2, name: '商品2', img: '', price: 19.0},
+      { id: 3, name: '商品3', img: '', price: 19.0},
+      { id: 4, name: '商品4', img: '', price: 19.0},
+      { id: 5, name: '商品5', img: '', price: 19.0},
+      { id: 6, name: '商品6', img: '', price: 19.0}
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+  
   },
 
   /**
@@ -62,5 +77,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onPageScroll: function (e) {
+    console.log(e)
   }
 })
