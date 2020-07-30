@@ -1,85 +1,59 @@
 // pages/home/index.js
+import { GET } from '../../utils/network';
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    categorys: [
-      { id: 1, name: '分类1', img: '', price: 19.0},
-      { id: 2, name: '分类1', img: '', price: 19.0},
-      { id: 3, name: '分类1', img: '', price: 19.0},
-      { id: 4, name: '分类1', img: '', price: 19.0},
-      { id: 5, name: '分类1', img: '', price: 19.0},
-      { id: 6, name: '分类1', img: '', price: 19.0}
-    ],
-    goods: [
-      { id: 1, name: '商品1', img: '', price: 19.0},
-      { id: 2, name: '商品2', img: '', price: 19.0},
-      { id: 3, name: '商品3', img: '', price: 19.0},
-      { id: 4, name: '商品4', img: '', price: 19.0},
-      { id: 5, name: '商品5', img: '', price: 19.0},
-      { id: 6, name: '商品6', img: '', price: 19.0}
-    ]
+    categorys: [],
+    goods: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    this.loadData();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  onReady: function () {},
+  onShow: function () {},
+  onHide: function () {},
+  onUnload: function () {},
+  onPullDownRefresh: function () {},
+  onReachBottom: function () {},
+  onShareAppMessage: function () {},
+  onPageScroll: function (e) {},
 
+  onGoodsTap: function(e) {
+    wx.navigateTo({
+      url: '/pages/goods/index',
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  loadData: function () {
+    let that = this;
+    wx.showLoading({ title: '加载中' });
+    GET('/v1/wx/categories/goods', {}, result => {
+      wx.hideLoading();
+      let categorys = []
+      let goods = []
+      result.data.forEach(o => {
+        categorys.push({
+          icon: o.icon,
+          name: o.category
+        });
+        goods.push(...o.goods);
+      });
+      that.setData({
+        categorys,
+        goods
+      });
+    }, error => {
+      wx.hideLoading();
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
-  onPageScroll: function (e) {
-    console.log(e)
+  onNormalGoodsTap: function({ currentTarget: { dataset: { id }}}) {
+    app.addGoodsInCart(id, 1);
   }
 })

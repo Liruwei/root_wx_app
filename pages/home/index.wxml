@@ -10,7 +10,7 @@
 </view>
 <view class="home-right">
 	<scroll-view scroll-y="true" style="height: 100vh; width: 100%;">
-		<view wx:for="{{goods}}" wx:key="index">
+		<view wx:for="{{goods}}" wx:key="index" bindtap='onGoodsTap'>
 			<template is="normal_goods" data="{{item: item}}" />
 		</view>
 	</scroll-view>

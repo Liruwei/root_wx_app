@@ -1,11 +1,66 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    this.initGlobalDataSync();
+    this.showRedDot();
+  },
+  initGlobalDataSync: function() {
+    let info = wx.getSystemInfoSync();
+    let navigationBarHeight = info.statusBarHeight;
+    if (info.system.includes('iOS')) {
+      navigationBarHeight += 40;
+    } else {
+      navigationBarHeight += 48;
+    }
+    this.globalData.navigationBarHeight = `${navigationBarHeight}px`;
+    this.globalData.statusBarHeight = `${info.statusBarHeight}px`;
+  },
+  showRedDot: function(cart_goods) {
+    let count = 0;
+    if (!cart_goods) {
+      cart_goods = wx.getStorageSync('cart_goods') || [];
+    }
+    cart_goods.forEach( o => {
+      count += o.num;
+    });
+    if (count > 0) {
+      wx.showTabBarRedDot({ index: 2});
+    } else {
+      wx.hideTabBarRedDot({ index: 2});
+    }
+  },
+  addGoodsInCart: function( goods_id, num) {
+    const cart_goods = wx.getStorageSync('cart_goods') || [];
+    let goodsIndex = -1;
+    cart_goods.forEach( (o, i) => {
+      if (o.id === goods_id) { goodsIndex = i; }
+    });
+    if (goodsIndex !== -1) {
+      cart_goods[goodsIndex].num += 1;
+    } else {
+      cart_goods.push({ id: goods_id, num: 1});
+    }
+    wx.setStorage({
+      data: cart_goods,
+      key: 'cart_goods',
+      success: function() {
+        wx.showToast({ title: '成功加入购物车', icon: 'none' });
+        this.showRedDot(cart_goods);
+      },
+      fail: function() {
+        wx.showToast({ title: '加入购物车，失败', icon: 'none' });
+      }
+    })
+  },
+  globalData: {
+    userInfo: null,
+    navigationBarHeight: 60,
+    statusBarHeight: 20,
+  }
+})
 
+
+/*
     // 登录
     wx.login({
       success: res => {
@@ -32,22 +87,4 @@ App({
         }
       }
     })
-    this.initGlobalDataSync();
-  },
-  initGlobalDataSync: function() {
-    let info = wx.getSystemInfoSync();
-    let navigationBarHeight = info.statusBarHeight;
-    if (info.system.includes('iOS')) {
-      navigationBarHeight += 44;
-    } else {
-      navigationBarHeight += 48;
-    }
-    this.globalData.navigationBarHeight = `${navigationBarHeight}px`;
-    this.globalData.statusBarHeight = `${info.statusBarHeight}px`;
-  },
-  globalData: {
-    userInfo: null,
-    navigationBarHeight: 60,
-    statusBarHeight: 20,
-  }
-})
+*/

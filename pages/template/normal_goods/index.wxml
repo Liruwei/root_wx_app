@@ -4,7 +4,7 @@
     <view class="normal_goods-right">
       <text class="normal_goods-name">{{item.name}}</text>
       <text class="normal_goods-price">{{item.price}}</text>
-      <view class="normal_goods-btn">+</view>
+      <view class="normal_goods-btn" catchtap="onNormalGoodsTap" data-id='{{item.id}}'>+</view>
     </view>
   </view>
 </template>
