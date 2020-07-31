@@ -29,14 +29,14 @@
 
 .normal_goods-right .normal_goods-price {
   font-size: large;
-  color: red;
+  color: #ededed;
 }
 
 .normal_goods-right .normal_goods-btn {
   width: 40rpx;
   height: 40rpx;
   border-radius: 20rpx;
-  background-color: red;
+  background-color: #ededed;
   display: flex;
   align-items: center;
   justify-content: center;

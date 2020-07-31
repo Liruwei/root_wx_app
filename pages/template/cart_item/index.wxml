@@ -6,21 +6,26 @@
 		<view class="cart_item-img"></view>
 		<view class="cart_item-right">
 			<view class="cart_item-column">
-				<view class="cart_item-name">name</view>
-				<view class="cart_item-info">info</view>
+				<view class="cart_item-name">{{item.name}}</view>
+				<view class="cart_item-info">{{item.info}}</view>
 			</view>
 			<view class="cart_item-row">
 				<view class='cart_item-price'>
-					<view class="cart_item-now">10.0</view>
-					<view class="cart_item-old">12.0</view>
+					<block wx:if='{{item.new_price > 0}}'>
+						<view class="cart_item-now">¥{{item.new_price}}</view>
+						<view class="cart_item-old">¥{{item.price}}</view>
+					</block>
+					<block wx:else>
+						<view class="cart_item-now">¥{{item.price}}</view>
+					</block>
 				</view>
 				<view class="cart_item-control">
 					<view class="cart_item-btn">
-						<view class="cart_item-delbtn">-</view>
+						<view class="cart_item-delbtn" catchtap="onCartItemDel" data-id='{{item.id}}'>-</view>
 					</view>
-					<view class="cart_item-num">1</view>
+					<view class="cart_item-num">{{item.num}}</view>
 					<view class="cart_item-btn">
-						<view class="cart_item-addbtn">+</view>
+						<view class="cart_item-addbtn" catchtap="onCartItemAdd" data-id='{{item.id}}'>+</view>
 					</view>
 				</view>
 			</view>

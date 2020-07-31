@@ -1,35 +1,42 @@
 <!--pages/goods/index.wxml-->
-<view class="goods-image">
-</view>
+<block wx:if='{{goodsInfo}}'>
+	<view class="goods-image">
+	</view>
 
-<view class="goods-info">
-	<view class="goods-info-name">Name</view>
-	<view class="goods-info-info">Info</view>
-</view>
+	<view class="goods-info">
+		<view class="goods-info-name">{{goodsInfo.name}}</view>
+		<view class="goods-info-info">{{goodsInfo.info}}</view>
+	</view>
 
-<view class="goods-detail">
-	<view class="goods-detail-title">商品详情</view>
-	<view class="goods-detail-value"></view>
-</view>
+	<view class="goods-detail">
+		<view class="goods-detail-title">商品详情</view>
+		<view class="goods-detail-value"></view>
+	</view>
 
-<view class="toolbar">
-	<view class="toolbar-top">
-		<view class="toolbar-top-left">
-			<view class="toolbar-top-price">¥100</view>
-			<view class="toolbar-top-oldprice">¥200</view>
+	<view class="toolbar">
+		<view class="toolbar-top">
+			<view class="toolbar-top-left">
+				<block wx:if='{{goodsInfo.new_price > 0}}'>
+					<view class="toolbar-top-price">¥{{goodsInfo.new_price}}</view>
+					<view class="toolbar-top-oldprice">¥{{goodsInfo.price}}</view>
+				</block>
+				<block wx:else>
+					<view class="toolbar-top-price">¥{{goodsInfo.price}}</view>
+				</block>
+			</view>
+			<view class="toolbar-top-right">
+				<view class="toolbar-top-del" catchtap="onDelTap">-</view>
+				<view class="toolbar-top-num">{{num}}</view>
+				<view class="toolbar-top-add" catchtap="onAddTap">+</view>
+			</view>
 		</view>
-		<view class="toolbar-top-right">
-			<view class="toolbar-top-del">-</view>
-			<view class="toolbar-top-num">1</view>
-			<view class="toolbar-top-add">+</view>
+		<view class="toolbar-bottom">
+			<view class="toolbar-bottom-now" catchtap="onBuyNow">立即购买</view>
+			<view class="toolbar-bottom-cart" catchtap="onAddToCart">加入购物车</view>
 		</view>
 	</view>
-	<view class="toolbar-bottom">
-		<view class="toolbar-bottom-now">立即购买</view>
-		<view class="toolbar-bottom-cart">加入购物车</view>
-	</view>
-</view>
 
-<view class="topbar" style="height: {{navigationBarHeight}}; padding-top: {{statusBarHeight}}">
-  <view class="topbar-close" bindtap="onCloseTap"></view>
-</view>
+	<view class="topbar" style="height: {{navigationBarHeight}}; padding-top: {{statusBarHeight}}">
+		<view class="topbar-close" bindtap="onCloseTap"></view>
+	</view>
+</block>

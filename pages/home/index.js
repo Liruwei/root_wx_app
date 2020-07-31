@@ -8,15 +8,20 @@ Page({
    */
   data: {
     categorys: [],
-    goods: []
+    goods: [],
+    scrollId: null,
+    refreshing: false
   },
 
   onLoad: function (options) {
+    wx.showLoading({ title: '加载中' });
     this.loadData();
   },
 
   onReady: function () {},
-  onShow: function () {},
+  onShow: function () {
+    app.showRedDot();
+  },
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},
@@ -24,15 +29,14 @@ Page({
   onShareAppMessage: function () {},
   onPageScroll: function (e) {},
 
-  onGoodsTap: function(e) {
+  onGoodsTap: function({ currentTarget: { dataset: { id }} }) {
     wx.navigateTo({
-      url: '/pages/goods/index',
+      url: '/pages/goods/index?id=' + id,
     })
   },
 
   loadData: function () {
     let that = this;
-    wx.showLoading({ title: '加载中' });
     GET('/v1/wx/categories/goods', {}, result => {
       wx.hideLoading();
       let categorys = []
@@ -40,20 +44,30 @@ Page({
       result.data.forEach(o => {
         categorys.push({
           icon: o.icon,
-          name: o.category
+          name: o.category,
+          scrollId: goods.length
         });
         goods.push(...o.goods);
       });
       that.setData({
         categorys,
-        goods
+        goods,
+        refreshing: false
       });
     }, error => {
-      wx.hideLoading();
+      wx.showToast({ title: error, icon: 'none'});
+      that.setData({ refreshing: false});
     });
   },
 
-  onNormalGoodsTap: function({ currentTarget: { dataset: { id }}}) {
+  onNormalGoodsTap: function({ currentTarget: { dataset: { id }} }) {
     app.addGoodsInCart(id, 1);
+  },
+
+  onCategoryTap: function({ currentTarget: { dataset: { index }}}) {
+    const category = this.data.categorys[index];
+    this.setData({
+      scrollId: `id_${category.scrollId}`
+    })
   }
 })

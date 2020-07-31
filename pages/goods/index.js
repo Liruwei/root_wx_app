@@ -1,5 +1,7 @@
 // pages/goods/index.js
+import { GET } from '../../utils/network';
 const app = getApp();
+
 Page({
 
   /**
@@ -7,14 +9,17 @@ Page({
    */
   data: {
     navigationBarHeight: app.globalData.navigationBarHeight,
-    statusBarHeight: app.globalData.statusBarHeight
+    statusBarHeight: app.globalData.statusBarHeight,
+    goodsInfo: null,
+    num: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.showLoading({ title: '加载中' });
+    this.loadData(options.id);
   },
 
   /**
@@ -68,5 +73,31 @@ Page({
 
   onCloseTap: function() {
     wx.navigateBack();
+  },
+
+  loadData: function(goods_id) {
+    const that = this;
+    GET(`/v1/shop/goods/${goods_id}`, {}, result => {
+      wx.hideLoading();
+      that.setData({ goodsInfo : result });
+    }, error => {
+      wx.showToast({ title: error, icon: 'none' });
+    });
+  },
+
+  onAddTap: function() {
+    this.setData({
+      num: this.data.num + 1
+    });
+  },
+
+  onDelTap: function() {
+    this.setData({
+      num: Math.max(1, this.data.num - 1)
+    });
+  },
+
+  onAddToCart: function() {
+    app.addGoodsInCart(this.data.goodsInfo.id, this.data.num);
   }
 })

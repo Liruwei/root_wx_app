@@ -1,12 +1,14 @@
 <!--pages/cart/index.wxml-->
 <import src="../template/cart_item/index.wxml" />
 <view class="bg" style='height: calc({{navigationBarHeight}} + 100px)'></view>
-<view class="cart" style="margin-top: {{navigationBarHeight}}">
+
+
+<view wx:if='{{items.length > 0}}' class="cart" style="margin-top: {{navigationBarHeight}}">
 	<view class="header">
     12件
   </view>
 	<block wx:for='{{items}}' wx:key='index'>
-		<template is='cart_item' />
+		<template is='cart_item' data='{{item: item}}'/>
 	</block>
   <view class="footer">
     <view class="count">

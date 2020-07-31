@@ -2,15 +2,15 @@
 <import src="../template/normal_goods/index.wxml" />
 <view class="home-left">
 	<scroll-view scroll-y="true" style="height: 100vh; width: 100%;">
-		<view wx:for="{{categorys}}" wx:key="index" class="home-item">
+		<view wx:for="{{categorys}}" wx:key="index" class="home-item" catchtap="onCategoryTap" data-index='{{index}}'>
 			<view class="home-icon"></view>
 			<text class="home-icontext">{{item.name}}</text>
 		</view>
 	</scroll-view>
 </view>
 <view class="home-right">
-	<scroll-view scroll-y="true" style="height: 100vh; width: 100%;">
-		<view wx:for="{{goods}}" wx:key="index" bindtap='onGoodsTap'>
+	<scroll-view scroll-y="true" style="height: 100vh; width: 100%;" refresher-triggered='{{refreshing}}' scroll-into-view='{{scrollId}}' refresher-enabled='{{true}}' scroll-with-animation='{{true}}' bindrefresherrefresh='loadData'>
+		<view wx:for="{{goods}}" wx:key="index" bindtap='onGoodsTap' data-id='{{item.id}}' id="id_{{index}}">
 			<template is="normal_goods" data="{{item: item}}" />
 		</view>
 	</scroll-view>

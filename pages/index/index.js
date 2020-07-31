@@ -1,22 +1,11 @@
-// pages/order/index.js
-const app = getApp();
+// pages/index/index.js
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    orders: [
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ]
+
   },
 
   /**
@@ -75,9 +64,16 @@ Page({
 
   },
 
-  onOrderTap: function(e) {
-    wx.navigateTo({
-      url: '/pages/order/detail',
+  onGetUserInfo: function(e) {
+    const app = getApp();
+    wx.showLoading({ title: '请稍等' });
+    app.handleStatus(() => {
+      wx.hideLoading();
+      wx.navigateBack();
     })
+  },
+
+  login: function() {
+    
   }
 })
