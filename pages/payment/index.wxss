@@ -1,0 +1,202 @@
+/* pages/payment/index.wxss */
+page {
+  background-color: #f2f4f5;
+  padding-bottom: 120rpx;
+}
+
+.box {
+  background-color: #ffffff;
+  margin: 0 30rpx 20rpx 30rpx;
+  display: flex;
+  padding: 20rpx 15rpx 20rpx 15rpx;
+  box-sizing: border-box;
+  box-shadow: 0 10rpx 30rpx -10rpx #ededed;
+  border-radius: 20rpx;
+  flex-direction: column;
+}
+
+.box-line {
+  margin: 20rpx 15rpx 20rpx 15rpx;
+  height: 1px;
+  background-color: #f2f4f5;
+}
+
+.subtotal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  /* padding: 20rpx 0 20rpx 0; */
+}
+
+.subtotal-title {
+  font-size: 20rpx;
+  color: #ededed;
+  margin-right: 10rpx;
+}
+
+.subtotal-money {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #ededed;
+}
+
+.subtotal-del {
+  font-size: 20rpx; 
+  color: #ededed;
+  text-decoration: line-through;
+}
+
+
+
+.box-row {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.goods {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.goods-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.goods-img {
+  height: 80rpx;
+  width: 80rpx;
+  background-color: #ededed;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.goods-text {
+  display: flex;
+  flex-direction: column;
+  height: 80rpx;
+  justify-content: space-between;
+}
+
+.goods-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #ededed;
+}
+
+.goods-info {
+  font-size: 20rpx;
+  color: #ededed;
+}
+
+.goods-right {
+  width: 200rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.goods-num {
+  font-size: 20rpx;
+  color: #ededed;
+}
+
+.goods-money {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.goods-price {
+  font-size: 30rpx;
+  color: #ededed;
+}
+
+.goods-oldprice {
+  font-size: 20rpx;
+  color: #ededed;
+  margin-left: 10rpx;
+  text-decoration: line-through;
+}
+
+.box-title {
+  font-size: 28rpx;
+  color: #ededed;
+}
+
+.coupon {
+  font-size: 28rpx;
+  color: #ededed;
+}
+
+.pay-type {
+  font-size: 28rpx;
+  color: #ededed;
+}
+
+.toolbar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 120rpx;
+  width: 100vw;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbar-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30rpx;
+  height: 100%;
+}
+
+.toolbar-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.toolbar-title {
+  font-size: 30rpx;
+  color: #ededed;
+}
+
+.toolbar-total {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #ededed;
+}
+
+.toolbar-reduce {
+  margin-top: 5rpx;
+  font-size: 16rpx;
+  color: #ededed;
+  padding: 1px 1px 1px 1px;
+  border: solid 1px #ededed;
+  width: fit-content;
+}
+
+.toolbar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  background-color: #ededed;
+  color: #ffffff;
+  padding: 0 30rpx 0 30rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  margin-right: 30rpx;
+}
+
+
+

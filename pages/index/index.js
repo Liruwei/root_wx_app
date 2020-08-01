@@ -1,4 +1,6 @@
 // pages/index/index.js
+import { PUT } from '../../utils/network';
+
 Page({
 
   /**
@@ -64,13 +66,28 @@ Page({
 
   },
 
-  onGetUserInfo: function(e) {
+  onGetUserInfo: function({ detail: { userInfo }}) {
     const app = getApp();
+    const {
+      avatarUrl,
+      nickName,
+      gender
+    } = userInfo;
+    app.globalData.userInfo = userInfo;
+    
     wx.showLoading({ title: '请稍等' });
-    app.handleStatus(() => {
-      wx.hideLoading();
-      wx.navigateBack();
-    })
+    PUT('/v1/users/' + app.globalData.accountInfo.id, {
+      avatar: avatarUrl,
+      name: nickName,
+      gender: gender
+    }, result => {
+      app.handleStatus(() => {
+        wx.hideLoading();
+        wx.navigateBack();
+      });  
+    }, error => {
+      wx.showToast({ title: error, icon: 'none' });
+    });
   },
 
   login: function() {

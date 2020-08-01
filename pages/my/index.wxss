@@ -1,4 +1,6 @@
 /* pages/my/index.wxss */
+@import "../template/authority/index.wxss";
+
 page {
   padding-bottom: 40rpx;
   background-color: #f2f4f5;

@@ -5,25 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orders: [
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ]
+    status: 0,
+    orderType: 0, // 0: 未支付， 进行中， 已完成
+    orders: [{}, {}]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({ status: app.globalData.status });
   },
 
   /**
@@ -37,7 +28,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({ status: app.globalData.status });
+    let status = app.globalData.status
+    if (status != 0) {
+      if (status != 3) {
+        // TODO: load data
+      }
+    } else {
+      let time = setInterval(() => {
+        status = app.globalData.status;
+        if (status != 0) {
+          // TODO: load data
+          clearTimeout(time);
+        }
+      }, 500);
+    }
   },
 
   /**
@@ -79,5 +84,18 @@ Page({
     wx.navigateTo({
       url: '/pages/order/detail',
     })
+  },
+
+  onOrderTypeTap: function({ currentTarget: { dataset : { value }} }) {
+    this.setData({
+       orderType: value
+    })
+  },
+
+  toAuthorityTap: function() {
+    wx.navigateTo({
+      url: '/pages/index/index',
+    });
   }
+
 })

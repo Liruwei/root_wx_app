@@ -6,14 +6,15 @@ Page({
    */
   data: {
     statusBarHeight: app.globalData.statusBarHeight,
-    navigationBarHeight: app.globalData.navigationBarHeight
+    navigationBarHeight: app.globalData.navigationBarHeight,
+    status: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({ status: app.globalData.status });
   },
 
   /**
@@ -27,7 +28,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({ status: app.globalData.status });
   },
 
   /**
@@ -63,5 +64,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  toAuthorityTap: function() {
+    wx.navigateTo({
+      url: '/pages/index/index',
+    });
   }
 })

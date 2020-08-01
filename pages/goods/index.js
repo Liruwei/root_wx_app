@@ -99,5 +99,34 @@ Page({
 
   onAddToCart: function() {
     app.addGoodsInCart(this.data.goodsInfo.id, this.data.num);
+  },
+
+  onBuyNow: function() {
+    let goods = this.data.goodsInfo;
+    let num = this.data.num;
+    let total = 0, oldTotal = 0;
+    if (goods.new_price > 0) {
+      total = (goods.new_price * num).toFixed(1);
+      oldTotal = (goods.price * num).toFixed(1);
+    } else {
+      total = (goods.price * num).toFixed(1);
+    }
+    app.globalData.paymentInfo = {
+      fromType: 'detail',
+      total: total,
+      oldTotal: oldTotal,
+      list: [{
+        num: num,
+        price: goods.price,
+        new_price: goods.new_price,
+        name: goods.name,
+        info: goods.info,
+        photos: goods.photos,
+        id: goods.id,
+      }]
+    };
+    wx.navigateTo({
+      url: '/pages/payment/index',
+    });
   }
 })

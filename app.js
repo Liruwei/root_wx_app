@@ -129,6 +129,7 @@ App({
     userInfo: null,
     navigationBarHeight: 60,
     statusBarHeight: 20,
+    paymentInfo: {},
   }
 })
 

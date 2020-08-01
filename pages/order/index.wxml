@@ -1,12 +1,15 @@
 <!--pages/order/index.wxml-->
 <import src="../template/order_item/index.wxml"/>
+<import src="../template/authority/index.wxml" />
+
 <view class="topbar">
-	<view class="item select">待付款</view>
-	<view class="item">进行中</view>
-	<view class="item">已完成</view>
+	<view class="item {{orderType == 0 ? 'select' : ''}}" catchtap="onOrderTypeTap" data-value='{{0}}'>待付款</view>
+	<view class="item {{orderType == 1 ? 'select' : ''}}" catchtap="onOrderTypeTap" data-value='{{1}}'>进行中</view>
+	<view class="item {{orderType == 2 ? 'select' : ''}}" catchtap="onOrderTypeTap" data-value='{{2}}'>已完成</view>
 </view>
 
 <view wx:for='{{orders}}' wx:key='index' bindtap='onOrderTap' data-id='1'>
   <template is='order_item'></template>
 </view>
  
+<template wx:if='{{status == 3}}' is='template_authority'></template>

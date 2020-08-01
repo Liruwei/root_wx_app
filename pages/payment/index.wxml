@@ -1,0 +1,56 @@
+<!--pages/payment/index.wxml-->
+
+<view class="box">
+    <block wx:for='{{list}}' wx:key='index'>
+        <view wx:if='{{index != 0}}' style="margin-top: 20rpx"></view>
+        <view class="goods">
+            <view class="goods-left">
+                <view class="goods-img"></view>
+                <view class="goods-text">
+                    <view class="goods-name">{{item.name}}</view>
+                    <view class="goods-info">{{item.info}}</view>
+                </view>
+            </view>
+            <view class="goods-right">
+                <view class="goods-num">x{{item.num}}</view>
+                <view class="goods-money">
+                    <block wx:if='{{item.new_price > 0}}'>
+                        <view class="goods-price">¥{{item.new_price}}</view>
+                        <view class="goods-oldprice">¥{{item.price}}</view>
+                    </block>
+                    <block wx:else>
+                        <view class="goods-price">¥{{item.price}}</view>
+                    </block>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view class="box-line"></view>
+    <view class="subtotal">
+        <view class="subtotal-title">小计</view>
+        <view class="subtotal-money">¥{{total}}</view>
+        <view wx:if='{{oldTotal > 0}}' class="subtotal-del">¥{{oldTotal}}</view>
+    </view>
+</view>
+<view wx:if='{{coupon}}' class="box box-row">
+    <view class='box-title'>优惠券</view>
+    <view class="coupon">[{{coupon.title}}]-¥{{coupon.price}}</view>
+</view>
+
+<view class="box box-row">
+    <view class='box-title'>支付方式</view>
+    <view class="pay-type">微信支付</view>
+</view>
+
+<view class="toolbar">
+    <view class="toolbar-left">
+        <view class="toolbar-row">
+            <view class="toolbar-title">合计:</view>
+            <view class="toolbar-total">¥{{totalPrice}}</view>
+        </view>
+        <view>
+            <view wx:if='{{totalReduce > 0}}' class="toolbar-reduce">共减免¥{{totalReduce}}</view>
+        </view>
+    </view>
+    <view class="toolbar-button" catchtap="onPay">马上支付</view>
+</view>

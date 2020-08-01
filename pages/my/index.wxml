@@ -1,4 +1,6 @@
 <!--pages/my/index.wxml-->
+<import src="../template/authority/index.wxml" />
+
 <view class="bg" style='height: calc({{navigationBarHeight}} + 100px)'></view>
 <view class="header" style="margin-top: {{statusBarHeight}}">
   <view class="avatar"></view>
@@ -32,3 +34,5 @@
   <view class="name">关于我们</view>
   <view class="icon"></view>
 </view>
+
+<template wx:if='{{status == 3}}' is='template_authority'></template>

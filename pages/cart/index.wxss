@@ -1,5 +1,7 @@
 /* pages/cart/index.wxss */
 @import "../template/cart_item/index.wxss";
+@import "../template/authority/index.wxss";
+
 page {
   padding-bottom: 40rpx;
   background-color: #f2f4f5;

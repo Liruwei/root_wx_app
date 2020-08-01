@@ -1,5 +1,7 @@
 <!--pages/cart/index.wxml-->
 <import src="../template/cart_item/index.wxml" />
+<import src="../template/authority/index.wxml" />
+
 <view class="bg" style='height: calc({{navigationBarHeight}} + 100px)'></view>
 
 
@@ -16,6 +18,9 @@
       <view class="money">¥{{total}}</view>
       <view wx:if='{{oldTotal > 0}}' class="old">¥{{oldTotal}}</view>
     </view>
-    <view class="paybtn">支付</view>
+    <view class="paybtn" catchtap="toPayment">支付</view>
   </view>
 </view>
+
+<template wx:if='{{status == 3}}' is='template_authority'></template>
+

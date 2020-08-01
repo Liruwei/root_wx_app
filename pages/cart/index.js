@@ -12,13 +12,14 @@ Page({
     selecteds: {},
     total: 0,
     oldTotal: 0,
+    status: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({ status: app.globalData.status });
   },
 
   /**
@@ -32,14 +33,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.showLoading({ title: '加载中' });
+    this.setData({ status: app.globalData.status });
+    
     app.showRedDot();
     const that = this;
     if (app.globalData.status > 0) {
-      that.updateItems();
+      if (app.globalData.status != 3) {
+        wx.showLoading({ title: '加载中' });
+        that.updateItems();
+      }
     } else {
       let time = setInterval(() => {
-        if (app.globalData.status > 0) {
+        if (app.globalData.status > 0 && app.globalData.status != 3) {
+          wx.showLoading({ title: '加载中' });
           that.updateItems();
           clearInterval(time);
         }
@@ -163,7 +169,6 @@ Page({
             app.changeGoodsInCart(id, 0);
             items.splice(index, 1);
             delete selecteds[goods.id];
-            console.log(selecteds);
             that.setData({ 
               items : items, 
               selecteds: selecteds,
@@ -220,8 +225,33 @@ Page({
 
     if (oldTotal == total) oldTotal = 0;
     return {
-      oldTotal,
-      total
+      oldTotal: oldTotal.toFixed(1),
+      total: total.toFixed(1)
     };
+  },
+
+  toPayment: function() {
+    const that = this;
+    let goods = this.data.items.filter( o => that.data.selecteds[o.id]);
+    if (goods.length == 0) {
+      wx.showToast({ title: '请选择商品', icon: 'none' });
+      return;
+    }
+    app.globalData.paymentInfo = {
+      fromType: 'cart',
+      list: goods,
+      total: this.data.total,
+      oldTotal: this.data.oldTotal
+    }
+    wx.navigateTo({
+      url: '/pages/payment/index',
+    });
+  },
+
+  toAuthorityTap: function() {
+    wx.navigateTo({
+      url: '/pages/index/index',
+    });
   }
+
 })

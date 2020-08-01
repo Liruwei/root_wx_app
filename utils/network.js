@@ -76,3 +76,32 @@ export const POST = (url, params, success = null, fail = null) => {
     },
   })
 }
+
+export const PUT = (url, params, success = null, fail = null) => {
+  const app = getApp();
+  const data = {
+    ...params,
+    project_id: 7
+  }
+  wx.request({
+    url: `${host}${url}`,
+    data: data,
+    header: {
+      token: app.globalData.accountInfo.token || '',
+      ...sign(url, data)
+    },
+    method: 'PUT',
+    success: (result) => {
+      if (result.statusCode !== 200) {
+        fail && fail(`${result.statusCode}`);
+      } else if (result.data.message !== 'Success') {
+        fail && fail(result.data.message);
+      } else {
+        success && success(result.data);
+      }
+    },
+    fail: (res) => {
+      fail && fail(res);
+    },
+  })
+}

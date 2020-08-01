@@ -1,0 +1,5 @@
+<template name='template_authority'>
+    <view class="template_authority">
+        <button catchtap="toAuthorityTap">前往授权</button>
+    </view>
+</template>
