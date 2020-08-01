@@ -21,6 +21,10 @@
   border-radius: 20rpx;
 }
 
+.cart_item-radio-select {
+  background-color: #ededed;
+}
+
 .cart_item-img {
   width: 150rpx;
   height: 150rpx;

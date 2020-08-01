@@ -8,13 +8,13 @@
     12件
   </view>
 	<block wx:for='{{items}}' wx:key='index'>
-		<template is='cart_item' data='{{item: item}}'/>
+		<template is='cart_item' data='{{item: item, selected: selecteds[item.id] }}'/>
 	</block>
   <view class="footer">
     <view class="count">
       <view class="count-title">合计：</view>
-      <view class="money">100</view>
-      <view class="old">120</view>
+      <view class="money">¥{{total}}</view>
+      <view wx:if='{{oldTotal > 0}}' class="old">¥{{oldTotal}}</view>
     </view>
     <view class="paybtn">支付</view>
   </view>

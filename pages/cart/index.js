@@ -8,7 +8,10 @@ Page({
    */
   data: {
     navigationBarHeight: app.globalData.navigationBarHeight,
-    items: []
+    items: [],
+    selecteds: {},
+    total: 0,
+    oldTotal: 0,
   },
 
   /**
@@ -87,6 +90,8 @@ Page({
         if (data.length > 0) {
           const ids = data.map(o => o.id);
           let items = [];
+          let selecteds = {...that.data.selecteds};
+
           GET('/v1/shop/goods', {  filter: { id: ids } }, result => {
             ids.forEach( (id, idx)  => {
               result.forEach( goods => {
@@ -98,24 +103,37 @@ Page({
                     name: goods.name,
                     info: goods.info,
                     photos: goods.photos,
-                    id: goods.id
+                    id: goods.id,
                   });
+                  if (!(id in selecteds)) {
+                    selecteds[id] = true;
+                  }
                 }
               });
             });
-            that.setData({ items : items });
+            that.setData({ 
+              items : items,
+              selecteds : selecteds,
+              ...that.calcMoney(items, selecteds)
+            });
             wx.hideLoading();
           }, error => {
             wx.hideLoading();
           });
         } else {
           wx.hideLoading();
-          that.setData({ items : [] });
+          that.setData({ 
+            items : [],
+            ...that.calcMoney([], {})
+          });
         }
       },
       fail: error => {
         wx.hideLoading();
-        that.setData({ items : [] });
+        that.setData({ 
+          items : [],
+          ...that.calcMoney([], {})
+        });
       }
     })
   },
@@ -126,6 +144,7 @@ Page({
 
     let index = -1;
     let items = [...this.data.items];
+    let selecteds = {...this.data.selecteds};
     items.forEach( (o, i) => {
       if (o.id == id) {
         index = i;
@@ -143,14 +162,21 @@ Page({
           if (confirm) {
             app.changeGoodsInCart(id, 0);
             items.splice(index, 1);
-            that.setData({ items : items });
+            delete selecteds[goods.id];
+            console.log(selecteds);
+            that.setData({ 
+              items : items, 
+              selecteds: selecteds,
+              ...that.calcMoney(items, selecteds)
+            });
           }
         }
       })
     } else {
       items.splice(index, 1, goods);
       this.setData({
-        items: items
+        items: items,
+        ...this.calcMoney(items, this.data.selecteds)
       });
     }
   },
@@ -164,6 +190,38 @@ Page({
       }
       items.push(o);
     })
-    this.setData({ items: items });
+    this.setData({ 
+      items: items,
+      ...this.calcMoney(items, this.data.selecteds)
+    });
   },
+
+  onCartItemSelect: function({ currentTarget: { dataset: { id }} }) {
+    let seleteds = {...this.data.selecteds};
+    seleteds[id] = !seleteds[id];
+    this.setData({ 
+      selecteds : seleteds,
+      ...this.calcMoney(this.data.items, seleteds)
+    });
+  },
+
+  calcMoney: function(items, selecteds) {
+    let total = 0, oldTotal = 0;
+    items.forEach(goods => {
+      if (selecteds[goods.id]) {
+        if (goods.new_price > 0) {
+          total += goods.new_price * goods.num;
+        } else {
+          total += goods.price * goods.num
+        }
+        oldTotal += goods.price * goods.num;
+      }
+    });
+
+    if (oldTotal == total) oldTotal = 0;
+    return {
+      oldTotal,
+      total
+    };
+  }
 })
