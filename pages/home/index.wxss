@@ -2,16 +2,28 @@
 @import "../template/normal_goods/index.wxss";
 
 page {
+  background-color: #f6f9f9;
+}
+
+.content {
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-  flex: 1;
-  background-color: #f6f9f9;
+  height: calc(100vh - 160px);
+  overflow: hidden;
+}
+
+.banner {
+  height: 150px;
+  margin: 0 16rpx 10px 16rpx;
+  background-color: gray;
+  border-radius: 10rpx;
 }
 
 .home-left {
   padding: 0 16rpx 0 16rpx;
-  height: 100vh;
+  width: 180rpx;
+  height: 100%;
   /* position: fixed; */
   background-color: #f6f9f9;
   left: 0;
@@ -19,7 +31,7 @@ page {
 }
 
 .home-left-scroll {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: #ffffff;
   border-top-left-radius: 10rpx;
@@ -46,7 +58,7 @@ page {
 }
 
 .home-right {
-  height: 100vh;
+  height: 100%;
   flex: 1;
   background-color: #ffffff;
   border-top-left-radius: 10rpx;
@@ -61,6 +73,7 @@ page {
   align-items: center;
   padding-top: 10rpx;
   padding-bottom: 10rpx;
+  position: relative;
 }
 
 .home-left .home-item .home-icon {
@@ -73,13 +86,37 @@ page {
 
 .home-left .home-item .home-icontext {
   font-size: 24rpx;
-  padding: 0 20rpx 0 20rpx;
+  padding: 20rpx 0 20rpx 20rpx;
   color: #999999;
+  align-self: flex-start;
 }
 
 .home-left .home-item .home-icontext-select {
   font-size: 24rpx;
-  padding: 0 20rpx 0 20rpx;
-  color: #7289ff;
+  padding: 20rpx 0 20rpx 30rpx;
+  color: #303232;
   font-weight: bold;
+  align-self: flex-start;
+}
+
+.home-icondot {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: -15rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #7289ff80;
+}
+
+.home-icondot-right {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: border-box;
+  right: 12rpx;
+  bottom: 12rpx;
+  background-color: #7289ff80;
 }

@@ -104,12 +104,21 @@ Page({
         key: 'cart_goods',
         data: goods,
         complete: () => {
-          wx.hideLoading();
-          wx.navigateBack();
+          setTimeout(() => {
+            wx.hideLoading();
+            wx.redirectTo({
+              url: '/pages/payment/success',
+            })
+          }, 200);
         }
       });  
     } else {
-      wx.navigateBack();
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '/pages/payment/success',
+        })  
+      }, 2000);
+
     }  
   }
 })

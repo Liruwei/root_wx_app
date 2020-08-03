@@ -77,34 +77,52 @@ Page({
       categoryIndex: index,
       scrollId: `id_${category.scrollId}`
     })
+    this._updateCategoryCan = false;
   },
 
   observeCategoryTitle: throttle(1000, (target) => {
-    wx.createSelectorQuery().
-    selectAll('#category_0,#category_1,#category_2').
-    boundingClientRect().
-    exec( r => {
-      console.log(r);
-    });
-    // target.data.categorys.forEach( (o, index) => {
-    //   wx.createSelectorQuery().
-    //   select(`#category_${o.scrollId}`).
-    //   boundingClientRect().
-    //   exec( r => {
-    //     if (r.length > 0) {
-    //       console.log(`index-${index} ${(new Date()).toLocaleTimeString()}`, r[0].top);
-    //       if (r[0].top >= -10 && r[0].top <= 100) {
-    //         if (index != target.data.categoryIndex) {
-    //           target.setData({ categoryIndex : index });
-
-    //         }
-    //       }
-    //     }
-    //   })
-    // })
+    target._updateCategoryTempDic = {};
+    target.data.categorys.forEach( (o, index) => {
+      wx.createSelectorQuery().
+      select(`#category_${o.scrollId}`).
+      boundingClientRect().
+      exec( r => {
+        if (r.length > 0) {
+          target._updateCategoryIndex(index, Math.abs(r[0].top));
+        } else {
+          target._updateCategoryIndex(index, 99999);
+        }
+      });
+    })
   }),
 
+  _updateCategoryTempDic: {},
+  _updateCategoryCan: true,
+  _updateCategoryIndex: function(index, value) {
+    this._updateCategoryTempDic[`${index}`] = value;
+    const keys = Object.keys(this._updateCategoryTempDic);
+    if (keys.length == this.data.categorys.length) {
+      let index = 0, value = this._updateCategoryTempDic['0'];
+      for (let i = 1; i < keys.length; i++) {
+        const tempValue = this._updateCategoryTempDic[`${i}`];
+        if (tempValue < value) {
+          index = i;
+          value = tempValue;
+        }
+      }
+      this.setData({
+        categoryIndex: index
+      });
+      this._updateCategoryCan = true;
+    }
+  },
+
   onScrollviewScroll: function(e) {
-    this.observeCategoryTitle(this);
-  }
+    if (this._updateCategoryCan) {
+      this.observeCategoryTitle(this);
+    } 
+      
+    this._updateCategoryCan = true;
+  },
+
 })

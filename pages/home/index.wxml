@@ -1,10 +1,14 @@
 <!--pages/home/index.wxml-->
 <import src="../template/normal_goods/index.wxml" />
+<view class="banner"></view>
+<view class="content">
 <view class="home-left">
 	<scroll-view scroll-y="true" class="home-left-scroll">
 		<view wx:for="{{categorys}}" wx:key="index" class="home-item" catchtap="onCategoryTap" data-index='{{index}}' style='background-color: {{index == categoryIndex ? "#f6f9f9" : "#ffffff"}}'>
-			<image class="home-icon" src="{{item.icon}}"/>
-			<text class="{{index == categoryIndex ? 'home-icontext-select' : 'home-icontext'}}">{{item.name}}</text>
+			<!-- <image class="home-icon" src="{{item.icon}}"/> -->
+			<view class="{{index == categoryIndex ? 'home-icontext-select' : 'home-icontext'}}">{{item.name}}</view>
+			<view wx:if="{{index == categoryIndex}}" class="home-icondot"></view>
+			<view wx:if="{{index == categoryIndex}}" class="home-icondot-right"></view>
 		</view>
 	</scroll-view>
 </view>
@@ -18,4 +22,5 @@
 			<template is="normal_goods" data="{{item: item}}" />
 		</view>
 	</scroll-view>
+</view>
 </view>

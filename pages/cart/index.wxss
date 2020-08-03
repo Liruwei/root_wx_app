@@ -13,9 +13,35 @@ page {
   background-color: #7289ff;
   top: 0;
   width: 100vw;
-  height: 150px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+}
+
+.bg:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -50rpx;
+  z-index: -1;
+  content: ' ';
+  height: 100rpx;
+  width: 100%;
+  border-radius: 0 0 50% 50%;
+  background-color: #7289ff;
+}
+
+.empty-btn {
+  position: fixed;
+  left: 50%;
+  bottom: 200rpx;
+  transform: translateX(-50%);
+  height: 70rpx;
+  border-radius: 35rpx;
+  width: 200rpx;
+  font-size: 24rpx;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7289ff;
 }
 
 .cart {

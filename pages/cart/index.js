@@ -208,6 +208,7 @@ Page({
       selecteds : seleteds,
       ...this.calcMoney(this.data.items, seleteds)
     });
+    
   },
 
   calcMoney: function(items, selecteds) {
@@ -252,6 +253,12 @@ Page({
     wx.navigateTo({
       url: '/pages/index/index',
     });
+  },
+
+  toAddGoods: function() {
+    wx.switchTab({
+      url: '/pages/home/index',
+    })
   }
 
 })

@@ -2,26 +2,29 @@
 <import src="../template/cart_item/index.wxml" />
 <import src="../template/authority/index.wxml" />
 
-<view class="bg" style='height: calc({{navigationBarHeight}} + 100px)'></view>
+<view class="bg" style='height: calc({{navigationBarHeight}} + 34px)'></view>
 
+<block wx:if='{{items.length > 0}}'>
+	<view class="cart" style="margin-top: {{navigationBarHeight}}">
+		<view class="header">
+			12件
+		</view>
+		<block wx:for='{{items}}' wx:key='index'>
+			<template is='cart_item' data='{{item: item, selected: selecteds[item.id] }}' />
+		</block>
+	</view>
 
-<view wx:if='{{items.length > 0}}' class="cart" style="margin-top: {{navigationBarHeight}}">
-	<view class="header">
-    12件
-  </view>
-	<block wx:for='{{items}}' wx:key='index'>
-		<template is='cart_item' data='{{item: item, selected: selecteds[item.id] }}'/>
-	</block>
-</view>
-
-  <view class="footer">
-    <view class="count">
-      <view class="count-title">合计：</view>
-      <view class="money">¥{{total}}</view>
-      <view wx:if='{{oldTotal > 0}}' class="old">¥{{oldTotal}}</view>
-    </view>
-    <view class="paybtn" catchtap="toPayment">支付</view>
-  </view>
+	<view class="footer">
+		<view class="count">
+			<view class="count-title">合计：</view>
+			<view class="money">¥{{total}}</view>
+			<view wx:if='{{oldTotal > 0}}' class="old">¥{{oldTotal}}</view>
+		</view>
+		<view class="paybtn" catchtap="toPayment">支付</view>
+	</view>
+</block>
+<block wx:else>
+  <view class='empty-btn' catchtap="toAddGoods">去添加</view>
+</block>
 
 <template wx:if='{{status == 3}}' is='template_authority'></template>
-
