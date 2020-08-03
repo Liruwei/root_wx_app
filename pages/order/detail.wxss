@@ -2,11 +2,11 @@
 page {
   padding-top: 20rpx;
   padding-bottom: 40rpx;
-  background-color: #f2f4f5;
+  background-color: #f6f9f9;
 }
 
 .top {
-  margin: 0 30rpx 30rpx 30rpx;
+  margin: 0 30rpx 20rpx 30rpx;
   background-color: #ffffff;
   border-radius: 10rpx;
   box-sizing: border-box;
@@ -14,9 +14,11 @@ page {
 }
 
 .top .order {
-  font-size: small;
-  color: #ededed;
-  padding: 20rpx 0 20rpx 0;
+  font-size: 24rpx;
+  color: #999999;
+  padding: 0 0 20rpx 0;
+  border-bottom: solid 0.5px #f6f9f9;
+  margin-bottom: 20rpx;
 }
 
 .top .goods {
@@ -27,29 +29,35 @@ page {
 }
 
 .top .goods .img {
-  width: 120rpx;
-  height: 120rpx;
+  width: 100rpx;
+  min-width: 100rpx;
+  height: 100rpx;
   margin-right: 20rpx;
+  border-radius: 10rpx;
   background-color: #ededed;
 }
 
 .top .goods .right-content {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   flex: 1;
+  justify-content: space-between;
+  height: 100rpx;
 }
 
 .top .goods .row {
-  display: flex;
-  width: 100%;
+  flex: 1;
   align-items: center;
+  display: flex;
+  flex-direction: row;  
   justify-content: space-between;
 }
 
 .top .goods .name {
-  font-size: medium;
+  font-size: 30rpx;
   font-weight: bold;
-  color: #ededed;
+  color: #303232;
 }
 
 .top .goods .right {
@@ -58,28 +66,28 @@ page {
   align-items: center;
 }
 
-.top .goods .right .num {
-  font-size: small;
-  color: #ededed;
+.top .goods .num {
+  font-size: 24rpx;
+  color: #999999;
   margin-right: 20rpx;
 }
 
-.top .goods .right .price {
-  font-size: medium;
-  color: #ededed;
+.top .goods .price {
+  font-size: 30rpx;
+  color: #303232;
 }
 
 .top .goods .info {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
 }
 
 .top .line {
   width: 100%;
-  height: 1px;
+  height: 0.5px;
   margin-top: 20rpx;
   margin-bottom: 20rpx;
-  background-color: #ededed;
+  background-color: #f6f9f9;
 }
 
 .top .discounts {
@@ -89,13 +97,13 @@ page {
 }
 
 .top .discounts .name {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #303232;
 }
 
 .top .discounts .value {
-  font-size: medium;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #eb5940;
 }
 
 .footer {
@@ -105,8 +113,8 @@ page {
 }
 
 .footer .title {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #303232;
 }
 
 .footer .right {
@@ -115,15 +123,15 @@ page {
 }
 
 .footer .right .tip {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
   margin-right: 10rpx;
+  color: #303232;
 }
 
 .footer .right .value {
-  font-size: medium;
+  font-size: 30rpx;
   font-weight: bold;
-  color: #ededed;
+  color: #303232;
 }
 
 .times {
@@ -131,11 +139,12 @@ page {
   background-color: #ffffff;
   border-radius: 10rpx;
   box-sizing: border-box;
-  padding: 20rpx 20rpx 20rpx 20rpx;
+  padding: 20rpx 20rpx 4rpx 20rpx;
 }
 
 .times .value {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
+  padding-bottom: 16rpx;
 }
 

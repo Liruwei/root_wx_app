@@ -3,7 +3,7 @@
 
 page {
   padding-bottom: 40rpx;
-  background-color: #f2f4f5;
+  background-color: #f6f9f9;
 }
 .bg {
   position: fixed;
@@ -17,43 +17,42 @@ page {
 }
 
 .header {
-  margin: 0 30rpx 0 30rpx;
+  padding: 150rpx 30rpx 32rpx 30rpx;
   display: flex;
   align-items: center;
-  height: 200rpx;
+  background-color: #ffffff;
 }
 
 .avatar {
   height: 100rpx;
   width: 100rpx;
   border-radius: 50rpx;
-  background-color: #ffffff;
+  background-color: #ededed;
 }
 
 .name {
-  font-size: medium;
+  font-size: 30rpx;
   margin-left: 20rpx;
-  color: #ffffff;
+  color: #303232;
 }
 
 .toolbar {
   height: 160rpx;
-  margin-left: 30rpx;
-  margin-right: 30rpx;
+  margin-bottom: 20rpx;
   background-color: #ffffff;
-  box-shadow: 0 10rpx 30rpx -10rpx #ededed;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  border-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
   overflow: hidden;
 }
 
 .toolbar-line {
-  height: 140rpx;
+  height: 64rpx;
   width: 2rpx;
-  color: #f2f4f5;
+  background-color: #f6f9f9;
 }
 
 .toolbar-item {
@@ -71,37 +70,42 @@ page {
 }
 
 .toolbar-item .value {
-  font-size: medium;
-  color: #ededed;
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #303232;
 }
 
 .toolbar-item .unit {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
 }
 
 .toolbar-item .bottom {
-  font-size: medium;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.item-footer {
+  margin: 0 16rpx 0 16rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
 }
 
 .item-row {
-  margin: 20rpx 30rpx 0 30rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #ffffff;
-  box-shadow: 0 10rpx 30rpx -10rpx #ededed;
+  /* box-shadow: 0 10rpx 30rpx -10rpx #ededed; */
   padding: 0 10rpx 0 10rpx;
   box-sizing: border-box;
-  border-radius: 10rpx;
   overflow: hidden;
   height: 88rpx;
 }
 
 .item-row .name {
-  font-size: medium;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #303232;
 }
 
 .item-row .icon {

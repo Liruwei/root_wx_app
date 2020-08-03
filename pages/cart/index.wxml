@@ -12,6 +12,8 @@
 	<block wx:for='{{items}}' wx:key='index'>
 		<template is='cart_item' data='{{item: item, selected: selecteds[item.id] }}'/>
 	</block>
+</view>
+
   <view class="footer">
     <view class="count">
       <view class="count-title">合计：</view>
@@ -20,7 +22,6 @@
     </view>
     <view class="paybtn" catchtap="toPayment">支付</view>
   </view>
-</view>
 
 <template wx:if='{{status == 3}}' is='template_authority'></template>
 

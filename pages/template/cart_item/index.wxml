@@ -2,10 +2,12 @@
 	<view class="cart_item">
 		<view class="cart_item-radio" catchtap="onCartItemSelect" data-id='{{item.id}}'>
 			<block wx:if='{{selected}}'>
-				<view class="cart_item-radiodot cart_item-radio-select"></view>
+				<icon type="success" size="24" color="#7289ff"></icon>
+				<!-- <view class="cart_item-radiodot cart_item-radio-select"></view> -->
 			</block>
 			<block wx:else>
-				<view class="cart_item-radiodot"></view>
+				<icon type="circle" size="24" color="#ededed"></icon>
+				<!-- <view class="cart_item-radiodot"></view> -->
 			</block>
 		</view>
 		<view class="cart_item-img"></view>

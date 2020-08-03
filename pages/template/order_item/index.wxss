@@ -1,5 +1,5 @@
 .order_item {
-  box-shadow: 0 10rpx 30rpx -10rpx #ededed;
+  /* box-shadow: 0 10rpx 30rpx -10rpx #ededed; */
   background-color: #ffffff;
   margin-left: 30rpx;
   margin-right: 30rpx;
@@ -12,10 +12,10 @@
 .order_item-top {
   flex: 1;
   height: 60rpx;
-  border-bottom: solid 1px #f2f4f5;
+  border-bottom: solid 0.5px #f6f9f9;
   padding: 10rpx 0 10rpx 0;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,23 +28,24 @@
 }
 
 .order_item-tag {
-  background-color: #ededed;
-  font-size: small;
+  background-color: #999999;
+  font-size: 24rpx;
   color: #ffffff;
-  padding: 5rpx 20rpx 5rpx 20rpx;
-  break-after: 5rpx;
+  padding: 8rpx 12rpx 8rpx 12rpx;  
+  border-radius: 10rpx;
 }
 
 .order_item-status {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
 }
 
 .order_item-center {
   flex: 1;
   display: flex;
   flex-direction: row;
-  padding: 20rpx 0 20rpx 0;
+  padding: 20rpx 0rpx 20rpx 0;
+  align-items: center;
 }
 
 .order_item-img {
@@ -52,14 +53,15 @@
   width: 100rpx;
   border-bottom: 10rpx;
   background-color: #ededed;
-  margin-left: 10rpx;
+  margin-left: 20rpx;
+  border-radius: 10rpx;
 }
 
 .order_item-centerright {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding-left: 10rpx;
+  padding-left: 20rpx;
   padding-right: 10rpx;
 }
 
@@ -71,38 +73,46 @@
 }
 
 .order_item-name {
-  font-size: medium;
+  font-size: 30rpx;
   font-weight: bold;
-  color: #ededed;
+  color: #303232;
 }
 
 .order_item-num {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
 }
 
 .order_item-info {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
 }
 
 .order_item-footer {
   flex: 1;
-  border-top: solid 1px #f2f4f5;
-  padding: 10rpx 0 20rpx 0;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
+  /* border-top: solid 0.5px #f6f9f9; */
+  padding: 16rpx 20rpx 20rpx 20rpx;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .order_item-time {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
 }
 
 .order_item-total {
-  font-size: small;
-  color: #ededed;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: #303232;
+}
+
+.order_item-totalmoney {
+  font-size: 30rpx;
+  color: #303232;
 }

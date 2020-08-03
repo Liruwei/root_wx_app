@@ -1,17 +1,57 @@
 /* pages/home/index.wxss */
 @import "../template/normal_goods/index.wxss";
 
+page {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  flex: 1;
+  background-color: #f6f9f9;
+}
+
 .home-left {
-  width: 100rpx;
+  padding: 0 16rpx 0 16rpx;
   height: 100vh;
-  position: fixed;
-  background-color: #ededed;
+  /* position: fixed; */
+  background-color: #f6f9f9;
   left: 0;
   top: 0;
 }
 
+.home-left-scroll {
+  height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  overflow: hidden;
+}
+
+.category-title {
+  padding: 16rpx 0 16rpx 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.line {
+  height: 0.5px;
+  background-color: #f6f9f9;
+  width: 100%;
+}
+
+.home-left-content {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
 .home-right {
-  margin-left: 100rpx;
+  height: 100vh;
+  flex: 1;
+  background-color: #ffffff;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  margin-right: 16rpx;
 }
 
 .home-left .home-item {
@@ -21,16 +61,25 @@
   align-items: center;
   padding-top: 10rpx;
   padding-bottom: 10rpx;
-  height: 80rpx;
 }
 
 .home-left .home-item .home-icon {
-  width: 60rpx;
-  height: 60rpx;
-  background-color: lightpink;
+  width: 44rpx;
+  height: 44rpx;
+  /* background-color: lightpink; */
+  margin-bottom: 8rpx;
+  margin-top: 8rpx;
 }
 
 .home-left .home-item .home-icontext {
-  font-size: 20rpx;
-  color: gray;
+  font-size: 24rpx;
+  padding: 0 20rpx 0 20rpx;
+  color: #999999;
+}
+
+.home-left .home-item .home-icontext-select {
+  font-size: 24rpx;
+  padding: 0 20rpx 0 20rpx;
+  color: #7289ff;
+  font-weight: bold;
 }

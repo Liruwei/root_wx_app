@@ -1,24 +1,23 @@
 /* pages/payment/index.wxss */
 page {
-  background-color: #f2f4f5;
+  background-color: #f6f9f9;
   padding-bottom: 120rpx;
 }
 
 .box {
   background-color: #ffffff;
-  margin: 0 30rpx 20rpx 30rpx;
+  margin: 0 16rpx 20rpx 16rpx;
   display: flex;
-  padding: 20rpx 15rpx 20rpx 15rpx;
+  padding: 20rpx 20rpx 20rpx 20rpx;
   box-sizing: border-box;
-  box-shadow: 0 10rpx 30rpx -10rpx #ededed;
-  border-radius: 20rpx;
+  border-radius: 10rpx;
   flex-direction: column;
 }
 
 .box-line {
-  margin: 20rpx 15rpx 20rpx 15rpx;
-  height: 1px;
-  background-color: #f2f4f5;
+  margin: 20rpx 0 20rpx 0;
+  height: 0.5px;
+  background-color: #f6f9f9;
 }
 
 .subtotal {
@@ -30,20 +29,20 @@ page {
 }
 
 .subtotal-title {
-  font-size: 20rpx;
-  color: #ededed;
-  margin-right: 10rpx;
+  font-size: 24rpx;
+  color: #303232;
 }
 
 .subtotal-money {
   font-size: 30rpx;
   font-weight: bold;
-  color: #ededed;
+  color: #303232;
 }
 
 .subtotal-del {
-  font-size: 20rpx; 
-  color: #ededed;
+  margin-left: 10rpx;
+  font-size: 24rpx; 
+  color: #999999;
   text-decoration: line-through;
 }
 
@@ -68,8 +67,8 @@ page {
 }
 
 .goods-img {
-  height: 80rpx;
-  width: 80rpx;
+  height: 100rpx;
+  width: 100rpx;
   background-color: #ededed;
   border-radius: 10rpx;
   margin-right: 20rpx;
@@ -78,19 +77,19 @@ page {
 .goods-text {
   display: flex;
   flex-direction: column;
-  height: 80rpx;
+  height: 100rpx;
   justify-content: space-between;
 }
 
 .goods-name {
   font-size: 30rpx;
   font-weight: bold;
-  color: #ededed;
+  color: #303232;
 }
 
 .goods-info {
-  font-size: 20rpx;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
 }
 
 .goods-right {
@@ -102,8 +101,8 @@ page {
 }
 
 .goods-num {
-  font-size: 20rpx;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
 }
 
 .goods-money {
@@ -114,29 +113,29 @@ page {
 
 .goods-price {
   font-size: 30rpx;
-  color: #ededed;
+  color: #303232;
 }
 
 .goods-oldprice {
-  font-size: 20rpx;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
   margin-left: 10rpx;
   text-decoration: line-through;
 }
 
 .box-title {
-  font-size: 28rpx;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #303232;
 }
 
 .coupon {
-  font-size: 28rpx;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #eb5940;
 }
 
 .pay-type {
-  font-size: 28rpx;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #999999;
 }
 
 .toolbar {
@@ -166,33 +165,34 @@ page {
 }
 
 .toolbar-title {
-  font-size: 30rpx;
-  color: #ededed;
+  font-size: 24rpx;
+  color: #303232;
 }
 
 .toolbar-total {
   font-size: 30rpx;
   font-weight: bold;
-  color: #ededed;
+  color: #eb5940;
 }
 
 .toolbar-reduce {
   margin-top: 5rpx;
-  font-size: 16rpx;
-  color: #ededed;
-  padding: 1px 1px 1px 1px;
-  border: solid 1px #ededed;
+  font-size: 20rpx;
+  padding: 1px 3px 1px 3px;
+  border: solid 1px #eb5940;
   width: fit-content;
+  border-radius: 2px;
+  color: #eb5940;
 }
 
 .toolbar-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30rpx;
-  background-color: #ededed;
+  font-size: 24rpx;
   color: #ffffff;
-  padding: 0 30rpx 0 30rpx;
+  background-color: #33c900;
+  padding: 0 40rpx 0 40rpx;
   height: 70rpx;
   border-radius: 35rpx;
   margin-right: 30rpx;

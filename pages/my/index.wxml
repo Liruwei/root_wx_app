@@ -2,37 +2,37 @@
 <import src="../template/authority/index.wxml" />
 
 <view class="bg" style='height: calc({{navigationBarHeight}} + 100px)'></view>
-<view class="header" style="margin-top: {{statusBarHeight}}">
-  <view class="avatar"></view>
-  <view class="name">Name</view>
+<view class="header">
+	<view class="avatar"></view>
+	<view class="name">Name</view>
 </view>
 
 <view class="toolbar">
-  <view class="toolbar-item">
-    <view class="top">
-      <view class="value">10</view>
-      <view class="unit">点</view>
-    </view>
-    <view class="bottom">积分</view>
-  </view>
-  <view class="toolbar-line"></view>
-  <view class="toolbar-item">
-    <view class="top">
-      <view class="value">10</view>
-      <view class="unit">张</view>
-    </view>
-    <view class="bottom">优惠券</view>
-  </view>
+	<view class="toolbar-item">
+		<view class="top">
+			<view class="value">10</view>
+		</view>
+		<view class="bottom">积分</view>
+	</view>
+	<view class="toolbar-line"></view>
+	<view class="toolbar-item">
+		<view class="top">
+			<view class="value">10</view>
+		</view>
+		<view class="bottom">优惠券</view>
+	</view>
 </view>
 
-<view class="item-row">
-  <view class="name">通知设置</view>
-  <view class="icon"></view>
-</view>
+<view class="item-footer">
+	<view class="item-row">
+		<view class="name">通知设置</view>
+		<view class="icon"></view>
+	</view>
 
-<view class="item-row">
-  <view class="name">关于我们</view>
-  <view class="icon"></view>
+	<view class="item-row">
+		<view class="name">关于我们</view>
+		<view class="icon"></view>
+	</view>
 </view>
 
 <template wx:if='{{status == 3}}' is='template_authority'></template>

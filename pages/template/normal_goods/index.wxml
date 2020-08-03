@@ -2,9 +2,16 @@
   <view class="normal_goods">
     <view class="normal_goods-left"></view>
     <view class="normal_goods-right">
-      <text class="normal_goods-name">{{item.name}}</text>
-      <text class="normal_goods-price">{{item.price}}</text>
-      <view class="normal_goods-btn" catchtap="onNormalGoodsTap" data-id='{{item.id}}'>+</view>
+      <view style="display: flex; flex-direction: column;">
+        <view class="normal_goods-name">{{item.name}}</view>
+        <view class="normal_goods-info">{{item.info || '描述'}}</view>
+        
+      </view>
+      <view style="display: flex; flex-direction: row; justify-content: space-between;">
+      <view class="normal_goods-price">¥{{item.price}}</view>
+      <view class="normal_goods-btn" catchtap="onNormalGoodsTap" data-id='{{item.id}}'>
+      +</view>
+      </view>
     </view>
   </view>
 </template>

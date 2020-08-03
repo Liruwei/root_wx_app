@@ -11,10 +11,10 @@ Page({
     oldTotal: app.globalData.paymentInfo.oldTotal || 0,
     totalPrice: 0,
     totalReduce: 0,
-    coupon: {
-      title: '全场优惠',
-      price: 15
-    }
+    // coupon: {
+    //   title: '全场优惠',
+    //   price: 15
+    // }
   },
 
   /**
@@ -27,8 +27,10 @@ Page({
     if (this.data.coupon) {
       totalPrice -= this.data.coupon.price;
       totalReduce += this.data.coupon.price;
+    } else {
+      totalPrice = totalPrice * 1.0;
+      totalReduce = totalReduce * 1.0;
     }
-
     this.setData({
       list: app.globalData.paymentInfo.list || [],
       total: app.globalData.paymentInfo.total || 0,
@@ -36,8 +38,6 @@ Page({
       totalPrice: totalPrice.toFixed(1),
       totalReduce: totalReduce.toFixed(1)
     });
-
-    console.log(this.data);
   },
 
   /**

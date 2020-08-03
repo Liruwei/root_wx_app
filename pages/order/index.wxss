@@ -5,10 +5,11 @@
 page {
   background-color: #f2f4f5;
   padding-bottom: 20rpx;
+  padding-top: 20rpx;
 }
 
 .topbar {
-  background-color: #ededed;
+  background-color: #7289ff;
   margin: 0 30rpx 0 30rpx;
   border-radius: 50rpx;
   display: flex;
@@ -25,13 +26,13 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: medium;
+  font-size: 24rpx;
   color: #ffffff;
 }
 
 .select {
   background-color: #ffffff;
-  color: #ededed;
+  color: #7289ff;
   border-radius: 49.5rpx;
 }
 

@@ -1,5 +1,7 @@
 // pages/home/index.js
 import { GET } from '../../utils/network';
+import { throttle } from 'throttle-debounce';
+console.log(throttle);
 const app = getApp();
 Page({
 
@@ -8,6 +10,7 @@ Page({
    */
   data: {
     categorys: [],
+    categoryIndex: 0,
     goods: [],
     scrollId: null,
     refreshing: false
@@ -18,7 +21,8 @@ Page({
     this.loadData();
   },
 
-  onReady: function () {},
+  onReady: function () {
+  },
   onShow: function () {
     app.showRedDot();
   },
@@ -47,6 +51,9 @@ Page({
           name: o.category,
           scrollId: goods.length
         });
+        if (o.goods.length > 0) {
+          o.goods[0].category = o.category
+        }
         goods.push(...o.goods);
       });
       that.setData({
@@ -67,7 +74,37 @@ Page({
   onCategoryTap: function({ currentTarget: { dataset: { index }}}) {
     const category = this.data.categorys[index];
     this.setData({
+      categoryIndex: index,
       scrollId: `id_${category.scrollId}`
     })
+  },
+
+  observeCategoryTitle: throttle(1000, (target) => {
+    wx.createSelectorQuery().
+    selectAll('#category_0,#category_1,#category_2').
+    boundingClientRect().
+    exec( r => {
+      console.log(r);
+    });
+    // target.data.categorys.forEach( (o, index) => {
+    //   wx.createSelectorQuery().
+    //   select(`#category_${o.scrollId}`).
+    //   boundingClientRect().
+    //   exec( r => {
+    //     if (r.length > 0) {
+    //       console.log(`index-${index} ${(new Date()).toLocaleTimeString()}`, r[0].top);
+    //       if (r[0].top >= -10 && r[0].top <= 100) {
+    //         if (index != target.data.categoryIndex) {
+    //           target.setData({ categoryIndex : index });
+
+    //         }
+    //       }
+    //     }
+    //   })
+    // })
+  }),
+
+  onScrollviewScroll: function(e) {
+    this.observeCategoryTitle(this);
   }
 })

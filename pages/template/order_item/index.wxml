@@ -20,7 +20,9 @@
     </view>
     <view class="order_item-footer">
       <view class="order_item-time">2019-09-01 20:10:21</view>
-      <view class="order_item-total">共1件商品 合计：¥5</view>
+      <view class="order_item-total">共1件商品 合计：¥5
+      <!-- <view class="order_item-totalmoney"></view> -->
+      </view>
     </view>
   </view>
 </template>

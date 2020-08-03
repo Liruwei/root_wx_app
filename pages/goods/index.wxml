@@ -1,6 +1,16 @@
 <!--pages/goods/index.wxml-->
 <block wx:if='{{goodsInfo}}'>
 	<view class="goods-image">
+      <swiper indicator-dots="{{true}}" 
+	  	autoplay="{{true}}" interval="{{2000}}" 
+		  duration="{{1000}}">
+          <swiper-item>
+            <view class="goods-swiper" style="background-color: blue;"></view>
+          </swiper-item>
+          <swiper-item>
+            <view class="goods-swiper" style="background-color: orange;"></view>
+          </swiper-item>
+      </swiper>
 	</view>
 
 	<view class="goods-info">

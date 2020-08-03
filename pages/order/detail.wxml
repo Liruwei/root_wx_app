@@ -8,12 +8,12 @@
 			<view class="right-content">
 				<view class="row">
 					<view class="name">Name</view>
-					<view class="right">
-						<view class="num">x1</view>
-						<view class="price">¥100</view>
-					</view>
+					<view class="price">¥100</view>
 				</view>
-				<view class="info">大/多冰</view>
+				<view class="row">
+					<view class="info">大/多冰</view>
+					<view class="num">x1</view>
+				</view>
 			</view>
 		</view>
 	</block>
@@ -32,6 +32,7 @@
 </view>
 <view class="times">
 	<view class="value">下单时间：2020-20-1 20-12-23</view>
+	<view class="value">支付方式：微信</view>
 	<view class="value">支付时间：2020-20-1 20-12-23</view>
 	<view class="value">完成时间：2020-20-1 20-12-23</view>
 </view>

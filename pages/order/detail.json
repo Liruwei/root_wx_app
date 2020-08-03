@@ -1,4 +1,5 @@
 {
-  "backgroundColor": "#f2f4f5",
-  "usingComponents": {}
+  "backgroundColor": "#f6f9f9",
+  "usingComponents": {},
+  "navigationBarTitleText": "已完成"
 }
