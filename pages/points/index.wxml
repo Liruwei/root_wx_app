@@ -1,0 +1,18 @@
+<!--pages/points/index.wxml-->
+<view class="header">
+	<view class="header-title">积分</view>
+	<view class="points">7890</view>
+</view>
+
+<view class="content">
+	<block wx:for='{{[1,2,3,4,5,6,7, 8, 9, 10, 11, 12]}}' wx:key='index'>
+		<view class="row">
+			<view class="icon"></view>
+			<view class="text">
+				<view class="type">完成订单</view>
+				<view class="date">2018-02-02 19:90:11</view>
+			</view>
+			<view class="value">+10</view>
+		</view>
+	</block>
+</view>

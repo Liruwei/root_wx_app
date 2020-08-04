@@ -1,0 +1,80 @@
+/* pages/points/index.wxss */
+page {
+    background-color: #f2f4f5;
+    padding-bottom: 20rpx;
+}
+
+.header {
+    margin: 0 20rpx 20rpx 20rpx;
+    height: 100px;
+    background-color: #ffffff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-left: 20rpx;
+    border-radius: 10rpx;
+}
+
+.header-title {
+    font-size: 24rpx;
+    color: #999999;
+}
+
+.points {
+    font-size: 60rpx;
+    font-weight: bold;
+    color: #303232;
+}
+
+.content {
+    margin: 0 20rpx 0 20rpx;
+    background-color: #ffffff;
+    border-radius: 10rpx;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16rpx 20rpx 16rpx 20rpx;
+    flex: 1;
+}
+.icon {
+    height: 88rpx;
+    width: 88rpx;
+    background-color: gray;
+    margin-right: 20rpx;
+    border-radius: 10rpx;
+}
+
+.text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.type {
+    color: #303232;
+    font-size: 24rpx;
+}
+
+.date {
+    font-size: 24rpx;
+    color: #999999;
+}
+
+.value {
+    font-size: 24rpx;
+    font-weight: bold;
+}
+
+
+
+
+
+
