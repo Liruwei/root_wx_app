@@ -5,14 +5,6 @@ page {
   background-color: #f6f9f9;
 }
 
-.content {
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  height: calc(100vh - 160px);
-  overflow: hidden;
-}
-
 .banner {
   height: 150px;
   margin: 0 16rpx 10px 16rpx;
@@ -20,22 +12,30 @@ page {
   border-radius: 10rpx;
 }
 
+.content {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  height: calc(100vh - 170px);
+  overflow: hidden;
+}
+
+
 .home-left {
   padding: 0 16rpx 0 16rpx;
   width: 180rpx;
   height: 100%;
   /* position: fixed; */
   background-color: #f6f9f9;
-  left: 0;
-  top: 0;
+  /* left: 0;
+  top: 0; */
 }
 
 .home-left-scroll {
   height: 100%;
   width: 100%;
   background-color: #ffffff;
-  border-top-left-radius: 10rpx;
-  border-top-right-radius: 10rpx;
+  border-radius: 10rpx;
   overflow: hidden;
 }
 
@@ -61,8 +61,7 @@ page {
   height: 100%;
   flex: 1;
   background-color: #ffffff;
-  border-top-left-radius: 10rpx;
-  border-top-right-radius: 10rpx;
+  border-radius: 10rpx;
   margin-right: 16rpx;
 }
 

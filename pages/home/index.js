@@ -12,8 +12,7 @@ Page({
     categorys: [],
     categoryIndex: 0,
     goods: [],
-    scrollId: null,
-    refreshing: false
+    scrollId: null
   },
 
   onLoad: function (options) {
@@ -28,7 +27,9 @@ Page({
   },
   onHide: function () {},
   onUnload: function () {},
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    this.loadData();
+  },
   onReachBottom: function () {},
   onShareAppMessage: function () {},
   onPageScroll: function (e) {},
@@ -58,12 +59,12 @@ Page({
       });
       that.setData({
         categorys,
-        goods,
-        refreshing: false
+        goods
       });
+      wx.stopPullDownRefresh();
     }, error => {
       wx.showToast({ title: error, icon: 'none'});
-      that.setData({ refreshing: false});
+      wx.stopPullDownRefresh();
     });
   },
 

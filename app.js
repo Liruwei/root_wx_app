@@ -5,13 +5,6 @@ App({
     this.handleLogin();
     this.initGlobalDataSync();
     this.showRedDot();
-    setTimeout(() => {
-      POST('/v1/wx/orders/create', {
-        projce_id: 7,
-        user_id: 0,
-        items: '[{"1":2},{"2":1}]'
-      });        
-    }, 1000);
   },
   initGlobalDataSync: function() {
     let info = wx.getSystemInfoSync();
