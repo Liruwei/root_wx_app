@@ -1,6 +1,6 @@
 const md5 = require('js-md5');
 // const host = 'http://192.168.31.34:5000';
-const host = 'http://10.0.0.7:5000';
+const host = 'http://localhost:5000';
 const project_id = '7';
 
 const sign = (url = '' ,params = {}) => {

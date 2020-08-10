@@ -28,7 +28,7 @@
 .cart_item-img {
   width: 180rpx;
   height: 180rpx;
-  background-color: #ededed;
+  background-color: #7289ff80;
   border-radius: 20rpx;
 }
 

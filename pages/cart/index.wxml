@@ -10,7 +10,7 @@
 			12件
 		</view>
 		<block wx:for='{{items}}' wx:key='index'>
-			<template is='cart_item' data='{{item: item, selected: selecteds[item.id] }}' />
+			<template is='cart_item' data='{{item: item, selected: selecteds[item.sku_id] }}' />
 		</block>
 	</view>
 

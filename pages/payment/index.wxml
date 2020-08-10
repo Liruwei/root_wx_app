@@ -5,7 +5,7 @@
         <view wx:if='{{index != 0}}' style="margin-top: 20rpx"></view>
         <view class="goods">
             <view class="goods-left">
-                <view class="goods-img"></view>
+                <image class="goods-img" mode="aspectFit" src='{{item.photos}}'></image>
                 <view class="goods-text">
                     <view class="goods-name">{{item.name}}</view>
                     <view class="goods-info">{{item.info}}</view>

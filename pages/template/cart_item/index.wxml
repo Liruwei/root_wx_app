@@ -1,6 +1,6 @@
 <template name='cart_item'>
 	<view class="cart_item">
-		<view class="cart_item-radio" catchtap="onCartItemSelect" data-id='{{item.id}}'>
+		<view class="cart_item-radio" catchtap="onCartItemSelect" data-id='{{item.sku_id}}'>
 			<block wx:if='{{selected}}'>
 				<icon type="success" size="24" color="#7289ff"></icon>
 				<!-- <view class="cart_item-radiodot cart_item-radio-select"></view> -->
@@ -10,7 +10,7 @@
 				<!-- <view class="cart_item-radiodot"></view> -->
 			</block>
 		</view>
-		<view class="cart_item-img"></view>
+		<image class="cart_item-img" mode="aspectFit" src='{{item.photos}}'/>
 		<view class="cart_item-right">
 			<view class="cart_item-column">
 				<view class="cart_item-name">{{item.name}}</view>
@@ -28,11 +28,11 @@
 				</view>
 				<view class="cart_item-control">
 					<view class="cart_item-btn">
-						<view class="cart_item-delbtn" catchtap="onCartItemDel" data-id='{{item.id}}'>-</view>
+						<view class="cart_item-delbtn" catchtap="onCartItemDel" data-id='{{item.sku_id}}'>-</view>
 					</view>
 					<view class="cart_item-num">{{item.num}}</view>
 					<view class="cart_item-btn">
-						<view class="cart_item-addbtn" catchtap="onCartItemAdd" data-id='{{item.id}}'>+</view>
+						<view class="cart_item-addbtn" catchtap="onCartItemAdd" data-id='{{item.sku_id}}'>+</view>
 					</view>
 				</view>
 			</view>

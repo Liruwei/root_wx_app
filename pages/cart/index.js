@@ -101,15 +101,17 @@ Page({
           GET('/v1/wx/cart', {  filter: { id: ids } }, result => {
             ids.forEach( (id, idx)  => {
               result.forEach( goods => {
-                if (goods.id == id) {
+                if (goods.sku_id == id) {
                   items.push({
                     num: data[idx].num,
                     price: goods.price,
                     new_price: goods.new_price,
                     name: goods.name,
                     info: goods.info,
-                    photos: goods.photos,
+                    photos: (goods.photos || '').split(',')[0],
                     id: goods.id,
+                    sku_id: goods.sku_id,
+                    stock: goods.stock
                   });
                   if (!(id in selecteds)) {
                     selecteds[id] = true;
@@ -152,7 +154,7 @@ Page({
     let items = [...this.data.items];
     let selecteds = {...this.data.selecteds};
     items.forEach( (o, i) => {
-      if (o.id == id) {
+      if (o.sku_id == id) {
         index = i;
       }
     });
@@ -168,7 +170,7 @@ Page({
           if (confirm) {
             app.changeGoodsInCart(id, 0);
             items.splice(index, 1);
-            delete selecteds[goods.id];
+            delete selecteds[id];
             that.setData({ 
               items : items, 
               selecteds: selecteds,
@@ -189,9 +191,18 @@ Page({
   onCartItemAdd: function({ currentTarget: { dataset: { id }} }) {
     let items = [];
     this.data.items.forEach( o => {
-      if (o.id == id) {
-        o.num += 1;
-        app.changeGoodsInCart(id, o.num);
+      if (o.sku_id == id) {
+        let newIndex = o.num + 1;
+        if (newIndex > o.stock) {
+          wx.showToast({
+            title: '库存不足',
+            icon: 'none'
+          });
+          o.num = o.stock;
+        } else {
+          o.num += 1;
+          app.changeGoodsInCart(id, o.num);
+        }
       }
       items.push(o);
     })
@@ -214,7 +225,7 @@ Page({
   calcMoney: function(items, selecteds) {
     let total = 0, oldTotal = 0;
     items.forEach(goods => {
-      if (selecteds[goods.id]) {
+      if (selecteds[goods.sku_id]) {
         if (goods.new_price > 0) {
           total += goods.new_price * goods.num;
         } else {
@@ -233,7 +244,23 @@ Page({
 
   toPayment: function() {
     const that = this;
-    let goods = this.data.items.filter( o => that.data.selecteds[o.id]);
+    let items = [...this.data.items];
+    let canPay = true;
+    items.forEach( o => {
+      if (o.num > o.stock) {
+        wx.showModal({
+          title: '库存不足，更新数量',
+          content:  `${o.name}: ${o.num} => ${o.stock}`,
+        })
+        canPay = false;
+        o.num = o.stock;
+        app.changeGoodsInCart(o.sku_id, o.num);
+        that.setData({ items: items})
+        return;
+      }
+    });
+    if (!canPay) return;
+    let goods = this.data.items.filter( o => that.data.selecteds[o.sku_id]);
     if (goods.length == 0) {
       wx.showToast({ title: '请选择商品', icon: 'none' });
       return;

@@ -69,7 +69,7 @@ page {
 .goods-img {
   height: 100rpx;
   width: 100rpx;
-  background-color: #ededed;
+  background-color: #7289ff80;
   border-radius: 10rpx;
   margin-right: 20rpx;
 }
