@@ -1,16 +1,22 @@
 <template name="normal_goods">
   <view class="normal_goods">
-    <view class="normal_goods-left"></view>
+    <image class="normal_goods-left" mode="aspectFit" src='{{item.photo}}'/>
     <view class="normal_goods-right">
       <view style="display: flex; flex-direction: column;">
         <view class="normal_goods-name">{{item.name}}</view>
-        <view class="normal_goods-info">{{item.info || '描述'}}</view>
-        
+        <view class="normal_goods-info">{{item.info || ''}}</view>
       </view>
       <view style="display: flex; flex-direction: row; justify-content: space-between;">
-      <view class="normal_goods-price">¥{{item.price}}</view>
-      <view class="normal_goods-btn" catchtap="onNormalGoodsTap" data-id='{{item.id}}'>
-      +</view>
+      <block wx:if='{{item.new_price > 0}}'>
+        <view class="normal_goods-row">
+          <view class="normal_goods-price">¥{{item.new_price}}</view>
+          <view class="normal_goods-oldprice">¥{{item.price}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="normal_goods-price">¥{{item.price}}</view>
+      </block>
+      <image class="normal_goods-btn" catchtap="onNormalGoodsTap" data-id='{{item.id}}' src='/icons/todetail.png' mode="scaleToFill"/>
       </view>
     </view>
   </view>

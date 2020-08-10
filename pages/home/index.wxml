@@ -1,6 +1,8 @@
 <!--pages/home/index.wxml-->
 <import src="../template/normal_goods/index.wxml" />
-<view class="banner"></view>
+<view class="banner">
+	<image class='banner-img' src='/icons/home_banner.png'></image>
+</view>
 <view class="content">
 	<view class="home-left">
 		<scroll-view scroll-y="true" class="home-left-scroll">

@@ -11,9 +11,14 @@ Page({
     navigationBarHeight: app.globalData.navigationBarHeight,
     statusBarHeight: app.globalData.statusBarHeight,
     goodsInfo: null,
-    num: 1
+    num: 1,
+    types: [],
+    typeSelecteds: [],
   },
-
+  /**
+   * 库存
+   */
+  _stocks: [], 
   /**
    * 生命周期函数--监听页面加载
    */
@@ -77,18 +82,59 @@ Page({
 
   loadData: function(goods_id) {
     const that = this;
-    GET(`/v1/shop/goods/${goods_id}`, {}, result => {
+    GET(`/v1/wx/goods/${goods_id}`, {}, result => {
       wx.hideLoading();
-      that.setData({ goodsInfo : result });
+      let { detail, classes, stock} = result;
+      let types = [], typeSelecteds = [], price = detail.price, new_price = detail.new_price;
+      if (detail.photos.length > 0) {
+        detail.photos = detail.photos.split(',')
+      }
+      classes.forEach( o => {
+        if ( o.items.length > 0) {
+          typeSelecteds.push(o.items[0].id);
+        } else {
+          typeSelecteds.push(-1);
+        }
+        types.push({
+          name: o.type.name,
+          items: (o.items || []) .map(i => ({ name: i.name, id: i.id  }))
+        });
+      });
+      let stockInfo;
+      stock.forEach( o => {
+        if (o.symbol_path == typeSelecteds.join(',')) {
+          stockInfo = o;
+        }
+      })
+      if (stockInfo) {
+        price = stockInfo.price;
+        new_price = stockInfo.new_price;
+      }
+      that._stocks = stock;
+      that.setData({ 
+        goodsInfo : detail,
+        typeSelecteds: typeSelecteds,
+        types: types,
+        price: price,
+        newPrice: new_price
+      });
     }, error => {
       wx.showToast({ title: error, icon: 'none' });
     });
   },
 
   onAddTap: function() {
-    this.setData({
-      num: this.data.num + 1
-    });
+    let newNum = this.data.num + 1;
+    if (this.getStock() >= newNum) {
+      this.setData({
+        num: newNum
+      });  
+    } else {
+      wx.showToast({
+        title: '库存不足',
+        icon: 'none'
+      });
+    }
   },
 
   onDelTap: function() {
@@ -98,35 +144,92 @@ Page({
   },
 
   onAddToCart: function() {
-    app.addGoodsInCart(this.data.goodsInfo.id, this.data.num);
+    if (this.getStock() >= this.data.num) {
+      const sku = this.getSku();
+      app.addGoodsInCart(sku.id, this.data.num);
+    } else {
+      wx.showToast({
+        title: '库存不足',
+        icon: 'none'
+      });
+    }    
   },
 
   onBuyNow: function() {
-    let goods = this.data.goodsInfo;
-    let num = this.data.num;
-    let total = 0, oldTotal = 0;
-    if (goods.new_price > 0) {
-      total = (goods.new_price * num).toFixed(1);
-      oldTotal = (goods.price * num).toFixed(1);
-    } else {
-      total = (goods.price * num).toFixed(1);
+    if (this.getStock() < this.data.num) {
+      wx.showToast({
+        title: '库存不足',
+        icon: 'none'
+      });
+      return;
     }
+
+    let { goods, num, price, newPrice} = this.data;
+    const sku = this.getSku();
+
+    let total = 0, oldTotal = 0;
+    if (newPrice > 0) {
+      total = (newPrice * num).toFixed(1);
+      oldTotal = (price * num).toFixed(1);
+    } else {
+      total = (price * num).toFixed(1);
+    }
+    
+
     app.globalData.paymentInfo = {
       fromType: 'detail',
       total: total,
       oldTotal: oldTotal,
       list: [{
         num: num,
-        price: goods.price,
-        new_price: goods.new_price,
+        price: price,
+        new_price: newPrice,
         name: goods.name,
         info: goods.info,
         photos: goods.photos,
-        id: goods.id,
+        id: sku.id,
       }]
     };
     wx.navigateTo({
       url: '/pages/payment/index',
     });
+  },
+  onTypeTap: function({ currentTarget: { dataset: { id, index }} }) {
+    let typeSelecteds = [...this.data.typeSelecteds];
+    typeSelecteds[index] = id;
+
+    let stockInfo = this.getSku(), price = this.data.price, new_price = this.data.newPrice;
+    if (stockInfo) {
+      price = stockInfo.price;
+      new_price = stockInfo.new_price;
+    }
+
+    this.setData({
+      typeSelecteds,
+      price: price,
+      newPrice: new_price
+    });
+  },
+  getStock: function() {
+    let stockInfo;
+    this._stocks.forEach( o => {
+      if (o.symbol_path == this.data.typeSelecteds.join(',')) {
+        stockInfo = o;
+      }
+    });
+    if (stockInfo) {
+      return stockInfo.stock;
+    } else {
+      return 0;
+    }
+  },
+  getSku: function() { 
+    let stockInfo;
+    this._stocks.forEach( o => {
+      if (o.symbol_path == this.data.typeSelecteds.join(',')) {
+        stockInfo = o;
+      }
+    });
+    return stockInfo;
   }
 })

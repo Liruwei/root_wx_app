@@ -98,7 +98,7 @@ Page({
           let items = [];
           let selecteds = {...that.data.selecteds};
 
-          GET('/v1/shop/goods', {  filter: { id: ids } }, result => {
+          GET('/v1/wx/cart', {  filter: { id: ids } }, result => {
             ids.forEach( (id, idx)  => {
               result.forEach( goods => {
                 if (goods.id == id) {

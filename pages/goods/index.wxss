@@ -22,12 +22,21 @@ page {
 .goods-image {
   background-color: #ffffff;
   margin-bottom: 20rpx;
+  height: 400rpx;
 }
 
 .goods-swiper {
   height: 400rpx;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7289ff80;
 }
+
+.goods-swiper-image {
+  height: 400rpx;
+}
+
 
 .goods-info {
   background-color: #ffffff;
@@ -186,6 +195,57 @@ page {
   align-items: center;
   justify-content: center;
   color: #ffffff;
+}
+
+.goods-info-types {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50rpx;
+}
+
+.goods-info-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.goods-info-key {
+  margin-right: 20rpx;
+  white-space: nowrap;
+  min-width: 100rpx;
+  font-size: 24rpx;
+  color: #303232;
+  height: 50rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.goods-info-valparent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.goods-info-val {
+  padding: 0 30rpx 0 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: normal;
+  height: 50rpx;
+  border-radius: 25rpx;
+  margin: 0 10rpx 10rpx 0;
+  background-color: #f6f9f9;
+  color: #303232;
+  font-size: 24rpx;
+}
+
+.goods-info-valselect {
+  border: solid 1px #7289ff;
+  background-color: #7289ff10;
+  color: #7289ff;
 }
 
 

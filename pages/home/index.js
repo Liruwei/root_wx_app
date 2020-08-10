@@ -12,7 +12,9 @@ Page({
     categorys: [],
     categoryIndex: 0,
     goods: [],
-    scrollId: null
+    scrollId: null,
+    price: 0,
+    newPrice: 0
   },
 
   onLoad: function (options) {
@@ -57,6 +59,11 @@ Page({
         }
         goods.push(...o.goods);
       });
+      goods.forEach( o => {
+        if (o.photo.length > 0) {
+          o.photo = o.photo.split(',')[0]
+        }
+      })
       that.setData({
         categorys,
         goods
@@ -69,7 +76,10 @@ Page({
   },
 
   onNormalGoodsTap: function({ currentTarget: { dataset: { id }} }) {
-    app.addGoodsInCart(id, 1);
+    wx.navigateTo({
+      url: '/pages/goods/index?id=' + id,
+    })
+    // app.addGoodsInCart(id, 1);
   },
 
   onCategoryTap: function({ currentTarget: { dataset: { index }}}) {

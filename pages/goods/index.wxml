@@ -1,21 +1,38 @@
 <!--pages/goods/index.wxml-->
 <block wx:if='{{goodsInfo}}'>
-	<view class="goods-image">
-      <swiper indicator-dots="{{true}}" 
-	  	autoplay="{{true}}" interval="{{2000}}" 
-		  duration="{{1000}}">
-          <swiper-item>
-            <view class="goods-swiper" style="background-color: blue;"></view>
-          </swiper-item>
-          <swiper-item>
-            <view class="goods-swiper" style="background-color: orange;"></view>
-          </swiper-item>
+	<!-- <view class="goods-image"> -->
+      <swiper 
+	  	indicator-dots="{{true}}" 
+		circular='{{true}}'
+		class="goods-image"
+	  	autoplay="{{true}}" 
+		interval="{{2000}}" 
+		duration="{{1000}}">
+		  <block wx:for='{{goodsInfo.photos || []}}' wx:key='index'>
+			<swiper-item>
+				<view class="goods-swiper">
+					<image class="goods-swiper-image" src='{{item}}' mode="heightFix"/>
+				</view>
+			</swiper-item>
+		  </block>
       </swiper>
-	</view>
+	<!-- </view> -->
 
 	<view class="goods-info">
 		<view class="goods-info-name">{{goodsInfo.name}}</view>
 		<view class="goods-info-info">{{goodsInfo.info}}</view>
+		<view wx:if='{{types.length > 0}}' class='goods-info-types'>
+			<view wx:for='{{types}}' class="goods-info-group" wx:key='index'>
+				<view class="goods-info-key">{{item.name}}</view>
+				<view wx:for='{{item.items}}' wx:for-item='obj' wx:for-index='objIndex' wx:key='{{obj.id}}' class="goods-info-valparent">
+					<view 
+						class="goods-info-val {{obj.id == typeSelecteds[index] ? 'goods-info-valselect' : ''}}" 
+						catchtap="onTypeTap" 
+						data-index='{{index}}' 
+						data-id='{{obj.id}}'>{{obj.name}}</view>
+				</view>
+			</view>
+		</view>
 	</view>
 
 	<view class="goods-detail">
@@ -26,12 +43,12 @@
 	<view class="toolbar">
 		<view class="toolbar-top">
 			<view class="toolbar-top-left">
-				<block wx:if='{{goodsInfo.new_price > 0}}'>
-					<view class="toolbar-top-price">¥{{goodsInfo.new_price}}</view>
-					<view class="toolbar-top-oldprice">¥{{goodsInfo.price}}</view>
+				<block wx:if='{{newPrice > 0}}'>
+					<view class="toolbar-top-price">¥{{newPrice}}</view>
+					<view class="toolbar-top-oldprice">¥{{price}}</view>
 				</block>
 				<block wx:else>
-					<view class="toolbar-top-price">¥{{goodsInfo.price}}</view>
+					<view class="toolbar-top-price">¥{{price}}</view>
 				</block>
 			</view>
 			<view class="toolbar-top-right">

@@ -16,6 +16,19 @@ App({
     }
     this.globalData.navigationBarHeight = `${navigationBarHeight}px`;
     this.globalData.statusBarHeight = `${info.statusBarHeight}px`;
+    // setTimeout(() => {
+    //   POST('/v1/wx/orders/create', {
+    //     project_id: 7,
+    //     user_id: 2,
+    //     items: [
+    //       { sid: 17, num: 2},
+    //       { sid: 18, num: 2},
+    //       { sid: 19, num: 2}
+    //     ]
+    //   }, result=> {
+  
+    //   });
+    // }, 1000);
   },
   showRedDot: function(cart_goods) {  
     if (getCurrentPages().length > 1) return;
@@ -42,18 +55,18 @@ App({
       }        
     }
   },
-  addGoodsInCart: function( goods_id, num) {
+  addGoodsInCart: function( sku_id, num) {
     if (!this.handlePageWithStatus()) return;
     let that = this;
     const cart_goods = wx.getStorageSync('cart_goods') || [];
     let goodsIndex = -1;
     cart_goods.forEach( (o, i) => {
-      if (o.id === goods_id) { goodsIndex = i; }
+      if (o.id === sku_id) { goodsIndex = i; }
     });
     if (goodsIndex !== -1) {
       cart_goods[goodsIndex].num += num;
     } else {
-      cart_goods.push({ id: goods_id, num: num});
+      cart_goods.push({ id: sku_id, num: num});
     }
     wx.setStorage({
       data: cart_goods,
@@ -67,13 +80,13 @@ App({
       }
     })
   },
-  changeGoodsInCart: function( goods_id, num) {
+  changeGoodsInCart: function( sku_id, num) {
     if (!this.handlePageWithStatus()) return;
     let that = this;
     const cart_goods = wx.getStorageSync('cart_goods') || [];
     let goodsIndex = -1;
     cart_goods.forEach( (o, i) => {
-      if (o.id === goods_id) { goodsIndex = i; }
+      if (o.id === sku_id) { goodsIndex = i; }
     });
     if (goodsIndex !== -1) {
       if (num == 0) {
@@ -82,7 +95,7 @@ App({
         cart_goods[goodsIndex].num = num;
       }
     } else {
-      cart_goods.push({ id: goods_id, num: num});
+      cart_goods.push({ id: sku_id, num: num});
     }
     wx.setStorageSync('cart_goods', cart_goods);
   },

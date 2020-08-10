@@ -8,8 +8,16 @@ page {
 .banner {
   height: 150px;
   margin: 0 16rpx 10px 16rpx;
-  background-color: gray;
+  background: linear-gradient(45deg,#7289ff, #7289ff80);
   border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-img {
+  height: 150px;
+  width: 200px;
 }
 
 .content {
