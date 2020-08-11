@@ -52,7 +52,7 @@
   height: 100rpx;
   width: 100rpx;
   border-bottom: 10rpx;
-  background-color: #ededed;
+  background-color: #7289ff80;
   margin-left: 20rpx;
   border-radius: 10rpx;
 }

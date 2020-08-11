@@ -8,16 +8,16 @@
 </view>
 
 <view class="toolbar">
-	<view class="toolbar-item">
+	<view class="toolbar-item" catchtap="onPointTap" >
 		<view class="top">
-			<view class="value">10</view>
+			<view class="value">0</view>
 		</view>
 		<view class="bottom">积分</view>
 	</view>
 	<view class="toolbar-line"></view>
-	<view class="toolbar-item">
+	<view class="toolbar-item" catchtap="onCouponTap">
 		<view class="top">
-			<view class="value">10</view>
+			<view class="value">0</view>
 		</view>
 		<view class="bottom">优惠券</view>
 	</view>

@@ -8,8 +8,8 @@
 	<view class="item {{orderType == 2 ? 'select' : ''}}" catchtap="onOrderTypeTap" data-value='{{2}}'>已完成</view>
 </view>
 
-<view wx:for='{{orders}}' wx:key='index' bindtap='onOrderTap' data-id='1'>
-  <template is='order_item'></template>
+<view wx:for='{{orders}}' wx:key='index' bindtap='onOrderTap' data-id='{{item.id}}'>
+  <template is='order_item' data="{{item: item}}"></template>
 </view>
  
 <template wx:if='{{status == 3}}' is='template_authority'></template>

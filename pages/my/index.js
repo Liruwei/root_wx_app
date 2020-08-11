@@ -70,5 +70,19 @@ Page({
     wx.navigateTo({
       url: '/pages/index/index',
     });
+  },
+
+  onPointTap: function() {
+    wx.showToast({
+      title: '暂未开放',
+      icon: 'none'
+    })
+  },
+
+  onCouponTap: function() {
+    wx.showToast({
+      title: '暂未开放',
+      icon: 'none'
+    })
   }
 })

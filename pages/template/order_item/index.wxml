@@ -4,23 +4,23 @@
       <view class="order_item-topleft">
         <view class="order_item-tag">线上</view>
       </view>
-      <view class="order_item-status">已完成</view>
+      <view class="order_item-status">{{item.status}}</view>
     </view>
     <view class="order_item-center">
-      <view class="order_item-img"></view>
+      <image class="order_item-img" mode="aspectFit" src='{{item.goodsInfo.img}}'></image>
       <view class="order_item-centerright">
         <view class="order_item-row">
-          <view class="order_item-name">Name</view>
-          <view class="order_item-num">x 1</view>
+          <view class="order_item-name">{{item.goodsInfo.name}}</view>
+          <view class="order_item-num"></view>
         </view>
         <view class="order_item-row">
-          <view class="order_item-info">Info</view>
+          <view class="order_item-info">{{item.goodsInfo.info}}</view>
         </view>
       </view>
     </view>
     <view class="order_item-footer">
-      <view class="order_item-time">2019-09-01 20:10:21</view>
-      <view class="order_item-total">共1件商品 合计：¥5
+      <view class="order_item-time">{{item.time}}</view>
+      <view class="order_item-total">共{{item.count}}件商品 合计：¥{{item.amount}}
       <!-- <view class="order_item-totalmoney"></view> -->
       </view>
     </view>

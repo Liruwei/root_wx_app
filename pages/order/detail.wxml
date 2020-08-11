@@ -1,38 +1,43 @@
 <!--pages/order/detail.wxml-->
-
-<view class="top">
-	<view class="order">订单号：90234KSD992DSD</view>
-	<block wx:for="{{goods}}" wx:key='index'>
-		<view class="goods">
-			<view class="img"></view>
-			<view class="right-content">
-				<view class="row">
-					<view class="name">Name</view>
-					<view class="price">¥100</view>
-				</view>
-				<view class="row">
-					<view class="info">大/多冰</view>
-					<view class="num">x1</view>
+<block wx:if='{{info}}'>
+	<view class="top">
+		<view class="order">订单号：{{info.order_id}}</view>
+		<block wx:for="{{goods}}" wx:key='index'>
+			<view class="goods">
+				<image class="img" mode="aspectFit" src='{{item.img}}'></image>
+				<view class="right-content">
+					<view class="row">
+						<view class="name">{{item.name}}</view>
+						<view class="price">¥{{item.new_price > 0 ? item.new_price : item.price}}</view>
+					</view>
+					<view class="row">
+						<view class="info">{{item.info}}</view>
+						<view class="num">x{{item.num}}</view>
+					</view>
 				</view>
 			</view>
+		</block>
+		<view wx:if='{{reduce > 0}}' class="discounts">
+			<view class="name">优惠合计</view>
+			<view class="value">-¥{{reduce}}</view>
 		</view>
-	</block>
-	<view class="discounts">
-		<view class="name">优惠合计</view>
-		<view class="value">-¥100</view>
-	</view>
-  <view class="line"></view>
-	<view class="footer">
-		<view class="title">共1件商品</view>
-		<view class="right">
-			<view class="tip">实付</view>
-			<view class="value">¥20</view>
+	<view class="line"></view>
+		<view class="footer">
+			<view class="title">共{{count}}件商品</view>
+			<view class="right">
+				<view class="tip">实付</view>
+				<view class="value">¥{{info.amount}}</view>
+			</view>
 		</view>
 	</view>
-</view>
-<view class="times">
-	<view class="value">下单时间：2020-20-1 20-12-23</view>
-	<view class="value">支付方式：微信</view>
-	<view class="value">支付时间：2020-20-1 20-12-23</view>
-	<view class="value">完成时间：2020-20-1 20-12-23</view>
-</view>
+	<view class="times">
+		<view class="value">下单时间：{{info.create_time}}</view>
+		<block wx:if='{{info.pay_time > 0}}'>
+			<view class="value">支付方式：微信</view>
+			<view class="value">支付时间：2020-20-1 20-12-23</view>
+		</block>
+		<view wx:if='{{info.end_time}}' class="value">完成时间：2020-20-1 20-12-23</view>
+	</view>
+
+	<view wx:if='{{info.status == 0}}' catchtap="onPayTap" class="paybtn">支付</view>
+</block>
