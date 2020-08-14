@@ -84,5 +84,11 @@ Page({
       title: '暂未开放',
       icon: 'none'
     })
+  },
+
+  openSettingTap: function() {
+    wx.openSetting({
+      withSubscriptions: true,
+    })
   }
 })

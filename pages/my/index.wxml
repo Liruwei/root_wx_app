@@ -24,8 +24,8 @@
 </view>
 
 <view class="item-footer">
-	<view class="item-row">
-		<view class="name">通知设置</view>
+	<view class="item-row" catchtap="openSettingTap">
+		<view class="name">设置</view>
 		<view class="icon"></view>
 	</view>
 

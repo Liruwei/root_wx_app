@@ -91,6 +91,19 @@ Page({
   },
 
   onPay: function() {
+    wx.requestSubscribeMessage({
+      tmplIds: ['hMuSZePpSdryiyPHWdO74mbqjm54IJLTG727L7F2sKc'],
+      success: function(res) { 
+        console.log(res)
+      },
+      fail: function(error) {
+        console.log(error)
+      }
+    })
+    //this.payWithMoney();
+  },
+
+  payWithMoney: function() {
     if (app.globalData.paymentInfo.fromType == 'cart') {
       let that = this;
       let goods = (wx.getStorageSync('cart_goods') || []).filter( o => {
@@ -136,6 +149,6 @@ Page({
         })  
       }, 2000);
 
-    }  
+    }      
   }
 })
