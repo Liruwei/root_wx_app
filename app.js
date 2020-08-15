@@ -16,19 +16,6 @@ App({
     }
     this.globalData.navigationBarHeight = `${navigationBarHeight}px`;
     this.globalData.statusBarHeight = `${info.statusBarHeight}px`;
-    // setTimeout(() => {
-    //   POST('/v1/wx/orders/create', {
-    //     project_id: 7,
-    //     user_id: 2,
-    //     items: [
-    //       { sid: 17, num: 2},
-    //       { sid: 18, num: 2},
-    //       { sid: 19, num: 2}
-    //     ]
-    //   }, result=> {
-  
-    //   });
-    // }, 1000);
   },
   showRedDot: function(cart_goods) {  
     if (getCurrentPages().length > 1) return;

@@ -8,6 +8,8 @@ Page({
     statusBarHeight: app.globalData.statusBarHeight,
     navigationBarHeight: app.globalData.navigationBarHeight,
     status: 0,
+    avatar: null,
+    name: null
   },
 
   /**
@@ -29,6 +31,18 @@ Page({
    */
   onShow: function () {
     this.setData({ status: app.globalData.status });
+    let that = this;
+    if (!this.data.avatar) {
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo;
+          that.setData({
+            avatar: res.userInfo.avatarUrl,
+            name: res.userInfo.nickName
+          })
+        }
+      })
+    }
   },
 
   /**

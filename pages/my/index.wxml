@@ -3,8 +3,8 @@
 
 <view class="bg" style='height: calc({{navigationBarHeight}} + 100px)'></view>
 <view class="header">
-	<view class="avatar"></view>
-	<view class="name">Name</view>
+	<image class="avatar" src="{{avatar}}"></image>
+	<view class="name">{{name}}</view>
 </view>
 
 <view class="toolbar">
