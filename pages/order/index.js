@@ -10,8 +10,9 @@ Page({
     orderType: 0, // 0: 未支付， 进行中， 已完成
     orders: [],
   },
-  _page: 0,
+  _page: 1,
   _loading: false,
+  _nomore: false,
   /**
    * 生命周期函数--监听页面加载
    */
@@ -72,7 +73,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this._nomore ) return;
+    this.loadNextPag();
   },
 
   /**
@@ -102,7 +104,8 @@ Page({
   },
 
   loadFirstPage: function() {
-    this._page = 0;
+    this._page = 1;
+    this._nomore = false;
     this.loadData();
   },
 
@@ -113,9 +116,14 @@ Page({
 
   loadData: function() {
     let that = this;
+    if (that._loading) return;
+
+    that._loading = true;
     wx.showLoading({ title: '加载中' });
+    
     GET('/v1/shop/orders', {
-      range: [this._page, 20],
+      range: [(this._page - 1) * 10, this._page * 10 - 1],
+      sort: ['create_time', 'DESC' ],
       filter: {
         user_id: app.globalData.accountInfo.id,
         status: this.data.orderType
@@ -123,8 +131,11 @@ Page({
     }, result => {
       wx.hideLoading();
       wx.stopPullDownRefresh();
-      let orders = [...that.data.orderType];
-      if (that._page == 0) { orders = []; }
+      let orders = [...that.data.orders];
+      if (that._page == 1) { orders = []; }
+      if ((result || []).length == 0) {
+        that._nomore = true;
+      }
       (result || []).forEach( o => {
         const items = JSON.parse(o.goods_numbers);
         let itemsCount = 0, time = o.create_time;
@@ -145,13 +156,16 @@ Page({
           amount: o.amount,
           status: status,
           id: o.id,
+          order_id: o.order_id,
           time: (new Date(time * 1)).toLocaleString()
         })
       });
       that.setData({ orders: orders });
+      that._loading = false;
     }, error => {
       wx.hideLoading();
       wx.stopPullDownRefresh();
+      that._loading = false;
     });
   }
 

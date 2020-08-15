@@ -2,7 +2,7 @@
 	<view class="order_item">
     <view class="order_item-top">
       <view class="order_item-topleft">
-        <view class="order_item-tag">线上</view>
+        <view class="order_item-tag">{{item.order_id}}</view>
       </view>
       <view class="order_item-status">{{item.status}}</view>
     </view>
