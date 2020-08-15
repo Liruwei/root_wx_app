@@ -91,16 +91,16 @@ Page({
   },
 
   onPay: function() {
+    let that = this;
     wx.requestSubscribeMessage({
       tmplIds: ['hMuSZePpSdryiyPHWdO74mbqjm54IJLTG727L7F2sKc'],
       success: function(res) { 
-        console.log(res)
+        that.payWithMoney();
       },
       fail: function(error) {
-        console.log(error)
+        that.payWithMoney();
       }
     })
-    //this.payWithMoney();
   },
 
   payWithMoney: function() {

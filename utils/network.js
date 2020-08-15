@@ -1,7 +1,7 @@
 const md5 = require('js-md5');
 // const host = 'http://192.168.31.34:5000';
-// const host = 'http://10.0.0.7:5000';
-const host = 'https://liruwei.cn';
+const host = 'http://10.0.0.7:5000';
+// const host = 'https://liruwei.cn';
 const project_id = '7';
 
 const sign = (url = '' ,params = {}) => {

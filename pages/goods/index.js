@@ -164,7 +164,7 @@ Page({
       return;
     }
 
-    let { goods, num, price, newPrice} = this.data;
+    let { goodsInfo, num, price, newPrice} = this.data;
     const sku = this.getSku();
 
     let total = 0, oldTotal = 0;
@@ -184,9 +184,9 @@ Page({
         num: num,
         price: price,
         new_price: newPrice,
-        name: goods.name,
-        info: goods.info,
-        photos: goods.photos,
+        name: goodsInfo.name,
+        info: goodsInfo.info,
+        photos: goodsInfo.photos[0] || '',
         id: sku.id,
       }]
     };
