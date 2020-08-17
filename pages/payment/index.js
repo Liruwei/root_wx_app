@@ -23,8 +23,8 @@ Page({
    */
   onLoad: function (options) {
     let totalPrice = app.globalData.paymentInfo.total;
-    let totalReduce = app.globalData.paymentInfo.oldTotal > app.globalData.paymentInfo.total ? 
-    (app.globalData.paymentInfo.oldTotal - app.globalData.paymentInfo.total) : 0;
+    let totalReduce = app.globalData.paymentInfo.oldTotal > app.globalData.paymentInfo.total ?
+      (app.globalData.paymentInfo.oldTotal - app.globalData.paymentInfo.total) : 0;
     if (this.data.coupon) {
       totalPrice -= this.data.coupon.price;
       totalReduce += this.data.coupon.price;
@@ -39,6 +39,8 @@ Page({
       totalPrice: totalPrice.toFixed(1),
       totalReduce: totalReduce.toFixed(1)
     });
+
+    console.log(this.data.list)
   },
 
   /**
@@ -90,60 +92,78 @@ Page({
 
   },
 
-  onPay: function() {
+  onPay: function () {
     let that = this;
     wx.requestSubscribeMessage({
       tmplIds: ['hMuSZePpSdryiyPHWdO74mbqjm54IJLTG727L7F2sKc'],
-      success: function(res) { 
+      success: function (res) {
         that.payWithMoney();
       },
-      fail: function(error) {
+      fail: function (error) {
         that.payWithMoney();
       }
     })
   },
 
-  payWithMoney: function() {
+  payWithMoney: function () {
+    let that = this;
     let items = [];
+    this.data.list.forEach(x => {
+      items.push({
+        sid: x.sku_id ? x.sku_id : x.id,
+        num: x.num
+      });
+    });
+
     if (app.globalData.paymentInfo.fromType == 'cart') {
-      let that = this;
-      let goods = (wx.getStorageSync('cart_goods') || []).filter( o => {
+      let goods = (wx.getStorageSync('cart_goods') || []).filter(o => {
         let need = true;
         this.data.list.forEach(goods => {
           if (goods.sku_id == o.id) need = false;
         });
         return need;
       });
-      this.data.list.forEach(x => {
-        items.push({
-          sid: x.sku_id,
-          num: x.num
-        });
-      });
-    } else {
-      
-    }      
-    wx.showLoading({ title: '请稍等' });
-    POST('/v1/wx/orders/create', {
-      user_id: app.globalData.accountInfo.id,
-      items: items
-    }, result => {
-      wx.setStorage({
-        key: 'cart_goods',
-        data: goods,
-        complete: () => {
+
+      wx.showLoading({ title: '请稍等' });
+      POST('/v1/wx/orders/create', {
+        user_id: app.globalData.accountInfo.id,
+        items: items
+      }, result => {
+        wx.setStorage({
+          key: 'cart_goods',
+          data: goods,
+          complete: () => {
             wx.hideLoading();
             wx.redirectTo({
               url: '/pages/payment/success',
             })
-        }
-      });    
-    }, error => {
-      wx.hideLoading();
-      wx.showToast({
-        title: error,
-        icon: 'none'
+          }
+        });
+      }, error => {
+        wx.hideLoading();
+        wx.showToast({
+          title: error,
+          icon: 'none'
+        })
       })
-    })
+    } else {
+      wx.showLoading({ title: '请稍等' });
+      POST('/v1/wx/orders/create', {
+        user_id: app.globalData.accountInfo.id,
+        items: items
+      }, result => {
+        wx.hideLoading();
+        wx.redirectTo({
+          url: '/pages/payment/success',
+        })
+      }, error => {
+        wx.hideLoading();
+        wx.showToast({
+          title: error,
+          icon: 'none'
+        })
+      })
+    }
+
   }
 })

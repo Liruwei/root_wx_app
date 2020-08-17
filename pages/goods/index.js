@@ -164,7 +164,7 @@ Page({
       return;
     }
 
-    let { goodsInfo, num, price, newPrice} = this.data;
+    let { goodsInfo, num, price, newPrice, typeSelecteds, types} = this.data;
     const sku = this.getSku();
 
     let total = 0, oldTotal = 0;
@@ -174,8 +174,16 @@ Page({
     } else {
       total = (price * num).toFixed(1);
     }
-    
 
+    let info = []
+    typeSelecteds.forEach( (x, i) => {
+      types[i].items.forEach( v => {
+        if (v.id == x) {
+          info.push(v.name);
+        }
+      })
+    });
+    console.log(info)
     app.globalData.paymentInfo = {
       fromType: 'detail',
       total: total,
@@ -185,9 +193,9 @@ Page({
         price: price,
         new_price: newPrice,
         name: goodsInfo.name,
-        info: goodsInfo.info,
+        info: info.join(','),
         photos: goodsInfo.photos[0] || '',
-        id: sku.id,
+        sku_id: sku.id
       }]
     };
     wx.navigateTo({
