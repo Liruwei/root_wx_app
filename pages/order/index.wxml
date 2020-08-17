@@ -1,5 +1,5 @@
 <!--pages/order/index.wxml-->
-<import src="../template/order_item/index.wxml"/>
+<import src="../template/order_item/index.wxml" />
 <import src="../template/authority/index.wxml" />
 
 <view class="topbar">
@@ -8,8 +8,16 @@
 	<view class="item {{orderType == 2 ? 'select' : ''}}" catchtap="onOrderTypeTap" data-value='{{2}}'>已完成</view>
 </view>
 
-<view wx:for='{{orders}}' wx:key='index' bindtap='onOrderTap' data-id='{{item.id}}'>
-  <template is='order_item' data="{{item: item}}"></template>
-</view>
- 
+<block wx:if='{{orders.length > 0}}'>
+	<view wx:for='{{orders}}' wx:key='index' bindtap='onOrderTap' data-id='{{item.id}}'>
+		<template is='order_item' data="{{item: item}}"></template>
+	</view>
+</block>
+<block wx:else>
+	<view class="empty-content">
+		<image src="/icons/empty.png" class="empty-image"></image>
+		<view class="empty-text">暂无数据</view>
+	</view>
+</block>
+
 <template wx:if='{{status == 3}}' is='template_authority'></template>

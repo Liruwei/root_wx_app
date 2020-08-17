@@ -28,6 +28,27 @@ page {
   background-color: #7289ff;
 }
 
+.empty-image {
+  width: 200;
+  height: 200;
+}
+
+.empty-text {
+  margin-top: 5rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.empty-content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .empty-btn {
   position: fixed;
   left: 50%;

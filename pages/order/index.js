@@ -73,7 +73,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this._nomore ) return;
+    if (this._nomore || this.data.orders.length == 0 ) return;
     this.loadNextPag();
   },
 

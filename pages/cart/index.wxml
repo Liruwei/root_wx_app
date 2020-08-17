@@ -24,7 +24,11 @@
 	</view>
 </block>
 <block wx:else>
-  <view class='empty-btn' catchtap="toAddGoods">去添加</view>
+	<view class="empty-content">
+		<image src="/icons/empty.png" class="empty-image"></image>
+		<view class="empty-text">暂无数据</view>
+	</view>
+	<view class='empty-btn' catchtap="toAddGoods">去添加</view>
 </block>
 
 <template wx:if='{{status == 3}}' is='template_authority'></template>

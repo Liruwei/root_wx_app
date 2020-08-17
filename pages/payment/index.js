@@ -104,6 +104,7 @@ Page({
   },
 
   payWithMoney: function() {
+    let items = [];
     if (app.globalData.paymentInfo.fromType == 'cart') {
       let that = this;
       let goods = (wx.getStorageSync('cart_goods') || []).filter( o => {
@@ -113,42 +114,36 @@ Page({
         });
         return need;
       });
-      let items = [];
       this.data.list.forEach(x => {
         items.push({
           sid: x.sku_id,
           num: x.num
         });
       });
-      wx.showLoading({ title: '请稍等' });
-      POST('/v1/wx/orders/create', {
-        user_id: app.globalData.accountInfo.id,
-        items: items
-      }, result => {
-        wx.setStorage({
-          key: 'cart_goods',
-          data: goods,
-          complete: () => {
-              wx.hideLoading();
-              wx.redirectTo({
-                url: '/pages/payment/success',
-              })
-          }
-        });    
-      }, error => {
-        wx.hideLoading();
-        wx.showToast({
-          title: error,
-          icon: 'none'
-        })
-      })
     } else {
-      setTimeout(() => {
-        wx.redirectTo({
-          url: '/pages/payment/success',
-        })  
-      }, 2000);
-
+      
     }      
+    wx.showLoading({ title: '请稍等' });
+    POST('/v1/wx/orders/create', {
+      user_id: app.globalData.accountInfo.id,
+      items: items
+    }, result => {
+      wx.setStorage({
+        key: 'cart_goods',
+        data: goods,
+        complete: () => {
+            wx.hideLoading();
+            wx.redirectTo({
+              url: '/pages/payment/success',
+            })
+        }
+      });    
+    }, error => {
+      wx.hideLoading();
+      wx.showToast({
+        title: error,
+        icon: 'none'
+      })
+    })
   }
 })

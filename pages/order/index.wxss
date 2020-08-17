@@ -36,3 +36,22 @@ page {
   border-radius: 49.5rpx;
 }
 
+.empty-image {
+  width: 200;
+  height: 200;
+}
+
+.empty-text {
+  margin-top: 5rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.empty-content {
+  width: 100vw;
+  height: calc(100vh - 88rpx);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

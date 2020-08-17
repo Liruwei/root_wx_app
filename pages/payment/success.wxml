@@ -1,2 +1,3 @@
 <!--pages/payment/success.wxml-->
-<text>pages/payment/success.wxml</text>
+<view class="text">下单成功</view>
+<image src="/icons/create_success.png" class="image"></image>

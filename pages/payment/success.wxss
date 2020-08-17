@@ -1,1 +1,19 @@
 /* pages/payment/success.wxss */
+page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.image {
+    width: 200;
+    height: 200;
+}
+
+.text {
+    font-size: 30rpx;
+    font-weight: bold;
+    color: #999999;
+}
