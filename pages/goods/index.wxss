@@ -13,9 +13,8 @@ page {
 }
 
 .topbar-close {
-  width: 32px;
-  height: 32px;
-  border-radius: 16px;
+  width: 44rpx;
+  height: 44rpx;
   margin-left: 30rpx;
 }
 

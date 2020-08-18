@@ -89,6 +89,7 @@ page {
   margin: 0 16rpx 0 16rpx;
   border-radius: 10rpx;
   overflow: hidden;
+  background-color: #f6f9f9;
 }
 
 .item-row {
@@ -101,6 +102,11 @@ page {
   box-sizing: border-box;
   overflow: hidden;
   height: 88rpx;
+  margin-bottom: 1px;
+}
+
+.item-row:last-child {
+  margin-bottom: 0;
 }
 
 .item-row .name {
@@ -109,7 +115,7 @@ page {
 }
 
 .item-row .icon {
-  width: 40rpx;
-  height: 40rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 

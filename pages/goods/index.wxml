@@ -64,6 +64,6 @@
 	</view>
 
 	<view class="topbar" style="height: {{navigationBarHeight}}; padding-top: {{statusBarHeight}}">
-		<view class="topbar-close" bindtap="onCloseTap"></view>
+		<image class="topbar-close" bindtap="onCloseTap" src="/icons/close.png"></image>
 	</view>
 </block>

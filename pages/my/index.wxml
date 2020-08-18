@@ -26,12 +26,12 @@
 <view class="item-footer">
 	<view class="item-row" catchtap="openSettingTap">
 		<view class="name">设置</view>
-		<view class="icon"></view>
+		<image class="icon" src="/icons/arrow.png"></image> 
 	</view>
 
 	<view class="item-row">
 		<view class="name">关于我们</view>
-		<view class="icon"></view>
+		<image class="icon" src="/icons/arrow.png"></image> 
 	</view>
 </view>
 
