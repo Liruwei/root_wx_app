@@ -8,6 +8,7 @@
     "pages/cart/index",
     "pages/goods/index",
     "pages/index/index",
+    "pages/my/about",
     "pages/payment/success"
   ],
   "window": {

@@ -1,0 +1,17 @@
+<!--pages/my/about.wxml-->
+
+<view class="top">
+	<image class="logo" src="/icons/coding.png"></image>
+</view>
+<view class="row">
+	<view class="name">微信：</view>
+	<view class="value">weiwei469922730</view>
+</view>
+<view class="row">
+	<view class="name">网站：</view>
+	<view class="value">https://liruwei.cn</view>
+</view>
+<view class="row">
+	<view class="name">邮箱：</view>
+	<view class="value">469922730@qq.com</view>
+</view>

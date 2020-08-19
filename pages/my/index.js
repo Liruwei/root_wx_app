@@ -104,5 +104,11 @@ Page({
     wx.openSetting({
       withSubscriptions: true,
     })
+  },
+
+  openAboutTap: function() {
+    wx.navigateTo({
+      url: '/pages/my/about',
+    })
   }
 })

@@ -111,6 +111,7 @@ Page({
         new_price = stockInfo.new_price;
       }
       that._stocks = stock;
+      console.log(detail)
       that.setData({ 
         goodsInfo : detail,
         typeSelecteds: typeSelecteds,

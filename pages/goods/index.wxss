@@ -16,6 +16,7 @@ page {
   width: 44rpx;
   height: 44rpx;
   margin-left: 30rpx;
+  margin-top: 10rpx;
 }
 
 .goods-image {

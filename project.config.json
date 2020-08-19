@@ -78,6 +78,12 @@
 					"pathName": "pages/order/detail",
 					"query": "id=11",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/about",
+					"pathName": "pages/my/about",
+					"scene": null
 				}
 			]
 		}

@@ -37,7 +37,7 @@
 
 	<view class="goods-detail">
 		<view class="goods-detail-title">商品详情</view>
-		<view class="goods-detail-value"></view>
+		<rich-text nodes="{{goodsInfo.content}}"></rich-text>
 	</view>
 
 	<view class="toolbar">
