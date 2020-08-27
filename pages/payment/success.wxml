@@ -1,3 +1,13 @@
 <!--pages/payment/success.wxml-->
-<!-- <view class="text">下单成功</view> -->
-<image src="/icons/create_success.png" class="image"></image>
+
+<block wx:if='{{status == 0}}'>
+	<view class="text">别离开，正在获取支付结果</view>
+    <view class="progress">
+        <view class="progress-content" style="width: {{ progress}}"></view>
+    </view>
+</block>
+<block wx:else>
+
+	<image wx:if='{{status == 1}}' src="/icons/create_success.png" class="image"></image>
+    <image wx:if='{{status == 2}}' src="/icons/create_fail.png" class="image"></image>
+</block>

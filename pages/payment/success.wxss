@@ -17,3 +17,34 @@ page {
     font-weight: bold;
     color: #999999;
 }
+
+.progress {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
+.progress-content {
+    transition: width;
+    transition-duration: 20s;
+    background-color: #7289ff;
+    height: 1px;
+    width: 0;
+}
+
+.loading {
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 100rpx;
+    border: solid 10rpx #7289ff;
+    color: #7289ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80rpx;
+    font-weight: bold;
+    box-sizing: border-box;
+    margin-bottom: 100rpx;
+}
+

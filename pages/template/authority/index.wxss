@@ -5,9 +5,16 @@
     height: 100vh;
     width: 100vw;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
     padding-bottom: 400rpx;
     box-sizing: border-box;
     z-index: 100;
     background-color: #f6f9f9;
+}
+
+.template_authority_button {
+    background-color: #33c900;
+    color: #ffffff;
 }

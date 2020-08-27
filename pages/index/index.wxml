@@ -1,3 +1,4 @@
 <!--pages/index/index.wxml-->
 
-<button open-type="getUserInfo" bindgetuserinfo='onGetUserInfo'>授权用户信息</button>
+<image src="/icons/check.png"></image>
+<button class="button" open-type="getUserInfo" bindgetuserinfo='onGetUserInfo'>授权用户信息</button>

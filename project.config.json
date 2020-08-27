@@ -66,23 +66,10 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
-					"name": "pages/order/index",
-					"pathName": "pages/order/index",
+					"id": 0,
+					"name": "pages/payment/success",
+					"pathName": "pages/payment/success",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order/detail",
-					"pathName": "pages/order/detail",
-					"query": "id=11",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/my/about",
-					"pathName": "pages/my/about",
 					"scene": null
 				}
 			]
