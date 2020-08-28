@@ -170,10 +170,10 @@ Page({
 
     let total = 0, oldTotal = 0;
     if (newPrice > 0) {
-      total = (newPrice * num).toFixed(1);
-      oldTotal = (price * num).toFixed(1);
+      total = (newPrice * num).toFixed(2);
+      oldTotal = (price * num).toFixed(2);
     } else {
-      total = (price * num).toFixed(1);
+      total = (price * num).toFixed(2);
     }
 
     let info = []

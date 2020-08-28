@@ -36,8 +36,8 @@ Page({
       list: app.globalData.paymentInfo.list || [],
       total: app.globalData.paymentInfo.total || 0,
       oldTotal: app.globalData.paymentInfo.oldTotal || 0,
-      totalPrice: totalPrice.toFixed(1),
-      totalReduce: totalReduce.toFixed(1)
+      totalPrice: totalPrice.toFixed(2),
+      totalReduce: totalReduce.toFixed(2)
     });
 
     console.log(this.data.list)
@@ -151,12 +151,23 @@ Page({
       POST('/v1/wx/orders/create', {
         user_id: app.globalData.accountInfo.id,
         items: items
-      }, result => {
+      }, ({ data: { pay_info, order_id }}) => {
         wx.hideLoading();
-        wx.redirectTo({
-          url: '/pages/payment/success',
-        })
+        wx.requestPayment({
+          ...pay_info,
+          success (res) { 
+            wx.redirectTo({
+              url: '/pages/payment/success?order_id=' + order_id,
+            })
+          },
+          fail (res) { 
+            wx.redirectTo({
+              url: '/pages/payment/success',
+            })
+          }
+        }) 
       }, error => {
+        console.log(error)
         wx.hideLoading();
         wx.showToast({
           title: error,

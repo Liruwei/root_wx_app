@@ -80,5 +80,21 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  openPay: function() {
+    wx.requestPayment({
+      timeStamp: '1598585343',
+      nonceStr: 'qYSn3hj2HmpUiSzJGkiG5hHCVNXIDLEe',
+      package: 'prepay_id=wx2811290301749860937ac92b59ad270000',
+      signType: 'MD5',
+      paySign: '04E231C740EBC24887CCFAE6DD39CB48',
+      success (res) { 
+        console.log(res)
+      },
+      fail (res) { 
+        console.log(res)
+      }
+    })    
   }
 })

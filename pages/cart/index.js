@@ -237,8 +237,8 @@ Page({
 
     if (oldTotal == total) oldTotal = 0;
     return {
-      oldTotal: oldTotal.toFixed(1),
-      total: total.toFixed(1)
+      oldTotal: oldTotal.toFixed(2),
+      total: total.toFixed(2)
     };
   },
 

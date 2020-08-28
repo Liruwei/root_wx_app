@@ -11,3 +11,5 @@
 	<image wx:if='{{status == 1}}' src="/icons/create_success.png" class="image"></image>
     <image wx:if='{{status == 2}}' src="/icons/create_fail.png" class="image"></image>
 </block>
+
+<!-- <button catchtap="openPay">OPEN</button> -->
