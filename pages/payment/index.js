@@ -124,7 +124,7 @@ Page({
         return need;
       });
 
-      wx.showLoading({ title: '请稍等' });
+      wx.showLoading({ title: '请稍等', mask: true });
       POST('/v1/wx/orders/create', {
         user_id: app.globalData.accountInfo.id,
         items: items
@@ -152,22 +152,8 @@ Page({
         user_id: app.globalData.accountInfo.id,
         items: items
       }, ({ data: { pay_info, order_id }}) => {
-        wx.hideLoading();
-        wx.requestPayment({
-          ...pay_info,
-          success (res) { 
-            wx.redirectTo({
-              url: '/pages/payment/success?order_id=' + order_id,
-            })
-          },
-          fail (res) { 
-            wx.redirectTo({
-              url: '/pages/payment/success',
-            })
-          }
-        }) 
+        that.payWithInfo(pay_info);
       }, error => {
-        console.log(error)
         wx.hideLoading();
         wx.showToast({
           title: error,
@@ -175,6 +161,24 @@ Page({
         })
       })
     }
+  },
 
+  payWithInfo: function(info, cb) {
+    wx.requestPayment({
+      ...pay_info,
+      success (res) { 
+        wx.hideLoading();
+        cb && cb();
+        wx.redirectTo({
+          url: '/pages/payment/success?order_id=' + order_id,
+        })
+      },
+      fail (res) { 
+        cb && cb();
+        wx.redirectTo({
+          url: '/pages/payment/success?order_id=' + order_id,
+        })
+      }
+    })     
   }
 })

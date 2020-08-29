@@ -1,4 +1,7 @@
 // pages/payment/success.js
+
+import { GET } from '../../utils/network';
+
 Page({
 
   /**
@@ -10,11 +13,14 @@ Page({
     progress: '0%'
   },
   _timer: null,
+  _order_id: '',
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    this._order_id = options.order_id;
+    this.loadOrderStatus();
   },
 
   /**
@@ -24,17 +30,7 @@ Page({
     let that = this;
     this.setData({
       progress: '100%'
-    })
-    this._timer = setTimeout(() => {
-        that.setData({
-          status: 2,
-        });
-        wx.setNavigationBarTitle({
-          title: '支付失败',
-        });
-        clearTimeout(that._timer);
-        that._timer = null;
-    }, 1000 * 5);
+    });
   },
 
   /**
@@ -82,19 +78,33 @@ Page({
 
   },
 
-  openPay: function() {
-    wx.requestPayment({
-      timeStamp: '1598585343',
-      nonceStr: 'qYSn3hj2HmpUiSzJGkiG5hHCVNXIDLEe',
-      package: 'prepay_id=wx2811290301749860937ac92b59ad270000',
-      signType: 'MD5',
-      paySign: '04E231C740EBC24887CCFAE6DD39CB48',
-      success (res) { 
-        console.log(res)
-      },
-      fail (res) { 
-        console.log(res)
+  loadOrderStatus: function () {
+    let that = this;
+    GET('/v1/wx/orders/status/' + this._order_id, {}, ({ data : { status }}) => {
+      if (status == 'SUCCESS') {
+        that.setData({
+          status: 1
+        })
+        wx.setNavigationBarTitle({
+          title: '支付成功',
+        })
+      } else if (status == 'NOTPAY' || status == 'CLOSED' || status == 'REVOKED' || status == 'PAYERROR') {
+        that.setData({
+          status: 2
+        })
+        wx.setNavigationBarTitle({
+          title: '支付失败',
+        })
+      } else {
+        if (that._timer) {
+          clearTimeout(that._timer)
+        }
+        that._timer = setTimeout(() => {
+          that.loadOrderStatus()
+        }, 1000);
       }
-    })    
+    }, error => {
+      console.log(error);
+    });
   }
 })

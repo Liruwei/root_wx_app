@@ -38,7 +38,11 @@ export const GET = (url, params, success = null, fail = null) => {
     method: 'GET',
     success: (result) => {
       if (result.statusCode !== 200) {
-        fail && fail(`${result.statusCode}`);
+        if (result.data && result.data.message) {
+          fail && fail(`${result.data.message}`);
+        } else {
+          fail && fail(`${result.statusCode}`);
+        }
       } else {
         success && success(result.data);
       }
