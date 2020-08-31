@@ -128,16 +128,13 @@ Page({
       POST('/v1/wx/orders/create', {
         user_id: app.globalData.accountInfo.id,
         items: items
-      }, result => {
-        wx.setStorage({
-          key: 'cart_goods',
-          data: goods,
-          complete: () => {
-            wx.hideLoading();
-            wx.redirectTo({
-              url: '/pages/payment/success',
-            })
-          }
+      }, ({ data: { pay_info, order_id }}) => {
+        that.payWithInfo(order_id, pay_info, () => {
+          wx.setStorage({
+            key: 'cart_goods',
+            data: goods,
+            complete: () => {}
+          });  
         });
       }, error => {
         wx.hideLoading();
@@ -152,7 +149,7 @@ Page({
         user_id: app.globalData.accountInfo.id,
         items: items
       }, ({ data: { pay_info, order_id }}) => {
-        that.payWithInfo(pay_info);
+        that.payWithInfo(order_id, pay_info);
       }, error => {
         wx.hideLoading();
         wx.showToast({
@@ -163,7 +160,7 @@ Page({
     }
   },
 
-  payWithInfo: function(info, cb) {
+  payWithInfo: function(order_id, pay_info, cb) {
     wx.requestPayment({
       ...pay_info,
       success (res) { 

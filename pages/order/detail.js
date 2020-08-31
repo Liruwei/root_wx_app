@@ -1,6 +1,6 @@
 // pages/order/detail.js
-
-import { GET } from '../../utils/network';
+const app = getApp();
+import { GET, POST } from '../../utils/network';
 
 Page({
 
@@ -13,11 +13,12 @@ Page({
     count: 0,
     reduce: 0,
   },
+  _ID: null,
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadData(options.id);
+    this._ID = options.id;
   },
 
   /**
@@ -31,7 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.loadData(this._ID);
   },
 
   /**
@@ -101,9 +102,37 @@ Page({
     })
   },
   onPayTap: function() {
-    wx.showToast({
-      title: '暂未开放',
-      icon: 'none'
-    })
+    let that = this;
+    wx.showLoading({ title: '请稍等', mask: true });
+    POST('/v1/wx/orders/payinfo', {
+      user_id: app.globalData.accountInfo.id,
+      order_id: this.data.info.order_id
+    }, ({ data: { pay_info, order_id }}) => {
+      that.payWithInfo(order_id, pay_info);
+    }, error => {
+      wx.hideLoading();
+      wx.showToast({
+        title: error,
+        icon: 'none'
+      })
+    })  },
+  payWithInfo: function(order_id, pay_info, cb) {
+    wx.requestPayment({
+      ...pay_info,
+      success (res) { 
+        wx.hideLoading();
+        cb && cb();
+        wx.navigateTo({
+          url: '/pages/payment/success?order_id=' + order_id,
+        })
+      },
+      fail (res) {
+        wx.hideLoading();
+        cb && cb();
+        wx.navigateTo({
+          url: '/pages/payment/success?order_id=' + order_id,
+        })
+      }
+    })     
   }
 })
