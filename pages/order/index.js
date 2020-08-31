@@ -151,8 +151,10 @@ Page({
           status = '进行中'
         }  else if (o.status == 3) {
           status = '退款中'
-        } else {
+        } else if (o.status == 4){
           status = '已完成'
+        } else {
+          status = '已关闭'
         }
         items.forEach( x => {
           itemsCount += x.num;

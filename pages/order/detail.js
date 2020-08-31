@@ -96,8 +96,10 @@ Page({
         wx.setNavigationBarTitle({ title: '进行中' });
       } else if (info.status == 3) {
         wx.setNavigationBarTitle({ title: '退款中' });
-      } else {
+      } else if (info.status == 4) {
         wx.setNavigationBarTitle({ title: '已完成' });
+      } else {
+        wx.setNavigationBarTitle({ title: '已关闭' });
       }
       goods.forEach(x => {
         count += x.num;
