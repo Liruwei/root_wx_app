@@ -120,13 +120,18 @@ Page({
 
     that._loading = true;
     wx.showLoading({ title: '加载中' });
-    
+    let status = [ 0];
+    if (this.data.orderType == 1)  {
+      status = [1, 2, 3]
+    } else if (this.data.orderType == 2) {
+      status = [4, 5]
+    }
     GET('/v1/shop/orders', {
       range: [(this._page - 1) * 10, this._page * 10 - 1],
       sort: ['create_time', 'DESC' ],
       filter: {
         user_id: app.globalData.accountInfo.id,
-        status: this.data.orderType
+        status: status
       }
     }, result => {
       wx.hideLoading();
@@ -142,8 +147,10 @@ Page({
         let status = '';
         if (o.status == 0) {
           status = '未付款';
-        } else if (o.status == 1) {
+        } else if (o.status == 1 || status == 2) {
           status = '进行中'
+        }  else if (o.status == 3) {
+          status = '退款中'
         } else {
           status = '已完成'
         }

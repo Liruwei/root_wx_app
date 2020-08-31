@@ -69,29 +69,31 @@ Page({
   onShareAppMessage: function () {
 
   },
-  loadData: function(orderid) {
+  loadData: function (orderid) {
     let that = this;
     wx.showLoading({
       title: '加载中',
     })
     GET('/v1/shop/orders/' + orderid, {
     }, result => {
-      let info = result, count = 0, totalPrice = 0;      
+      let info = result, count = 0, totalPrice = 0;
       let goods = JSON.parse(info.goods_numbers);
       delete info.goods_numbers;
       info.create_time = (new Date(info.create_time * 1)).toLocaleString()
       if (info.status == 0) {
         wx.setNavigationBarTitle({ title: '待支付' });
-      } else if (info.status == 1) {
+      } else if (info.status == 1 || info.status == 2) {
         wx.setNavigationBarTitle({ title: '进行中' });
+      } else if (info.status == 3) {
+        wx.setNavigationBarTitle({ title: '退款中' });
       } else {
         wx.setNavigationBarTitle({ title: '已完成' });
       }
-      goods.forEach( x => {
+      goods.forEach(x => {
         count += x.num;
         totalPrice += x.price;
       });
-      that.setData({ info: info, goods: goods, count: count, reduce: totalPrice - info.amount});
+      that.setData({ info: info, goods: goods, count: count, reduce: totalPrice - info.amount });
       wx.hideLoading();
     }, error => {
       wx.showToast({
@@ -101,13 +103,13 @@ Page({
       wx.hideLoading();
     })
   },
-  onPayTap: function() {
+  onPayTap: function () {
     let that = this;
     wx.showLoading({ title: '请稍等', mask: true });
     POST('/v1/wx/orders/payinfo', {
       user_id: app.globalData.accountInfo.id,
       order_id: this.data.info.order_id
-    }, ({ data: { pay_info, order_id }}) => {
+    }, ({ data: { pay_info, order_id } }) => {
       that.payWithInfo(order_id, pay_info);
     }, error => {
       wx.hideLoading();
@@ -115,27 +117,28 @@ Page({
         title: error,
         icon: 'none'
       })
-    })  },
-  payWithInfo: function(order_id, pay_info, cb) {
+    })
+  },
+  payWithInfo: function (order_id, pay_info, cb) {
     wx.requestPayment({
       ...pay_info,
-      success (res) { 
+      success(res) {
         wx.hideLoading();
         cb && cb();
         wx.navigateTo({
           url: '/pages/payment/success?order_id=' + order_id,
         })
       },
-      fail (res) {
+      fail(res) {
         wx.hideLoading();
         cb && cb();
         wx.navigateTo({
           url: '/pages/payment/success?order_id=' + order_id,
         })
       }
-    })     
+    })
   },
-  onFinishTap: function() {
+  onFinishTap: function () {
     let that = this;
     wx.showModal({
       title: '提示',
@@ -158,13 +161,14 @@ Page({
             wx.showToast({
               title: error,
               icon: 'none'
-            })      
+            })
           })
         }
       }
     })
   },
-  onReturnTap: function() {
+  onReturnTap: function () {
+    let that = this;
     wx.showModal({
       title: '提示',
       content: '是否申请退款？',
@@ -172,7 +176,28 @@ Page({
       confirmText: '申请',
       complete: ({ confirm }) => {
         if (confirm) {
-
+          wx.showLoading({
+            title: '请求中',
+            mask: true
+          })
+          PUT(`/v1/shop/orders/${that.data.info.id}`, {
+            status: 3
+          }, res => {
+            wx.hideLoading();
+            wx.showToast({
+              title: '申请售后成功',
+              duration: 1500
+            })
+            setTimeout(() => {
+              that.loadData(that._ID)  
+            }, 1500);
+          }, error => {
+            wx.hideLoading();
+            wx.showToast({
+              title: error,
+              icon: 'none'
+            })
+          })
         }
       }
     })

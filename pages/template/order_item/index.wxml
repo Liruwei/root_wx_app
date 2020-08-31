@@ -4,7 +4,7 @@
       <view class="order_item-topleft">
         <view class="order_item-tag">{{item.order_id}}</view>
       </view>
-      <view class="order_item-status">{{item.status}}</view>
+      <view class="order_item-status" style='color: {{ item.status == "退款中" ? "red" : "#999999"}}'>{{item.status}}</view>
     </view>
     <view class="order_item-center">
       <image class="order_item-img" mode="aspectFit" src='{{item.goodsInfo.img}}'></image>
