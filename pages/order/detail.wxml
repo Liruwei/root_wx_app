@@ -34,9 +34,10 @@
 		<view class="value">下单时间：{{info.create_time}}</view>
 		<block wx:if='{{info.pay_time > 0}}'>
 			<view class="value">支付方式：微信</view>
-			<view class="value">支付时间：2020-20-1 20-12-23</view>
+			<view class="value">支付时间：{{info.pay_time}}</view>
 		</block>
-		<view wx:if='{{info.end_time}}' class="value">完成时间：2020-20-1 20-12-23</view>
+		<view wx:if='{{info.after_time}}' class="value">售后时间：{{info.after_time}}</view>
+		<view wx:if='{{info.end_time}}' class="value">完成时间：{{info.pay_time}}</view>
 	</view>
 
 	<view wx:if='{{info.status == 0}}' catchtap="onPayTap" class="paybtn">支付</view>

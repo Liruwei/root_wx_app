@@ -80,6 +80,16 @@ Page({
       let goods = JSON.parse(info.goods_numbers);
       delete info.goods_numbers;
       info.create_time = (new Date(info.create_time * 1)).toLocaleString()
+      if (info.end_time * 1 > 0) {
+        info.end_time = (new Date(info.end_time * 1)).toLocaleString()
+      }
+      if (info.pay_time * 1 > 0) {
+        info.pay_time = (new Date(info.pay_time * 1)).toLocaleString()
+      }
+      if (info.after_time * 1 > 0) {
+        info.after_time = (new Date(info.after_time * 1)).toLocaleString()
+      }
+      console.log(info)
       if (info.status == 0) {
         wx.setNavigationBarTitle({ title: '待支付' });
       } else if (info.status == 1 || info.status == 2) {
@@ -181,7 +191,8 @@ Page({
             mask: true
           })
           PUT(`/v1/shop/orders/${that.data.info.id}`, {
-            status: 3
+            status: 3,
+            after_time: (new Date()).getTime()
           }, res => {
             wx.hideLoading();
             wx.showToast({
