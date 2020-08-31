@@ -40,4 +40,6 @@
 	</view>
 
 	<view wx:if='{{info.status == 0}}' catchtap="onPayTap" class="paybtn">支付</view>
+	<view wx:if='{{info.status == 1}}' catchtap="onFinishTap" class="finishbtn">完成订单</view>
+	<view wx:if='{{info.status == 1}}' catchtap="onReturnTap" class="returnbtn">申请退款</view>
 </block>

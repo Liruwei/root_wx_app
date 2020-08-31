@@ -160,3 +160,29 @@ page {
   align-items: center;
   justify-content: center;
 }
+
+.finishbtn {
+  margin: 20rpx 30rpx 0 30rpx;
+  height: 75rpx;
+  border-radius: 10rpx;
+  background-color: #7289ff;
+  color: #ffffff;
+  font-size: 30rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.returnbtn {
+  margin: 40rpx 30rpx 0 30rpx;
+  height: 75rpx;
+  border-radius: 10rpx;
+  background-color: #EFEFEF;
+  color: #ffffff;
+  font-size: 30rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}

@@ -74,7 +74,6 @@ export const POST = (url, params, success = null, fail = null) => {
         } else {
           fail && fail(`${result.statusCode}`);
         }
-        
       } else if (result.data.message !== 'Success') {
         fail && fail(result.data.message);
       } else {
@@ -103,7 +102,11 @@ export const PUT = (url, params, success = null, fail = null) => {
     method: 'PUT',
     success: (result) => {
       if (result.statusCode !== 200) {
-        fail && fail(`${result.statusCode}`);
+        if (result.data && result.data.message) {
+          fail && fail(`${result.data.message}`);
+        } else {
+          fail && fail(`${result.statusCode}`);
+        }
       } else if (result.data.message !== 'Success') {
         fail && fail(result.data.message);
       } else {

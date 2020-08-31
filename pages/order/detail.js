@@ -1,6 +1,6 @@
 // pages/order/detail.js
 const app = getApp();
-import { GET, POST } from '../../utils/network';
+import { GET, POST, PUT } from '../../utils/network';
 
 Page({
 
@@ -134,5 +134,47 @@ Page({
         })
       }
     })     
+  },
+  onFinishTap: function() {
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: '是否完成订单？',
+      cancelText: '取消',
+      confirmText: '完成订单',
+      complete: ({ confirm }) => {
+        if (confirm) {
+          wx.showLoading({
+            title: '请求中',
+            mask: true
+          })
+          PUT(`/v1/shop/orders/${that.data.info.id}`, {
+            status: 4
+          }, res => {
+            wx.hideLoading();
+            that.loadData(that._ID)
+          }, error => {
+            wx.hideLoading();
+            wx.showToast({
+              title: error,
+              icon: 'none'
+            })      
+          })
+        }
+      }
+    })
+  },
+  onReturnTap: function() {
+    wx.showModal({
+      title: '提示',
+      content: '是否申请退款？',
+      cancelText: '取消',
+      confirmText: '申请',
+      complete: ({ confirm }) => {
+        if (confirm) {
+
+        }
+      }
+    })
   }
 })
