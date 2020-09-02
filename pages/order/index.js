@@ -73,7 +73,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this._nomore || this.data.orders.length == 0 ) return;
+    if (this._nomore || this.data.orders.length == 0) return;
     this.loadNextPag();
   },
 
@@ -84,51 +84,51 @@ Page({
 
   },
 
-  onOrderTap: function({ currentTarget: { dataset: { id }} }) {
+  onOrderTap: function ({ currentTarget: { dataset: { id } } }) {
     wx.navigateTo({
       url: '/pages/order/detail?id=' + id,
     })
   },
 
-  onOrderTypeTap: function({ currentTarget: { dataset : { value }} }) {
+  onOrderTypeTap: function ({ currentTarget: { dataset: { value } } }) {
     this.setData({
-       orderType: value
+      orderType: value
     });
     this.loadFirstPage()
   },
 
-  toAuthorityTap: function() {
+  toAuthorityTap: function () {
     wx.navigateTo({
       url: '/pages/index/index',
     });
   },
 
-  loadFirstPage: function() {
+  loadFirstPage: function () {
     this._page = 1;
     this._nomore = false;
     this.loadData();
   },
 
-  loadNextPag: function() {
-    this._page +=  1;
+  loadNextPag: function () {
+    this._page += 1;
     this.loadData();
   },
 
-  loadData: function() {
+  loadData: function () {
     let that = this;
     if (that._loading) return;
 
     that._loading = true;
     wx.showLoading({ title: '加载中' });
-    let status = [ 0];
-    if (this.data.orderType == 1)  {
+    let status = [0];
+    if (this.data.orderType == 1) {
       status = [1, 2, 3]
     } else if (this.data.orderType == 2) {
       status = [4, 5]
     }
     GET('/v1/shop/orders', {
       range: [(this._page - 1) * 10, this._page * 10 - 1],
-      sort: ['create_time', 'DESC' ],
+      sort: ['create_time', 'DESC'],
       filter: {
         user_id: app.globalData.accountInfo.id,
         status: status
@@ -141,7 +141,7 @@ Page({
       if ((result || []).length == 0) {
         that._nomore = true;
       }
-      (result || []).forEach( o => {
+      (result || []).forEach(o => {
         const items = JSON.parse(o.goods_numbers);
         let itemsCount = 0, time = o.create_time;
         let status = '';
@@ -149,14 +149,16 @@ Page({
           status = '未付款';
         } else if (o.status == 1 || status == 2) {
           status = '进行中'
-        }  else if (o.status == 3) {
+        } else if (o.status == 6) {
           status = '退款中'
-        } else if (o.status == 4){
+        } else if (o.status == 3) {
+          status = '审核中'
+        } else if (o.status == 4) {
           status = '已完成'
         } else {
           status = '已关闭'
         }
-        items.forEach( x => {
+        items.forEach(x => {
           itemsCount += x.num;
         });
         orders.push({
@@ -172,9 +174,12 @@ Page({
       that.setData({ orders: orders });
       that._loading = false;
     }, error => {
-      wx.hideLoading();
       wx.stopPullDownRefresh();
       that._loading = false;
+      wx.showToast({
+        title: error,
+        icon: 'none'
+      })
     });
   }
 

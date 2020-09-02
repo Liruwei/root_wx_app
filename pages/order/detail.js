@@ -94,8 +94,10 @@ Page({
         wx.setNavigationBarTitle({ title: '待支付' });
       } else if (info.status == 1 || info.status == 2) {
         wx.setNavigationBarTitle({ title: '进行中' });
-      } else if (info.status == 3) {
+      } else if (info.status == 6) {
         wx.setNavigationBarTitle({ title: '退款中' });
+      } else if (info.status == 3) {
+        wx.setNavigationBarTitle({ title: '审核中' });
       } else if (info.status == 4) {
         wx.setNavigationBarTitle({ title: '已完成' });
       } else {
