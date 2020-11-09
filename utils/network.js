@@ -1,7 +1,8 @@
 const md5 = require('js-md5');
 // const host = 'http://192.168.31.34:5000';
 // const host = 'http://10.0.0.7:5000';
-const host = 'https://liruwei.cn';
+// const host = 'https://liruwei.cn';
+const host = 'http://localhost:5000';
 const project_id = '7';
 
 const sign = (url = '' ,params = {}) => {
@@ -74,8 +75,6 @@ export const POST = (url, params, success = null, fail = null) => {
         } else {
           fail && fail(`${result.statusCode}`);
         }
-      } else if (result.data.message !== 'Success') {
-        fail && fail(result.data.message);
       } else {
         success && success(result.data);
       }

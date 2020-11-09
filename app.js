@@ -90,13 +90,21 @@ App({
     const that = this;
     wx.login({
       success: ({ code }) => {
-        POST('/v1/wx/user/login', { code }, result => {
+        POST('/wx/login', { code, 'object': 7 }, result => {
           that.globalData.accountInfo = result.data;
           that.globalData.status = 1;
           that.handleStatus();
         }, error => {
           console.log(error);
         });
+
+        // POST('/v1/wx/user/login', { code }, result => {
+        //   that.globalData.accountInfo = result.data;
+        //   that.globalData.status = 1;
+        //   that.handleStatus();
+        // }, error => {
+        //   console.log(error);
+        // });
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
