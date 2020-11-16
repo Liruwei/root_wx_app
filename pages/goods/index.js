@@ -111,7 +111,11 @@ Page({
         new_price = stockInfo.new_price;
       }
       that._stocks = stock;
-      console.log(detail)
+      
+      /** 替换html */
+      let html = `<div class="ql-editor">${detail.content}</div>`;
+      html = html.replace(/\<img/gi, '<img style="max-width:100%;height:auto" ');
+      detail.content = html;
       that.setData({ 
         goodsInfo : detail,
         typeSelecteds: typeSelecteds,

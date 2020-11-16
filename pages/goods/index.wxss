@@ -1,4 +1,6 @@
 /* pages/goods/index.wxss */
+@import "../../utils/quill.wxss";
+
 page {
   padding-bottom: 176rpx;
   background-color: #f6f9f9;
