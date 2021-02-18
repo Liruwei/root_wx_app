@@ -13,8 +13,7 @@ page {
 .HomeBox .HomeBoxProgress {
     position: absolute;
     left: calc((100vw - 140rpx) * 0.5);
-    right: 0;
-    bottom: 20rpx;
+    bottom: 10rpx;
     width: 100rpx;
 }
 
@@ -24,11 +23,13 @@ page {
     background-color: #ffffff;
     height: 300rpx;
     border-radius: 10rpx;
-    overflow: hidden;   
+    overflow: hidden;
+    padding-bottom: 0;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .HomeBanner .Item {
-    height: 150px;
+    height: 300rpx;
 }
 
 .HomeBanner .A {
@@ -54,15 +55,18 @@ page {
     flex-direction: row;
     overflow: hidden;
 }
+
 .HomeCategory .Scroll {
     white-space: nowrap;
 }
+
 .HomeCategory .Item {
     display: inline-block;
     width: 200rpx;
     height: 200rpx;
     margin-right: 20rpx;
 }
+
 .HomeCategory .Item .Content {
     width: 100%;
     height: 100%;
@@ -97,15 +101,58 @@ page {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 .HomeGoodsList .Item {
-    height: 300rpx;
+    /* height: calc((100vw - 60rpx) * 0.5 + 200rpx); */
     width: calc((100vw - 60rpx) * 0.5);
     margin-right: 20rpx;
     margin-bottom: 20rpx;
     background-color: #ffffff;
     border-radius: 10rpx;
+    box-sizing: border-box;
 }
 
 .HomeGoodsList .Item:nth-child(2n) {
     margin-right: 0;
+}
+
+.HomeGoodsList .Item .Image {
+    width: calc((100vw - 60rpx) * 0.5);
+    height: calc((100vw - 60rpx) * 0.5);
+    background-color: lightblue;
+    border-radius: 10rpx;
+}
+
+.HomeGoodsList .Item .Name {
+    font-size: 28rpx;
+    margin: 10rpx 10rpx;
+    line-height: 38rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.HomeGoodsList .Item .Footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100rpx;
+    width: 100%;
+    margin: 0 0 10rpx 0;
+}
+
+.HomeGoodsList .Item .Footer .Money {
+    font-weight: bold;
+    color: lightcoral;
+    margin-left: 10rpx;
+}
+
+.HomeGoodsList .Item .Footer .Icon {
+    margin-right: 10rpx;
+    width: 40rpx;
+    height: 40rpx;
+    background-color: lightcyan;
 }

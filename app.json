@@ -4,6 +4,8 @@
     "pages/home/index",
     "pages/cart/index",
     "pages/shoplist/index",
+    "pages/goods/category",
+    "pages/goods/detail",
     "pages/order/index",
     "pages/my/index"
   ],

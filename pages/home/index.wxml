@@ -1,7 +1,8 @@
 <!--pages/home/index.wxml-->
 <import src='/pages/template/footer.wxml' />
 <view wx:if='{{banners.length > 0}}' class='HomeBanner HomeBox'>
-	<swiper circular='{{true}}' indicator-dots="{{false}}" autoplay="{{false}}" bindchange="onSwiperChange">
+	<swiper circular='{{true}}' indicator-dots="{{false}}" autoplay="{{false}}" bindchange="onSwiperChange"
+		style="height: 300rpx;">
 		<block wx:for="{{banners}}" wx:key="*this">
 			<swiper-item>
 				<view class="Item {{item}}"></view>
@@ -15,7 +16,7 @@
 
 <view wx:if='{{categorys.length > 0}}' class='HomeCategory HomeBox'>
 	<scroll-view class="Scroll" scroll-x="true" bindscroll="onScrollViewScroll" style="width: 100%">
-		<view wx:for='{{categorys}}' wx:key='index' class='Item'>
+		<view wx:for='{{categorys}}' wx:key='index' class='Item' catchtap="onCategoryTap" data-category="{{item}}">
 			<view class="Content">
 				<view class="Icon"></view>
 				<view class="Text">{{index}}</view>
@@ -27,7 +28,14 @@
 	</view>
 </view>
 <view wx:if='{{goods.length > 0}}' class='HomeGoodsList'>
-	<view wx:for='{{goods}}' wx:key='id' class="Item"></view>
+	<view wx:for='{{goods}}' wx:key='id' class="Item" catchtap="onGoodsTap" data-item='{{item}}'>
+		<view class="Image"></view>
+		<text class="Name">这里是名字</text>
+		<view class="Footer">
+			<text class="Money">¥90.00</text>
+			<view class="Icon"></view>
+		</view>
+	</view>
 </view>
 <block wx:if='{{loading}}'>
 	<template is="footer_loading" data="{{...item}}" />

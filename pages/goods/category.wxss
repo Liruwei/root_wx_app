@@ -1,0 +1,29 @@
+/* pages/goods/category.wxss */
+@import '/pages/home/index.wxss';
+page {
+  padding-top: 106rpx;
+}
+.CategoryHeader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  /* height: 88rpx; */
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20rpx 20rpx;
+}
+
+.CategoryHeader .Input {
+  font-size: 24rpx;
+  width: 100%;
+  height: 100%;
+}
+
+.CategoryHeader .InputBg {
+  border-radius: 33rpx;
+  height: 66rpx;
+  background-color: lightcoral;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}
