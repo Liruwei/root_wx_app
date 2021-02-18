@@ -1,7 +1,9 @@
 {
   "pages":[
-    "pages/cart/index",
+    "pages/index/index",
     "pages/home/index",
+    "pages/cart/index",
+    "pages/shoplist/index",
     "pages/order/index",
     "pages/my/index"
   ],
@@ -16,16 +18,13 @@
   "tabBar": {
     "list": [{
       "pagePath": "pages/home/index",
-      "text": "-"
+      "text": "0"
     },{
       "pagePath": "pages/cart/index",
-      "text": "-"
-    },{
-      "pagePath": "pages/order/index",
-      "text": "-"
+      "text": "1"
     },{
       "pagePath": "pages/my/index",
-      "text": "-"
+      "text": "2"
     }]
   }
 }

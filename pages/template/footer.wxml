@@ -1,0 +1,5 @@
+<template name='footer_loading'>
+	<view class="FooterLoading">
+        正在加载下一页...
+	</view>
+</template>

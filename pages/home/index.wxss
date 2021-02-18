@@ -1,1 +1,111 @@
 /* pages/home/index.wxss */
+@import '/pages/template/footer.wxss';
+
+page {
+    background-color: #f2f4f5;
+    box-sizing: border-box;
+}
+
+.HomeBox {
+    position: relative;
+}
+
+.HomeBox .HomeBoxProgress {
+    position: absolute;
+    left: calc((100vw - 140rpx) * 0.5);
+    right: 0;
+    bottom: 20rpx;
+    width: 100rpx;
+}
+
+.HomeBanner {
+    margin: 20rpx 20rpx 0 20rpx;
+    width: calc(100vw - 40rpx);
+    background-color: #ffffff;
+    height: 300rpx;
+    border-radius: 10rpx;
+    overflow: hidden;   
+}
+
+.HomeBanner .Item {
+    height: 150px;
+}
+
+.HomeBanner .A {
+    background-color: blue;
+}
+
+.HomeBanner .B {
+    background-color: green;
+}
+
+.HomeBanner .C {
+    background-color: red;
+}
+
+
+.HomeCategory {
+    background-color: #ffffff;
+    margin: 20rpx 20rpx 0 20rpx;
+    width: calc(100vw - 40rpx);
+    height: 200rpx;
+    border-radius: 10rpx;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+.HomeCategory .Scroll {
+    white-space: nowrap;
+}
+.HomeCategory .Item {
+    display: inline-block;
+    width: 200rpx;
+    height: 200rpx;
+    margin-right: 20rpx;
+}
+.HomeCategory .Item .Content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.HomeCategory .Item .Content .Icon {
+    width: 100rpx;
+    height: 100rpx;
+    margin-bottom: 10rpx;
+    background-color: lightblue;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.HomeCategory .Item .Content .Text {
+    font-size: 30rpx;
+}
+
+.HomeCategory .Item:last-child {
+    margin-right: 0;
+}
+
+.HomeGoodsList {
+    margin: 20rpx 20rpx 0 20rpx;
+    width: calc(100vw - 40rpx);
+    padding-bottom: 20rpx;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.HomeGoodsList .Item {
+    height: 300rpx;
+    width: calc((100vw - 60rpx) * 0.5);
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+    background-color: #ffffff;
+    border-radius: 10rpx;
+}
+
+.HomeGoodsList .Item:nth-child(2n) {
+    margin-right: 0;
+}

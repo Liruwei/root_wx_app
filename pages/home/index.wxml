@@ -1,2 +1,34 @@
 <!--pages/home/index.wxml-->
-<text>pages/home/index.wxml</text>
+<import src='/pages/template/footer.wxml' />
+<view wx:if='{{banners.length > 0}}' class='HomeBanner HomeBox'>
+	<swiper circular='{{true}}' indicator-dots="{{false}}" autoplay="{{false}}" bindchange="onSwiperChange">
+		<block wx:for="{{banners}}" wx:key="*this">
+			<swiper-item>
+				<view class="Item {{item}}"></view>
+			</swiper-item>
+		</block>
+	</swiper>
+	<view class="HomeBoxProgress">
+		<progress percent="{{bannerPercent}}" color="#10AEFF" stroke-width="3" border-radius='1.5' />
+	</view>
+</view>
+
+<view wx:if='{{categorys.length > 0}}' class='HomeCategory HomeBox'>
+	<scroll-view class="Scroll" scroll-x="true" bindscroll="onScrollViewScroll" style="width: 100%">
+		<view wx:for='{{categorys}}' wx:key='index' class='Item'>
+			<view class="Content">
+				<view class="Icon"></view>
+				<view class="Text">{{index}}</view>
+			</view>
+		</view>
+	</scroll-view>
+	<view class="HomeBoxProgress">
+		<progress percent="{{categoryPercent}}" color="#10AEFF" stroke-width="3" border-radius='1.5' />
+	</view>
+</view>
+<view wx:if='{{goods.length > 0}}' class='HomeGoodsList'>
+	<view wx:for='{{goods}}' wx:key='id' class="Item"></view>
+</view>
+<block wx:if='{{loading}}'>
+	<template is="footer_loading" data="{{...item}}" />
+</block>

@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    loading: false,
+    bannerPercent: 1 / 3 * 100,
+    categoryPercent: 0,
+    banners: ['A', 'B', 'C'],
+    categorys: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+    goods: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
   },
 
   /**
@@ -54,7 +59,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    let that = this
+    this.setData({ loading: true })
+    setTimeout(() => {
+      that.setData({ loading: false })
+    }, 2000)
   },
 
   /**
@@ -62,5 +71,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onSwiperChange: function ({ detail: { current } }) {
+    this.setData({ bannerPercent: (current + 1) / (this.data.banners.length * 1.0) * 100 })
+  },
+
+  onScrollViewScroll: function ({ detail: { scrollLeft, scrollWidth } }) {
+    this.setData({ categoryPercent: scrollLeft / scrollWidth * 100 })
   }
 })

@@ -1,0 +1,8 @@
+<!--pages/shoplist/index.wxml-->
+<block wx:for='{{list}}' wx:key='id'>
+	<view class="ShopListItem" catchtap="onShopTap" data-id="{{item.id}}">
+		<text class="Name">{{item.name}}</text>
+		<text class="Info">{{item.area || '暂无简介'}}</text>
+        <text class="Info">{{item.info || '暂无位置'}}</text>
+	</view>
+</block>
