@@ -1,1 +1,286 @@
 /* pages/goods/detail.wxss */
+page {
+    background-color: #f2f4f5;
+    box-sizing: border-box;
+    padding-bottom: 120rpx;
+}
+.Box {
+    position: relative;
+}
+
+.Box .Progress {
+    position: absolute;
+    left: calc((100vw - 140rpx) * 0.5);
+    bottom: 10rpx;
+    width: 100rpx;
+}
+
+.GoodsDetailImages {
+    margin: 0 0 0 0;
+    width: 100vw;
+    background-color: #ffffff;
+    height: 300rpx;
+    overflow: hidden;
+    padding-bottom: 0;
+}
+
+.GoodsDetailImages .Item {
+    height: 300rpx;
+}
+
+.GoodsDetailMoneyAndShare {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.GoodsDetailMoneyAndShare .Money {
+    margin-left: 20rpx;
+    font-size: 60rpx;
+    color: lightpink;
+    font-weight: bold;
+}
+
+.GoodsDetailMoneyAndShare .Share {
+    margin-right: 20rpx;
+    width: 60rpx;
+    height: 60rpx;
+    background-color: lightgray;
+}
+.GoodsDetailName {
+    background-color: #fff;
+    padding: 10rpx 20rpx 10rpx 20rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+}
+.GoodsDetailInfo {
+    background-color: #fff;
+    padding: 10rpx 20rpx 10rpx 20rpx;
+    color: lightgray;
+    font-size: 28rpx;
+}
+
+.GoodsDetailUtils {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding-bottom: 20rpx;
+}
+.GoodsDetailUtils .OldPrice{
+    margin-left: 20rpx;
+    color: lightgray;
+    font-size: 28rpx;
+}
+.GoodsDetailUtils .Stock{
+    margin-right: 20rpx;
+    color: lightgray;
+    font-size: 28rpx;
+}
+
+.GoodsDetailContent {
+    margin-top: 20rpx;
+    height: 900rpx;
+    background-color: #fff;
+}
+.GoodsDetailContent .Title {
+    font-size: 36rpx;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    width: 100%;
+    text-align: center;
+}
+.GoodsDetailTool {
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 120rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    background-color: #fff;
+    border-top: solid 0.5px #f2f4f5;
+}
+
+.GoodsDetailTool .Cart {
+    width: 60rpx;
+    height: 60rpx;
+    background-color: lightgray;
+}
+
+.GoodsDetailTool .Right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 40rpx;
+    height: 80rpx;
+}
+
+.GoodsDetailTool .Right .AddCart {
+    width: 180rpx;
+    height: 100%;
+    background-color: lightsalmon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #fff;
+}
+
+.GoodsDetailTool .Right .BuyNow {
+    width: 150rpx;
+    height: 100%;
+    background-color: lightsteelblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #fff;
+}
+
+.GoodsDetailAddView {
+    position: fixed;
+    left: 0;
+    bottom: 120rpx;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: background-color 0.25s ease-in-out;
+}
+
+.GoodsDetailAddView .Content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.GoodsDetailAddView .Box {
+    position: absolute;
+    bottom: -270rpx;
+    left: 0;
+    right: 0;
+    height: 270rpx;
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 20rpx 20rpx;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+    transition: bottom 0.25s ease-in-out;
+}
+
+.GoodsDetailAddView .Close {
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+    width: 30rpx;
+    height: 30rpx;
+    background-color: lightgray;
+}
+
+.GoodsDetailAddView .GoodsInfo {
+    width: calc(100vw - 40rpx - 50rpx);
+    box-sizing: border-box;
+    height: 100rpx;
+    display: flex;
+    flex-direction: row;    
+    flex: 1;
+}
+
+.GoodsDetailAddView .Image {
+    width: 100rpx;
+    height: 100rpx;
+    background-color: lightgray;
+    
+}
+
+.GoodsDetailAddView .Info {
+    flex: 1;
+    box-sizing: border-box;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.GoodsDetailAddView .Name {
+    font-size: 30rpx;
+    font-weight: bold;
+}
+
+.GoodsDetailAddView .Bottom {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.GoodsDetailAddView .Money {
+    color: lightcoral;
+    font-size: 30rpx;
+    font-weight: bold;
+}
+
+.GoodsDetailAddView .Stock {
+    font-size: 28rpx;
+    margin-left: 20rpx;
+    color: lightgray;
+}
+.GoodsDetailAddView .Buttons {
+    width: 300rpx;
+    margin-top: 35rpx;
+    border: solid 0.5px #f2f4f5;
+    height: 80rpx;
+    border-radius: 10rpx;
+    display: flex;
+    flex-direction: row;
+}
+
+.GoodsDetailAddView .Del {
+    border-right: solid 0.5px #f2f4f5;
+    height: 100%;
+    width: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;    
+}
+
+.GoodsDetailAddView .Add {
+    border-left: solid 0.5px #f2f4f5;
+    height: 100%;
+    width: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;    
+}
+
+.GoodsDetailAddView .Num {
+    height: 100%;
+    width: 140rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;    
+}
+
+
+
+
+
+
+
+

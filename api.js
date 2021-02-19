@@ -1,5 +1,5 @@
-// const API_HOST = "http://localhost:5000"
-const API_HOST = "http://192.168.0.106:5000"
+const API_HOST = "http://localhost:5000"
+// const API_HOST = "http://192.168.0.106:5000"
 
 
 function GET(url, data, success, fail) {

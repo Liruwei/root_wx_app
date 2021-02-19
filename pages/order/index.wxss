@@ -1,1 +1,227 @@
 /* pages/order/index.wxss */
+
+page {
+    background-color: #f2f4f5;
+    font-size: 28rpx;
+}
+
+.OrderTop {
+    position: relative;
+}
+
+.OrderTop .Bg {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 300rpx;
+    background-color: #ff7b2f;
+    /* border-bottom-right-radius: 10vw;
+    border-bottom-left-radius: 10vw; */
+}
+
+.OrderTop .Top {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 40rpx 20rpx 40rpx 20rpx;
+}
+
+.OrderTop .Title {
+    font-size: 30rpx;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 20rpx;
+}
+
+.OrderTop .Info {
+    font-size: 28rpx;
+    color: #ffffffbe;
+}
+
+.OrderTop .Name {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 5rpx;
+}
+
+.OrderTop .ID {
+    color: #ffffffbe;
+    font-size: 28rpx;
+}
+
+.OrderBox {
+    width: calc(100vw - 40rpx);
+    margin: 0 20rpx 0 20rpx;
+    background-color: #ffffff;
+    border-radius: 10rpx;
+}
+
+.OrderOrder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* padding-bottom: 20rpx; */
+    padding-top: 20rpx;
+}
+
+.OrderOrder .Item {
+    height: 120rpx;
+    width: calc((100vw - 80rpx) / 5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.OrderLine {
+    width: calc(100vw - 40rpx );
+    height: 5rpx;
+    margin-left: 20rpx ;
+    margin-top: 5rpx;
+    margin-bottom: 20rpx;
+}
+
+.OrderLine .Line {
+    height: 100%;
+    width: 20%;
+    background-color: #ff7b2f;
+    transform: scaleX(0.5);
+}
+
+.OrderOrder .Item .Name {
+    font-size: 30rpx;
+    color: black;
+}
+
+.OrderOrder .Title {
+    font-size: 24rpx;
+    margin-top: 20rpx;
+    color: black;
+}
+
+.OrderItem {
+    width: calc(100vw - 40rpx);
+    margin: 0 20rpx 20rpx 20rpx;
+    background-color: #ffffff;
+    border-radius: 10rpx;
+}
+
+.OrderItem .Top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: solid 0.5px #f2f4f5;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx;
+}
+
+.OrderItem .Top .Time {
+    font-size: 24rpx;
+    color: gray;
+}
+
+.OrderItem .Top .Status {
+    color: red;
+}
+
+.OrderItem .Center {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20rpx 20rpx;
+    display: flex;
+    flex-direction: row;
+}
+
+.OrderItem .Image {
+    width: 100rpx;
+    min-width: 100rpx;
+    height: 120rpx;
+    background-color: lightgray;
+    margin-right: 20rpx;
+}
+
+.OrderItem .Content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.OrderItem .Name {
+    color: #232323;
+    width: 70vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.OrderItem .Bottom {
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: gray;
+    margin-top: 30rpx;
+}
+
+.OrderItem .Money {
+    margin-bottom: 20rpx;
+}
+
+.OrderItem .Footer0 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 20rpx;
+    padding-bottom: 20rpx;
+}
+
+.OrderItem .Footer0 .Money0 {
+    color: lightcoral;
+    font-size: 30rpx;
+    font-weight: bold;
+}
+
+.OrderItem .Footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    border-top: solid 0.5px #f2f4f5;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx;
+}
+
+.OrderItem .PayButton {
+    background-color: lightcoral;
+    color: #fff;
+    height: 70rpx;
+    border-radius: 35rpx;
+    width: 150rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.OrderItem .CancelButton {
+    color: gray;
+    border: solid 0.5px lightgray;
+    height: 70rpx;
+    border-radius: 35rpx;
+    width: 150rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20rpx;
+}
+
+
+
+

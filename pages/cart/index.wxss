@@ -1,2 +1,196 @@
 /* pages/cart/index.wxss */
-@import "../template/cart_item/index.wxss";
+page {
+    background-color: #f2f4f5;
+    box-sizing: border-box;
+    padding-top: 108rpx;
+    padding-bottom: 170rpx;
+}
+
+.CartTop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 88rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.CartTop .Text {
+    font-size: 30rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.CartTop .Num {
+    margin-left: 10rpx;
+    color: red;
+}
+
+.CartTop .Btn {
+    font-size: 28rpx;
+    padding: 5rpx 20rpx;
+    border-radius: 5rpx;
+    border: solid 1px lightgray;
+}
+
+.CartItem {
+    height: 200rpx;
+    margin-bottom: 20rpx;
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.CartItem .Dot {
+    width: 60rpx;
+    height: 100%;
+    margin-right: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.CartItem .Image {
+    width: 150rpx;
+    height: 100%;
+    background-color: lightgray;
+    margin-right: 20rpx;
+}
+
+.CartItem .Content {
+    flex: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.CartItem .Name {
+    font-size: 30rpx;
+}
+
+.CartItem .Bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 30rpx;
+}
+
+.CartItem .Money {
+    color: lightcoral;
+    font-weight: bold;
+}
+
+.CartItem .Control {
+    display: flex;
+    flex-direction: row;
+    border: solid 0.5rpx #f2f4f5;
+    border-radius: 10rpx;
+    height: 70rpx;
+}
+
+.CartItem .Del {
+    border-right: solid 0.5rpx #f2f4f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80rpx;
+    height: 100%;
+}
+
+.CartItem .Add {
+    border-left: solid 0.5rpx #f2f4f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80rpx;
+    height: 100%;
+}
+
+.CartItem .Num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100rpx;
+    height: 100%;
+}
+
+.CartFooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100rpx;
+    border-top: solid 0.5px #f2f4f5;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 30rpx;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+}
+
+.CartFooter .Left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.CartFooter .Dot {
+    width: 60rpx;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20rpx;
+}
+
+.CartFooter .Right {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.CartFooter .Total {
+    color: lightcoral;
+    font-weight: bold;
+    margin-right: 20rpx;
+}
+
+.CartFooter .Buy {
+    height: 70rpx;
+    width: 200rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 35rpx;
+    background-color: lightsalmon;
+    color: #fff;
+    font-weight: bold;
+}
+
+.CartFooter .Delete {
+    height: 70rpx;
+    width: 150rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 35rpx;
+    border: solid 0.5px gray;
+}
+

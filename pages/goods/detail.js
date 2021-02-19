@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    photos: [{}, {}, {}, {}, {}, {}],
+    imagePercent: 0,
+    addViewShow: false,
+    addViewShowContent: false
   },
 
   /**
@@ -62,5 +65,41 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onSwiperChange: function ({ detail: { current } }) {
+    this.setData({ imagePercent: (current + 1) / (this.data.photos.length * 1.0) * 100 })
+  },
+
+  onCloseAddView: function () {
+    if (this.addViewAnimating || !this.data.addViewShowContent) return;
+    this.addViewAnimating = true;
+    let that = this;
+    that.setData({ addViewShowContent: false })
+    setTimeout(() => {
+      that.setData({ addViewShow: false })  
+    }, 300);
+    setTimeout(() => {
+      delete that.addViewAnimating
+    }, 500);
+  },
+
+  onShowAddView: function () {
+    if (this.addViewAnimating || this.data.addViewShow) return;
+    this.addViewAnimating = true;
+    this.setData({ addViewShow: true })
+    this.setData({ addViewShowContent: true })
+    let that = this;
+    setTimeout(() => {
+      delete that.addViewAnimating
+    }, 500);
+  },
+
+  onAddViewContentTap: function () { },
+
+  onCartTap: function () {
+    wx.reLaunch({
+      url: '/pages/cart/index',
+    })
   }
 })

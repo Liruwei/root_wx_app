@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orders: [{}, {}, {}]
   },
 
   /**
@@ -61,6 +61,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+
+  },
+
+  onOrderDetailTap: function() {
+    wx.navigateTo({
+      url: '/pages/order/detail',
+    })
+  },
+
+  onCancelOrderTap: function () {
 
   }
 })

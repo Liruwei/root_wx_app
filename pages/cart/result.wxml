@@ -1,0 +1,30 @@
+<!--pages/cart/result.wxml-->
+<view class="Result">
+	<view class="Icon"></view>
+	<view class="Title">订单支付失败</view>
+	<view>
+		<view class="Item">
+			<view class="Name">订单编号</view>
+			<view class="Value">sdsdsadklj21323lk23 </view>
+		</view>
+
+		<view class="Item">
+			<view class="Name">下单日期</view>
+			<view class="Value">2020-01-01 20:23:31</view>
+		</view>
+		<view class="Item">
+			<view class="Name">支付方式</view>
+			<view class="Value">微信支付</view>
+		</view>
+		<view class="Item">
+			<view class="Name">支付金额</view>
+			<view class="Value">23312.00</view>
+		</view>
+		<view class="Item">
+			<view class="Name">失败原因</view>
+			<view class="Value">取消支付</view>
+		</view>
+	</view>
+	<view class="RePay" catchtap="toOrderTap">重新支付</view>
+	<view class="ToHome" catchtap="toHomeTap">返回首页</view>
+</view>

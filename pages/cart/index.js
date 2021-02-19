@@ -6,14 +6,15 @@ Page({
    */
   data: {
     items: [
-      { id: 1},
-      { id: 2},
-      { id: 3},
-      { id: 4},
-      { id: 5},
-      { id: 6},
-      { id: 7},
-    ]
+      { id: 1 },
+      { id: 2 },
+      { id: 3 },
+      { id: 4 },
+      { id: 5 },
+      { id: 6 },
+      { id: 7 },
+    ],
+    idEdit: false
   },
 
   /**
@@ -70,5 +71,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onEditTap: function () {
+    this.setData({ isEdit: !this.data.isEdit })
+  },
+
+  onBuyTap: function () {
+    wx.navigateTo({
+      url: '/pages/cart/pay',
+    })
   }
 })

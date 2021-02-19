@@ -1,0 +1,290 @@
+/* pages/cart/pay.wxss */
+page {
+    background-color: #f2f4f5;
+    font-size: 28rpx;
+    padding-bottom: 140rpx;
+}
+
+.PayTop {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    height: 1px;
+}
+
+.PayLine {
+    width: calc((100vw - (95px)) / 20);
+    height: 100%;
+    margin-right: 5px;
+}
+
+.PayLine:last-child {
+    margin-right: 0;
+}
+
+.PayAddress {
+    margin-bottom: 20rpx;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #fff;
+    justify-content: space-between;
+    padding: 30rpx 20rpx;
+}
+
+.PayAddress .Icon {
+    width: 30rpx;
+    height: 30rpx;
+    background-color: lightgray;
+}
+
+.PayAddressSelect {
+    margin-bottom: 20rpx;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #fff;
+    justify-content: space-between;
+    padding: 30rpx 20rpx;
+}
+
+.PayAddressSelect .Icon {
+    width: 30rpx;
+    height: 30rpx;
+    background-color: lightgray;
+}
+
+.PayAddressSelect .Left {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.PayAddressSelect .Name {
+    font-weight: bold;
+    margin-bottom: 10rpx;
+}
+
+.PayAddressSelect .Address {
+    word-break: break-all;
+}
+
+.PayGoodsTitle {
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx;
+    margin-bottom: 1px;
+}
+
+.PayGoods {
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx;
+    margin-bottom: 1px;
+    flex: 1;
+}
+
+.PayGoods:last-child {
+    margin-bottom: 20rpx;
+}
+
+.PayGoods .Image {
+    height: 120rpx;
+    width: 120rpx;
+    background-color: lightgray;
+    margin-right: 20rpx;
+}
+
+.PayGoods .Left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.PayGoods .Top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.PayGoods .Num {
+    color: gray;
+}
+
+.PayGoods .Name {
+    margin-right: 40rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(100vw - 300rpx);
+}
+
+.PayGoods .Money {
+    color: lightcoral;
+}
+
+.PayRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx;
+    background-color: #fff;
+    margin-bottom: 1px;
+}
+
+.PayRow .Value {
+    color: gray;
+}
+
+.PayRemarkContent {
+    margin-bottom: 20rpx;
+    background-color: #fff;
+    padding: 20rpx 20rpx;
+    box-sizing: border-box;
+}
+.PayRemarkContent .Title {
+    margin-bottom: 20rpx;
+}
+
+.PayRemarkContent .Content {
+    width: 100%;
+    background-color: #f2f4f5;
+    height: 160rpx;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx;
+}
+
+.PayType {
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx
+}
+
+.PayType .Title {
+    margin-bottom: 30rpx;
+}
+
+.PayType .Item {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12rpx 20rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border: solid 0.5px rgba(255, 0, 0, 0.5);
+    border-radius: 10rpx;
+}
+
+.PayType .Left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.PayType .Icon {
+    height: 60rpx;
+    width: 60rpx;
+    background-color: lightgray;
+    margin-right: 20rpx;
+}
+
+.PayType .Line {
+    height: 60rpx;
+    width: 1px;
+    background-color: #f2f4f5;
+}
+
+.PayType .Right {
+    color: gray;
+}
+
+.PayFooter {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 120rpx;
+    background-color: #fff;
+    border-top: solid 0.5px #f2f4f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+}
+
+.PayFooter .Left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.PayFooter .Money {
+    color: lightcoral;
+    font-weight: bold;
+    font-size: 30rpx;
+}
+
+.PayFooter .Pay  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    width: 180rpx;
+    height: 70rpx;
+    border-radius: 35rpx;
+    background-color: lightcoral;
+}
+
+.PayOrderType {
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 20rpx;
+    font-size: 30rpx;
+    color: lightgray;
+    font-weight: bold;
+}
+
+.PayOrderType .Item {
+    display: flex;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.PayOrderType .Line2 {
+    width: 1px;
+    height: 50rpx;
+    background-color: #f2f4f5;
+}
+
+.PayOrderType .Select {
+    color: #333333;
+}
+
+

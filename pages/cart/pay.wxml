@@ -1,0 +1,64 @@
+<!--pages/cart/pay.wxml-->
+<view class="PayOrderType">
+	<view class="Item {{orderType===1?'Select':''}}" catchtap="onOrderTypeTap" data-value='{{1}}'>配送</view>
+	<view class="Line2"></view>
+	<view class="Item {{orderType===2?'Select':''}}" catchtap="onOrderTypeTap" data-value='{{2}}'>到店自提</view>
+</view>
+<block wx:if='{{orderType===1}}'>
+	<view class='PayTop'>
+		<view wx:key='index' wx:for='{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}}' class="PayLine" style='background-color:{{index%2==0?"red": "blue"}}'></view>
+	</view>
+	<view wx:if='{{address}}' class='PayAddressSelect'>
+		<view class="Left">
+			<view class="Name">小明 18298983983</view>
+			<view class="Address">AddressAddressAddressAddressAd</view>
+		</view>
+		<view class="Icon"></view>
+	</view>
+	<view wx:else class='PayAddress'>
+		<text>设置收货地址</text>
+		<view class="Icon"></view>
+	</view>
+</block>
+<view class="PayGoodsTitle">共2件商品</view>
+<view>
+	<view class="PayGoods" wx:for='{{goods}}' wx:key='index'>
+		<view class="Image"></view>
+		<view class="Left">
+			<view class="Top">
+				<view class="Name">NameNameNameNameNameNameNameNameNameNameNameNameNameName</view>
+				<view class="Num">x 11</view>
+			</view>
+			<view class="Money">¥100.00</view>
+		</view>
+	</view>
+</view>
+
+<view class="PayRow">
+	<view class="Title">快递费用</view>
+	<view class="Value">免运费</view>
+</view>
+<view class="PayRemarkContent">
+	<view class="Title">备注信息</view>
+	<view class="Content">
+		<textarea style="width: 100%; height: 100%" placeholder="请添加备注（150字以内）"></textarea>
+	</view>
+</view>
+<view class="PayType">
+	<view class="Title">支付方式</view>
+	<view class="Item">
+		<view class="Left">
+			<view class="Icon"></view>
+			<text>微信支付</text>
+		</view>
+		<view class="Line"></view>
+		<view class="Right">微信快捷支付</view>
+	</view>
+</view>
+<view class="PayFooter">
+	<view class="Left">
+		<text>合计：</text>
+		<view class="Money">¥100.00</view>
+	</view>
+	<view class="Pay" catchtap="onPayTap">立即支付</view>
+</view>

@@ -1,2 +1,63 @@
 <!--pages/order/index.wxml-->
-<text>pages/order/index.wxml</text>
+<view class="OrderTop">
+	<view class="Bg"></view>
+	<view class="Top">
+		<view class="Title">订单信息</view>
+		<view class="Info">消费订单：0</view>
+	</view>
+	<view class="OrderBox">
+		<view class="OrderOrder">
+			<view class="Item" catchtap="onOrderTap">
+				<view class="Name">待付款</view>
+				<view class="Title">0</view>
+			</view>
+			<view class="Item">
+				<view class="Name">待发货</view>
+				<view class="Title">1</view>
+			</view>
+			<view class="Item">
+				<view class="Name">待签收</view>
+				<view class="Title">2</view>
+			</view>
+			<view class="Item">
+				<view class="Name">到店自提</view>
+				<view class="Title">2</view>
+			</view>
+			<view class="Item">
+				<view class="Name">已完成</view>
+				<view class="Title">3</view>
+			</view>
+		</view>
+	</view>
+	<view class="OrderLine">
+		<view class="Line" style='margin-left: calc(20% * 2)'></view>
+	</view>
+	<block wx:for='{{orders}}' wx:key='index'>
+		<view class="OrderItem" catchtap="onOrderDetailTap">
+			<view class="Top">
+				<view class="Time">2020-02-02 20:21:12</view>
+				<view class="Status">待付款</view>
+			</view>
+			<block wx:for='{{[1,2]}}' wx:key='index'>
+				<view class="Center">
+					<view class="Image"></view>
+					<view class="Content">
+						<view class="Name">NameNameNameNameNameNameNameNameNameNameNameNameNameNameNameName</view>
+						<view class="Bottom">
+							<view class="Money">¥100.00</view>
+							<view class="Num">x10</view>
+						</view>
+					</view>
+				</view>
+			</block>
+			<view class="Footer0">
+				<view>共3件商品，总金额：</view>
+				<view class="Money0">¥20.00</view>
+			</view>
+			<view class="Footer">
+				<view class="CancelButton" catchtap="onCancelOrderTap">取消订单</view>
+				<view class="PayButton">立即付款</view>
+			</view>
+		</view>
+	</block>
+</view>

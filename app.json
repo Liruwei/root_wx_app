@@ -3,10 +3,13 @@
     "pages/index/index",
     "pages/home/index",
     "pages/cart/index",
+    "pages/cart/pay",
+    "pages/cart/result",
     "pages/shoplist/index",
     "pages/goods/category",
     "pages/goods/detail",
     "pages/order/index",
+    "pages/order/detail",
     "pages/my/index"
   ],
   "window":{

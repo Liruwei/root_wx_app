@@ -1,2 +1,54 @@
 <!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<view class="MyTop">
+	<view class="Bg"></view>
+	<view class="Top">
+		<view class="Avatar">
+			<open-data type="userAvatarUrl"></open-data>
+		</view>
+		<view class="Right">
+			<view class="Name">
+				<open-data type="userNickName"></open-data>
+			</view>
+			<view class="ID">ID：VID01</view>
+		</view>
+	</view>
+	<view class="MyBox">
+		<view class="MyTitle">我的订单</view>
+		<view class="MyOrder">
+			<view class="Item" catchtap="onOrderTap">
+				<view class="Icon"></view>
+				<view class="Title">待付款</view>
+			</view>
+			<view class="Item">
+				<view class="Icon"></view>
+				<view class="Title">待发货</view>
+			</view>
+			<view class="Item">
+				<view class="Icon"></view>
+				<view class="Title">待签收</view>
+			</view>
+			<view class="Item">
+				<view class="Icon"></view>
+				<view class="Title">到店自提</view>
+			</view>
+		</view>
+	</view>
+	<view class="MyBox">
+		<view class="MyTitle">我的服务</view>
+		<view class="MyOrder">
+			<view class="Item">
+				<view class="Icon"></view>
+				<view class="Title">联系客服</view>
+			</view>
+			<view class="Item">
+				<view class="Icon"></view>
+				<view class="Title">地址信息</view>
+			</view>
+			<view class="Item">
+				<view class="Icon"></view>
+				<view class="Title">我是店主</view>
+			</view>
+			<view class="Item"></view>
+		</view>
+	</view>
+</view>

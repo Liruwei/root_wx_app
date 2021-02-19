@@ -1,1 +1,92 @@
 /* pages/my/index.wxss */
+page {
+    background-color: #f2f4f5;
+    font-size: 32rpx;
+}
+
+.MyTop {
+    position: relative;
+}
+
+.MyTop .Bg {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 300rpx;
+    background-color: #ff7b2f;
+    /* border-bottom-right-radius: 10vw;
+    border-bottom-left-radius: 10vw; */
+}
+
+.MyTop .Top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 40rpx 20rpx 40rpx 20rpx;
+}
+
+.MyTop .Avatar {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 60rpx;
+    overflow: hidden;
+    margin-right: 20rpx;
+}
+
+.MyTop .Name {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 5rpx;
+}
+
+.MyTop .ID {
+    color: #ffffffbe;
+    font-size: 28rpx;
+}
+
+.MyBox {
+    width: calc(100vw - 40rpx);
+    margin: 0 20rpx 20rpx 20rpx;
+    background-color: #ffffff;
+    border-radius: 10rpx;    
+}
+
+.MyTitle {
+    font-size: 28rpx;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: dashed 1px #f2f4f5 ;
+    padding: 20rpx 20rpx;
+}
+
+.MyOrder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20rpx;
+    padding-top: 20rpx;
+}
+
+.MyOrder .Item {
+    height: 120rpx;
+    width: calc((100vw - 80rpx) / 4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.MyOrder .Title {
+    font-size: 24rpx;
+    margin-top: 20rpx;
+}
+
+.MyOrder .Icon {
+    height: 60rpx;
+    width: 60rpx;
+    background-color: lightgray;
+}

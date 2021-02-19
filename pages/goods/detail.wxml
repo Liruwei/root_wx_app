@@ -1,2 +1,55 @@
-<!--pages/goods/detail.wxml-->
-<text>pages/goods/detail.wxml</text>
+<view wx:if='{{photos.length > 0}}' class='GoodsDetailImages Box'>
+	<swiper circular='{{true}}' indicator-dots="{{false}}" autoplay="{{false}}" bindchange="onSwiperChange" style="height: 300rpx;">
+		<block wx:for="{{photos}}" wx:key="*this">
+			<swiper-item>
+				<view class="Item"></view>
+			</swiper-item>
+		</block>
+	</swiper>
+	<view class="Progress">
+		<progress percent="{{imagePercent}}" color="#10AEFF" stroke-width="3" border-radius='1.5' />
+	</view>
+</view>
+<view class="GoodsDetailMoneyAndShare">
+	<view class="Money">¥900</view>
+	<view class="Share"></view>
+</view>
+<view class="GoodsDetailName">NameNameNameName</view>
+<view class="GoodsDetailInfo">infoinfoinfo</view>
+<view class="GoodsDetailUtils">
+	<view class="OldPrice">原价：¥1000</view>
+	<view class="Stock">库存：90</view>
+</view>
+<view class="GoodsDetailContent">
+	<view class="Title">商品介绍</view>
+	<rich-text nodes="{{nodes}}"></rich-text>
+</view>
+<view class="GoodsDetailTool">
+	<view class="Cart" catchtap="onCartTap"></view>
+	<view class="Right">
+		<view class="AddCart" catchtap="onShowAddView">加入购物车</view>
+		<view class="BuyNow" catchtap="onShowAddView">立即购买</view>
+	</view>
+</view>
+<view class="GoodsDetailAddView" style="top:{{addViewShow?'0':'100vh'}}; background-color:{{addViewShowContent?'rgba(0,0,0,0.3)':'rgba(0,0,0,0)'}}" catchtap="onCloseAddView">
+	<view class="Content">
+		<view class="Box" style='bottom:{{addViewShowContent?"0":"-270rpx"}};' catchtap="onAddViewContentTap">
+			<view class="Close" catchtap="onCloseAddView"></view>
+			<view class="GoodsInfo">
+				<view class="Image"></view>
+				<view class="Info">
+					<view class="Name">NameName</view>
+					<view class="Bottom">
+						<view class="Money">¥500.00</view>
+						<view class="Stock">库存：12</view>
+					</view>
+				</view>
+			</view>
+			<view class="Buttons">
+				<view class="Del">-</view>
+				<view class="Num">1</view>
+				<view class="Add">+</view>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,5 +1,36 @@
 <!--pages/cart/index.wxml-->
-<import src="../template/cart_item/index.wxml"/>
-<block wx:for='{{items}}' wx:key='index'>
-  <template is='cart_item'/>
-</block>
+<view class="CartTop">
+	<view class="Text">商品种类 <view class="Num">2</view>
+	</view>
+	<view class="Btn" catchtap="onEditTap">管理</view>
+</view>
+<view class="CartItem" wx:for='{{items}}' wx:key='index'>
+	<view class="Dot">
+		<icon type="circle" size="20"></icon>
+	</view>
+	<view class="Image"></view>
+	<view class="Content">
+		<view class="Name">NameNameName</view>
+		<view class="Bottom">
+			<view class="Money">¥19.00</view>
+			<view class="Control">
+				<view class="Del">-</view>
+				<view class="Num">3</view>
+				<view class="Add">+</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="CartFooter">
+	<view class="Left">
+		<view class="Dot">
+			<icon type="success" size="20" color="lightblue"></icon>
+		</view>
+		<view class="Text">全选(2)</view>
+	</view>
+	<view wx:if='{{isEdit}}' class="Delete">删除</view>
+	<view wx:if='{{!isEdit}}' class="Right">
+		<view class="Total">¥300.00</view>
+		<view class="Buy" catchtap="onBuyTap">立即下单</view>
+	</view>
+</view>
