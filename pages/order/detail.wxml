@@ -1,2 +1,68 @@
 <!--pages/order/detail.wxml-->
-<text>pages/order/detail.wxml</text>
+<view class="OrderDetail">
+	<view class="Status">
+		<view class="Top">
+			<view class="Title">待付款</view>
+			<view class="Title">待发货</view>
+			<view class="Title">待收货</view>
+			<view class="Title">已完成</view>
+		</view>
+		<view class="Bottom">
+			<view class="Dot DotDone">
+				<view class="DotWhite"></view>
+			</view>
+			<view class="Line"></view>
+			<view class="Dot"></view>
+			<view class="Line"></view>
+			<view class="Dot"></view>
+			<view class="Line"></view>
+			<view class="Dot"></view>
+		</view>
+	</view>
+	<view class='OrderDetailTop'>
+		<view wx:key='index' wx:for='{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}}' class="OrderDetailLine" style='background-color:{{index%2==0?"red": "blue"}}'></view>
+	</view>
+	<view class='OrderDetailAddressSelect'>
+		<view class="Name">小明 18298983983</view>
+		<view class="Address">AddressAddress</view>
+	</view>
+	<view class="GoodsSection">共1件商品</view>
+	<view>
+		<block wx:for='{{[1,2]}}' wx:key='index'>
+			<view class="GoodsItem">
+				<view class="GoodsImage"></view>
+				<view class="GoodsRight">
+					<view class="GoodsName">NamenameNamenameNamenameNamenameNamenameNamenameNamename</view>
+					<view class="GoodsInfo">
+						<view class="GoodsMoney">¥1000</view>
+						<view class="GoodsNum">x10</view>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+	<view class="Item">
+		<view class="Title">订单编号：</view>
+		<view class="Right">
+			<view class="Value">dsadsdsdsad</view>
+			<view class="Copy">复制</view>
+		</view>
+	</view>
+	<view class="Item">
+		<view class="Title">下单时间：</view>
+		<view class="Value">2020-01-02 20:12:21</view>
+	</view>
+	<view class="Item">
+		<view class="Title">支付状态：</view>
+		<view class="Value">未付款</view>
+	</view>
+	<view class="Item">
+		<view class="Title">支付方式：</view>
+		<view class="Value">微信支付</view>
+	</view>
+	<view class="Footer">
+    <view class="Complate">完成订单</view>
+		<view class="Pay">立即付款</view>
+		<view class="Delete">删除订单</view>
+	</view>
+</view>

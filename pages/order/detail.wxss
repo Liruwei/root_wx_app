@@ -1,1 +1,215 @@
 /* pages/order/detail.wxss */
+page {
+    background-color: #f2f4f5;
+    font-size: 28rpx;
+    padding-bottom: 140rpx;
+}
+
+.OrderDetail {}
+
+.OrderDetail .Status {
+    background-color: #fff;
+    padding: 20rpx 0;
+    margin-bottom: 20rpx;
+}
+
+.OrderDetail .Status .Top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.OrderDetail .Status .Top .Title {
+    width: calc((100vw - 80rpx) / 4);
+    font-size: 28rpx;
+    margin-right: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.OrderDetail .Status .Top .Title:last-child {
+    margin-right: 0;
+}
+
+.OrderDetail .Status .Bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rpx;
+}
+
+.OrderDetail .Status .Bottom .Dot {
+    width: 10rpx;
+    height: 10rpx;
+    background-color: #f2f4f5;
+    border-radius: 5rpx;
+    overflow: hidden;
+    margin-right: 10rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.OrderDetail .Status .Bottom .Line {
+    height: 1px;
+    width: calc((100vw - 40rpx - 30rpx - 30rpx) / 4);
+    background-color: #f2f4f5;
+    margin-right: 10rpx;
+}
+
+.OrderDetail .Status .Bottom .DotDone {
+    background-color: red;
+    transform: scale(1.5);
+}
+
+.OrderDetail .Status .Bottom .DotWhite {
+    width: 5rpx;
+    height: 5rpx;
+    border-radius: 2.5rpx;
+    background-color: #fff;
+}
+
+.OrderDetail .Status .Bottom .LineDone {
+    background-color: red;
+}
+
+.OrderDetailTop {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    height: 1px;
+    background-color: #fff;
+}
+
+.OrderDetailLine {
+    width: calc((100vw - (95px)) / 20);
+    height: 100%;
+    margin-right: 5px;
+}
+
+.OrderDetailLine:last-child {
+    margin-right: 0;
+}
+
+.OrderDetailAddressSelect {
+    margin-bottom: 20rpx;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 30rpx 20rpx;
+}
+
+.OrderDetailAddressSelect .Name {
+    margin-bottom: 10rpx;
+}
+
+.OrderDetailAddressSelect .Address {
+    word-break: break-all;
+}
+
+.OrderDetail .GoodsSection {
+    padding: 20rpx 20rpx;
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.OrderDetail .GoodsItem {
+    border-top: solid 0.5px #f2f4f5;
+    background-color: #fff;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 20rpx 20rpx;
+}
+
+.OrderDetail .GoodsItem:last-child {
+    margin-bottom: 20rpx;
+}
+
+.OrderDetail .GoodsImage {
+    width: 100rpx;
+    height: 120rpx;
+    margin-right: 20rpx;
+    background-color: lightgray;
+}
+
+.OrderDetail .GoodsRight {
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.OrderDetail .GoodsName {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: calc(100vw - 100rpx - 60rpx);
+    margin-bottom: 40rpx;
+}
+
+.OrderDetail .GoodsInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.OrderDetail .GoodsMoney {
+    color: lightcoral;
+}
+
+.OrderDetail .GoodsNum {
+    color: gray;
+}
+
+.OrderDetail .Item {
+    display: flex;
+    padding: 20rpx 20rpx;
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.OrderDetail .Title {    
+}
+
+.OrderDetail .Right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.OrderDetail .Value {
+    color: gray;
+}
+
+.OrderDetail .Copy {
+    color: gray;
+    border: solid 0.5px gray;
+    width: 80rpx;
+    margin-left: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10rpx;
+}
+
+.OrderDetail .Footer {
+    height: 120rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #fff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: solid 0.5px #f2f4f5;
+}
