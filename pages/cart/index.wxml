@@ -4,23 +4,34 @@
 	</view>
 	<view class="Btn" catchtap="onEditTap">管理</view>
 </view>
-<view class="CartItem" wx:for='{{items}}' wx:key='index'>
+<view class="CartItem {{item.didUpdate?'CartItemChange':''}} " wx:for='{{items}}' wx:key='index'>
 	<view class="Dot" catchtap="onItemSelectTap" data-index='{{index}}'>
-		<icon wx:if='{{item.check}}' type="success" size="20" color="#cc9c00"></icon>
-		<icon wx:else type="circle" size="20"></icon>
+		<block wx:if='{{item.num > 0}}'>
+			<icon wx:if='{{item.check}}' type="success" size="20" color="#cc9c00"></icon>
+			<icon wx:else type="circle" size="20"></icon>
+		</block>
+		<block wx:else>
+			<icon type="warn" size="20"></icon>
+		</block>
 	</view>
 	<image src="{{item.photo}}" class="Image"></image>
 	<view class="Content">
 		<view class="Name">{{item.name}}</view>
 		<view class="Bottom">
 			<view class="Money">¥{{item.showPrice}}</view>
-			<view class="Control">
-				<view class="Del" catchtap="onDel" data-index='{{index}}'>-</view>
-				<view class="Num">{{item.num}}</view>
-				<view class="Add" catchtap="onAdd" data-index='{{index}}'>+</view>
-			</view>
+			<block wx:if='{{item.num > 0}}'>
+				<view class="Control">
+					<view class="Del" catchtap="onDel" data-index='{{index}}'>-</view>
+					<view class="Num">{{item.num}}</view>
+					<view class="Add" catchtap="onAdd" data-index='{{index}}'>+</view>
+				</view>
+			</block>
+			<block wx:else>
+				<view></view>
+			</block>
 		</view>
 	</view>
+	<view class="CartItemMask" wx:if='{{item.num<=0}}'>库存不足</view>
 </view>
 <view class="CartFooter">
 	<view class="Left">

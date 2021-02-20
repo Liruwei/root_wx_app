@@ -79,11 +79,17 @@ Page({
   },
 
   onEditTap: function () {
-    this.setData({ isEdit: !this.data.isEdit })
+    let items = [...this.data.items.filter(o => o.num > 0)].map(o => {
+      delete o.didUpdate
+      return o
+    })
+    this.setData({ 
+      isEdit: !this.data.isEdit,
+      items: items
+    })
   },
 
   onBuyTap: function () {
-    // TODO: 检测库存
     if (this.data.items.filter(o => o.check).length === 0) {
       wx.showToast({
         title: '请选择商品',
@@ -91,15 +97,38 @@ Page({
       })
       return
     }
-    getApp().globalData.orderGoods = JSON.stringify(this.data.items.filter(o => o.check))
-    wx.navigateTo({
-      url: '/pages/cart/pay',
+    let that = this
+    let items = [...this.data.items]
+    let gids = items.map(o => o.id)
+    getApp().globalData.orderGoods = this.data.items.filter(o => o.check)
+    getApp().checkGoodsInfo((err, datas) => {
+      if (err) {
+        wx.showToast({
+          title: typeof(err) === 'string' ? err : '失败',
+          icon: 'none',
+          duration: 3500
+        })
+        datas.forEach(o => {
+          let index = gids.indexOf(o.id)
+          items[index] = {
+            ...items[index],
+            ...o
+          }
+        })
+        that.setData({ items: items })
+        that.upFooter(items)
+      } else {
+        wx.navigateTo({
+          url: '/pages/cart/pay',
+        })
+      }
     })
   },
 
-  onItemSelectTap: function ({ currentTarget: { dataset: { index}}}) {
+  onItemSelectTap: function ({ currentTarget: { dataset: { index } } }) {
     let items = this.data.items
     items[index].check = !items[index].check
+    delete items[index].didUpdate
     this.setData({
       items: [...items],
     })
@@ -109,21 +138,22 @@ Page({
   onSelectAll: function () {
     let checkAll = !this.data.checkAll
     let items = this.data.items
-    items.forEach( o => {
+    items.forEach(o => {
       o.check = checkAll
+      delete o.didUpdate
     })
-    this.setData({ checkAll, items: [...items]})
+    this.setData({ checkAll, items: [...items] })
     this.upFooter(items)
   },
 
-  upFooter: function(items) {
+  upFooter: function (items) {
     let total = 0
     let checkNum = 0
     let checkAll = true
-    items.forEach( o => {
+    items.forEach(o => {
       if (o.check) {
         total += o.num * o.showPrice * 1
-        checkNum += 1
+        checkNum += o.num > 0 ? 1 : 0
       } else {
         checkAll = false
       }
@@ -135,14 +165,14 @@ Page({
     })
   },
 
-  onDeleSelectTap: function() {
+  onDeleSelectTap: function () {
     let that = this
     if (that.data.items.filter(o => o.check).length == 0) {
       wx.showToast({
         title: '请选择商品',
         icon: 'none'
       })
-      return 
+      return
     }
     wx.showModal({
       content: '删除选中商品?',
@@ -152,30 +182,32 @@ Page({
         if (confirm) {
           getApp().delGoodsFromCart(that.data.items.filter(o => o.check).map(o => o.id), () => {
             let items = that.data.items.filter(o => !o.check)
-            that.setData({ items})
+            that.setData({ items })
             that.upFooter(items)
           })
         }
       }
     })
   },
-  onDel: function ({ currentTarget: { dataset: { index}}}) {
+  onDel: function ({ currentTarget: { dataset: { index } } }) {
     let that = this
-    let items = this.data.items 
+    let items = this.data.items
     if (items[index].num === 1) {
       return
     }
     getApp().delToCart(items[index], 1, () => {
       items[index].num -= 1
-      that.setData({ items: [...items]})
+      delete items[index].didUpdate
+      that.setData({ items: [...items] })
     })
   },
-  onAdd: function ({ currentTarget: { dataset: { index}}}) {
+  onAdd: function ({ currentTarget: { dataset: { index } } }) {
     let that = this
-    let items = this.data.items 
+    let items = this.data.items
     getApp().addToCart(items[index], 1, () => {
       items[index].num += 1
-      that.setData({ items: [...items]})
+      delete items[index].didUpdate
+      that.setData({ items: [...items] })
     })
   }
 })

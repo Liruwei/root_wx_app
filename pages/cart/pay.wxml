@@ -1,8 +1,8 @@
 <!--pages/cart/pay.wxml-->
 <view class="PayOrderType">
-	<view class="Item {{orderType===1?'Select':''}}" catchtap="onOrderTypeTap" data-value='{{1}}'>配送</view>
-	<view class="Line2"></view>
 	<view class="Item {{orderType===2?'Select':''}}" catchtap="onOrderTypeTap" data-value='{{2}}'>到店自提</view>
+	<view class="Line2"></view>
+	<view class="Item {{orderType===1?'Select':''}}" catchtap="onOrderTypeTap" data-value='{{1}}'>配送</view>
 </view>
 <block wx:if='{{orderType===1}}'>
 	<view class='PayTop'>

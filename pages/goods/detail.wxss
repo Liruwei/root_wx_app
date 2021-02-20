@@ -145,7 +145,6 @@ page {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
     color: #fff;
 }
 
@@ -156,7 +155,6 @@ page {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
     color: #fff;
 }
 

@@ -130,7 +130,7 @@ Page({
   onAddViewContentTap: function () { },
 
   onAddToCart: function () {
-    if (this.data.stock < 0) {
+    if (this.data.goods.stock <= 0) {
       wx.showToast({
         title: '库存不足',
         icon: 'none'
@@ -161,7 +161,7 @@ Page({
   },
 
   onBuyNow: function() {
-    if (this.data.stock < 0) {
+    if (this.data.goods.stock <= 0) {
       wx.showToast({
         title: '库存不足',
         icon: 'none'

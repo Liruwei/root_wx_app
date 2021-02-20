@@ -21,7 +21,7 @@ App({
     //   }
     // })
   },
-  login: function() {
+  login: function () {
     let that = this;
     wx.login({
       success: res => {
@@ -34,22 +34,22 @@ App({
       }
     })
   },
-  loadProjectInfo: function(id, cb) {
+  loadProjectInfo: function (id, cb) {
     let that = this;
     API.PROJECT_INFO(id).then(res => {
       that.globalData.projectInfo = res.data
       cb && cb(res.data, null)
-    }).catch( err => {
+    }).catch(err => {
       cb && cb(null, err)
     })
   },
-  getCurrentCartInfo: function(cb) {
+  getCurrentCartInfo: function (cb) {
     let that = this
     that.getCartInfo(res => {
       cb && cb(res[that.globalData.projectInfo.id] || [])
     })
   },
-  getCartInfo: function(cb) {
+  getCartInfo: function (cb) {
     wx.getStorage({
       key: 'cart',
       success: ({ data }) => {
@@ -59,6 +59,26 @@ App({
         cb && cb({})
       }
     })
+  },
+  delGoodsFromCartSync: function (goods) {
+    console.log(goods)
+    let project = this.globalData.projectInfo.id
+    let cart = wx.getStorageSync('cart')
+    let list = cart[project] || []
+    let ids = goods.map(o => o.id)
+    list = list.map(o => {
+      let index = ids.indexOf(o.id)
+      if (index >= 0) {
+        let tmp = {...goods[index]}
+        delete tmp.didUpdate
+        o = {...o, ...tmp}
+      }
+      return o
+    })
+    console.log(list, ids)
+    list = list.filter(o => o.num > 0)
+    cart[project] = [...list]
+    wx.setStorageSync('cart', cart)
   },
   delGoodsFromCart: function (ids = [], cb) {
     wx.showLoading({
@@ -78,7 +98,7 @@ App({
       list = list.filter(item => !delList.includes(item));
       res[project] = list
       wx.setStorage({
-        data: {...res},
+        data: { ...res },
         key: 'cart',
         success: _ => {
           wx.hideLoading({})
@@ -88,9 +108,9 @@ App({
           wx.hideLoading({})
         }
       })
-    })      
+    })
   },
-  delToCart: function(goods, num, cb) {
+  delToCart: function (goods, num, cb) {
     wx.showLoading({
       title: '请求中',
     })
@@ -110,7 +130,7 @@ App({
       }
       res[project] = list
       wx.setStorage({
-        data: {...res},
+        data: { ...res },
         key: 'cart',
         success: _ => {
           wx.hideLoading({})
@@ -120,9 +140,9 @@ App({
           wx.hideLoading({})
         }
       })
-    })    
+    })
   },
-  addToCart: function(goods, num, cb) {
+  addToCart: function (goods, num, cb) {
     wx.showLoading({
       title: '请稍等',
     })
@@ -150,7 +170,7 @@ App({
       res[project] = list
 
       wx.setStorage({
-        data: {...res},
+        data: { ...res },
         key: 'cart',
         success: _ => {
           wx.hideLoading({})
@@ -160,6 +180,46 @@ App({
           wx.hideLoading({})
         }
       })
+    })
+  },
+  checkGoodsInfo: function (cb) {
+    let that = this
+    let orderGoods = [...this.globalData.orderGoods]
+    let gids = this.globalData.orderGoods.map(o => o.id)
+    let project = this.globalData.projectInfo.id
+    wx.showLoading({ title: '请求中' })
+    API.HOME_GOODS(1, project, { id: gids }, 10000).then(({ data }) => {
+      let msg = undefined
+      data.forEach(item => {
+        let index = gids.indexOf(item.id)
+        if (index >= 0) {
+          orderGoods[index].didChecked = true
+          const showPrice = ((item.is_discounts === 1 ? item.discounts_price : item.price) / 100).toFixed(2)
+          if (orderGoods[index].num > item.stock) {
+            orderGoods[index].num = Math.max(0, item.stock)
+            orderGoods[index].didUpdate = true
+            msg = '商品信息有变动，请核实。'
+          }
+          if (orderGoods[index].showPrice * 1 - showPrice * 1 !== 0) {
+            orderGoods[index].showPrice = showPrice
+            orderGoods[index].didUpdate = true
+            msg = '商品信息有变动，请核实。'
+          }
+        }
+      })
+      orderGoods.forEach(o => {
+        if (!o.didChecked) {
+          o.num = 0
+          o.didUpdate = true
+          msg = '商品信息有变动，请核实。'
+        }
+        delete o.didChecked
+      })
+      that.delGoodsFromCartSync(orderGoods.filter(o => o.didUpdate))
+      wx.hideLoading({})
+      cb && cb(msg, orderGoods)
+    }).catch(err => {
+      cb && cb(err, orderGoods)
     })
   },
   globalData: {

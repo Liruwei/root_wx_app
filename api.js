@@ -1,5 +1,5 @@
-// const API_HOST = "http://localhost:5000"
-const API_HOST = "http://192.168.10.188:5000"
+const API_HOST = "http://localhost:5000"
+// const API_HOST = "http://192.168.10.188:5000"
 
 
 function GET(url, data, success, fail) {
@@ -104,11 +104,14 @@ function HOME_BANNERS(id) {
     });
 }
 
-function HOME_GOODS(page, pid) {
+function HOME_GOODS(page, pid, filter={}, pageSize=20) {
     return new Promise((resolve, reject) => {
         GET('/shoptemplate/products', {
-            filter: {project: pid},
-            range: [page, 20]
+            filter: {
+                project: pid,
+                ...filter
+            },
+            range: [page, pageSize]
         }, res=> {
             resolve(res)
         }, error => {
