@@ -61,7 +61,6 @@ App({
     })
   },
   delGoodsFromCartSync: function (goods) {
-    console.log(goods)
     let project = this.globalData.projectInfo.id
     let cart = wx.getStorageSync('cart')
     let list = cart[project] || []
@@ -75,7 +74,6 @@ App({
       }
       return o
     })
-    console.log(list, ids)
     list = list.filter(o => o.num > 0)
     cart[project] = [...list]
     wx.setStorageSync('cart', cart)

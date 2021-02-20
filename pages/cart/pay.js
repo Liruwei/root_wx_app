@@ -7,7 +7,8 @@ Page({
     data: {
         address: {},
         orderType: 2,
-        goods: [{}, {}]
+        goods: [{}, {}],
+        sendMoney: 0
     },
 
     /**
@@ -30,7 +31,28 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        let that = this
+        const projectInfo = getApp().globalData.projectInfo
 
+        getApp().getCurrentCartInfo(res => {
+          let goods = res.map(o => ({ ...o, check: false }))
+          that.setData({
+            goods: [...goods],
+            sendMoney: projectInfo.open_send > 0  ? `¥${(projectInfo.send_money  / 100).toFixed(2)}` : '免运费'
+          })
+          that.upFooter()
+        })
+        
+        wx.showLoading({ title: '加载中' })
+        getApp().loadProjectInfo(projectInfo.id, (res, err) => {
+            wx.hideLoading({})
+            if (!err) {
+                that.setData({
+                    sendMoney: res.open_send > 0  ? `¥${(res.send_money  / 100).toFixed(2)}` : '免运费'
+                })
+                that.upFooter()           
+            }
+        }).then()
     },
 
     /**
@@ -76,5 +98,9 @@ Page({
 
     onOrderTypeTap: function ({ currentTarget: { dataset: { value}}}) {
         this.setData({ orderType: value})
+    },
+
+    upFooter: function () {
+        
     }
 })

@@ -2,6 +2,7 @@
 page {
     background-color: #f2f4f5;
     font-size: 28rpx;
+    color: #2c2c2c;
     padding-bottom: 140rpx;
 }
 

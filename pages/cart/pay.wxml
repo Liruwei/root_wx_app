@@ -20,23 +20,23 @@
 		<view class="Icon"></view>
 	</view>
 </block>
-<view class="PayGoodsTitle">共2件商品</view>
+<view class="PayGoodsTitle">共{{goods.length}}件商品</view>
 <view>
 	<view class="PayGoods" wx:for='{{goods}}' wx:key='index'>
-		<view class="Image"></view>
+		<image class="Image" src="{{item.photo}}"></image>
 		<view class="Left">
 			<view class="Top">
-				<view class="Name">NameNameNameNameNameNameNameNameNameNameNameNameNameName</view>
-				<view class="Num">x 11</view>
+				<view class="Name">{{item.name}}</view>
+				<view class="Num">x{{item.num}}</view>
 			</view>
-			<view class="Money">¥100.00</view>
+			<view class="Money">¥{{item.showPrice}}</view>
 		</view>
 	</view>
 </view>
 
-<view class="PayRow">
+<view class="PayRow" wx:if='{{orderType===1}}'>
 	<view class="Title">快递费用</view>
-	<view class="Value">免运费</view>
+	<view class="Value">{{sendMoney}}</view>
 </view>
 <view class="PayRemarkContent">
 	<view class="Title">备注信息</view>
