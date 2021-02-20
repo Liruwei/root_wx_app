@@ -14,6 +14,23 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const formatGoodsInfo = (o, isDetal=false) => {
+  o.photos = o.photos.split(',')
+  o.showPrice = o.is_discounts === 1 ? (o.discounts_price / 100).toFixed(2) : (o.price / 100).toFixed(2)
+  o.oldPrice = (o.price / 100).toFixed(2)
+  if (!isDetal) {
+    return {
+      id: o.id,
+      name: o.name,
+      photos: [o.photos[0]],
+      showPrice: o.showPrice,
+      unit: o.unit
+    }
+  }
+  return o
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  formatGoodsInfo
 }

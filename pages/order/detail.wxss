@@ -158,11 +158,11 @@ page {
 }
 
 .OrderDetail .GoodsMoney {
-    color: lightcoral;
+    color: #FA5151;
 }
 
 .OrderDetail .GoodsNum {
-    color: gray;
+    color: #d3d3d3;
 }
 
 .OrderDetail .Item {
@@ -186,12 +186,12 @@ page {
 }
 
 .OrderDetail .Value {
-    color: gray;
+    color: #d3d3d3;
 }
 
 .OrderDetail .Copy {
-    color: gray;
-    border: solid 0.5px gray;
+    color: #d3d3d3;
+    border: solid 0.5px #d3d3d3;
     width: 80rpx;
     margin-left: 20rpx;
     display: flex;
@@ -227,11 +227,11 @@ page {
 }
 
 .OrderDetail .Footer .Red {
-    background-color: lightcoral;
+    background-color: #FA5151;
     color: #fff;
 }
 
 .OrderDetail .Footer .Gray {
     border: solid 0.5px lightgray;
-    color: gray;
+    color: #d3d3d3;
 }

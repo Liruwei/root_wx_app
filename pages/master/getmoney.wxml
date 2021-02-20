@@ -5,6 +5,6 @@
         <view>¥</view>
         <input bindinput='bindinput' focus='true' class="GetMoneyInputEl" type="digit"></input>
     </view>
-    <view class="GetMoneyInfo">当前余额¥{{money}}，今天可提现余额<span style='color:lightcoral;'>¥{{can}}</span>，一天提现总额度为¥5000。</view>
+    <view class="GetMoneyInfo">当前余额¥{{money}}，今天可提现余额<span style='color:#FA5151;'>¥{{can}}</span>，一天提现总额度为¥5000。</view>
     <view class="GetMoneyBtn">提现</view>
 </view>

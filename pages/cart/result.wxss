@@ -20,7 +20,7 @@ page {
     position: absolute;
     top: -60rpx;
     left: calc((100vw - 200rpx) * 0.5);
-    background-color: gray;
+    background-color: #d3d3d3;
 }
 
 .Result .Title {
@@ -44,7 +44,7 @@ page {
 }
 
 .Result .Value {
-    color: gray;
+    color: #d3d3d3;
 }
 
 .Result .Name {
@@ -52,7 +52,7 @@ page {
 }
 
 .Result .RePay {
-    background-color: lightcoral;
+    background-color: #FA5151;
     width: 100%;
     height: 70rpx;
     border-radius: 35rpx;
@@ -64,11 +64,11 @@ page {
 }
 
 .Result .ToHome {
-    border: solid 0.5px lightcoral;
+    border: solid 0.5px #FA5151;
     width: 100%;
     height: 70rpx;
     border-radius: 35rpx;
-    color: lightcoral;
+    color: #FA5151;
     display: flex;
     align-items: center;
     justify-content: center;

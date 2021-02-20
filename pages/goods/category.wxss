@@ -23,7 +23,7 @@ page {
 .CategoryHeader .InputBg {
   border-radius: 33rpx;
   height: 66rpx;
-  background-color: lightcoral;
+  background-color: #FA5151;
   box-sizing: border-box;
   padding: 0 20rpx;
 }

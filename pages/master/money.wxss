@@ -35,7 +35,7 @@ page {
     border-radius: 10rpx;
     font-weight: bold;
     color: #fff;
-    background-color: lightcoral;
+    background-color: #FA5151;
     display: flex;
     align-items: center;
     justify-content: center;

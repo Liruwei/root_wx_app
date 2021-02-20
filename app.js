@@ -43,8 +43,128 @@ App({
       cb && cb(null, err)
     })
   },
+  getCurrentCartInfo: function(cb) {
+    let that = this
+    that.getCartInfo(res => {
+      cb && cb(res[that.globalData.projectInfo.id] || [])
+    })
+  },
+  getCartInfo: function(cb) {
+    wx.getStorage({
+      key: 'cart',
+      success: ({ data }) => {
+        cb && cb(data)
+      },
+      fail: err => {
+        cb && cb({})
+      }
+    })
+  },
+  delGoodsFromCart: function (ids = [], cb) {
+    wx.showLoading({
+      title: '请求中',
+    })
+    let that = this
+    const project = this.globalData.projectInfo.id
+    this.getCartInfo(res => {
+      let list = res[project] || []
+      let tmp = null
+      let delList = []
+      list.forEach(obj => {
+        if (ids.includes(obj.id)) {
+          delList.push(obj)
+        }
+      });
+      list = list.filter(item => !delList.includes(item));
+      res[project] = list
+      wx.setStorage({
+        data: {...res},
+        key: 'cart',
+        success: _ => {
+          wx.hideLoading({})
+          cb && cb()
+        },
+        fail: _ => {
+          wx.hideLoading({})
+        }
+      })
+    })      
+  },
+  delToCart: function(goods, num, cb) {
+    wx.showLoading({
+      title: '请求中',
+    })
+    let that = this
+    const project = this.globalData.projectInfo.id
+    this.getCartInfo(res => {
+      let list = res[project] || []
+      let tmp = null
+      list.forEach(obj => {
+        if (obj.id === goods.id) {
+          obj.num -= num
+          tmp = obj
+        }
+      });
+      if (tmp && tmp.num <= 0) {
+        list = list.filter(item => item.id !== tmp.id);
+      }
+      res[project] = list
+      wx.setStorage({
+        data: {...res},
+        key: 'cart',
+        success: _ => {
+          wx.hideLoading({})
+          cb && cb()
+        },
+        fail: _ => {
+          wx.hideLoading({})
+        }
+      })
+    })    
+  },
+  addToCart: function(goods, num, cb) {
+    wx.showLoading({
+      title: '请稍等',
+    })
+    let that = this
+    const project = this.globalData.projectInfo.id
+    this.getCartInfo(res => {
+      let list = res[project] || []
+      let tmp = null
+      list.forEach(obj => {
+        if (obj.id === goods.id) {
+          obj.num += num
+          tmp = obj
+        }
+      });
+      if (!tmp) {
+        tmp = {
+          id: goods.id,
+          name: goods.name,
+          num: num,
+          showPrice: goods.showPrice,
+          photo: goods.photos[0]
+        }
+        list = [...list, tmp]
+      }
+      res[project] = list
+
+      wx.setStorage({
+        data: {...res},
+        key: 'cart',
+        success: _ => {
+          wx.hideLoading({})
+          cb && cb()
+        },
+        fail: _ => {
+          wx.hideLoading({})
+        }
+      })
+    })
+  },
   globalData: {
     userInfo: null,
-    projectInfo: null
+    projectInfo: null,
+    orderGoods: []
   }
 })

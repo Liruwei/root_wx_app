@@ -3,7 +3,9 @@ page {
     background-color: #f2f4f5;
     box-sizing: border-box;
     padding-top: 108rpx;
-    padding-bottom: 170rpx;
+    padding-bottom: 140rpx;
+    font-size: 28rpx;
+    color: #2c2c2c;
 }
 
 .CartTop {
@@ -31,7 +33,7 @@ page {
 
 .CartTop .Num {
     margin-left: 10rpx;
-    color: red;
+    color: #FA5151;
 }
 
 .CartTop .Btn {
@@ -90,7 +92,7 @@ page {
 }
 
 .CartItem .Money {
-    color: lightcoral;
+    color: #FA5151;
     font-weight: bold;
 }
 
@@ -133,7 +135,7 @@ page {
     left: 0;
     bottom: 0;
     right: 0;
-    height: 100rpx;
+    height: 120rpx;
     border-top: solid 0.5px #f2f4f5;
     background-color: #fff;
     display: flex;
@@ -167,19 +169,19 @@ page {
 }
 
 .CartFooter .Total {
-    color: lightcoral;
+    color: #FA5151;
     font-weight: bold;
     margin-right: 20rpx;
 }
 
 .CartFooter .Buy {
     height: 70rpx;
-    width: 200rpx;
+    width: 150rpx;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 35rpx;
-    background-color: lightsalmon;
+    background-color: #cc9c00;
     color: #fff;
     font-weight: bold;
 }
@@ -191,6 +193,6 @@ page {
     align-items: center;
     justify-content: center;
     border-radius: 35rpx;
-    border: solid 0.5px gray;
+    border: solid 0.5px #d3d3d3;
 }
 

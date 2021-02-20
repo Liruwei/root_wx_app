@@ -21,6 +21,6 @@ page {
 }
 .ShopListItem .Info {
     font-size: 8px;
-    color: gray;
+    color: #d3d3d3;
     margin-bottom: 5px;
 }

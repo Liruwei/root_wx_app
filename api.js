@@ -1,5 +1,5 @@
-const API_HOST = "http://localhost:5000"
-// const API_HOST = "http://192.168.0.106:5000"
+// const API_HOST = "http://localhost:5000"
+const API_HOST = "http://192.168.10.188:5000"
 
 
 function GET(url, data, success, fail) {
@@ -58,7 +58,7 @@ function POST(url, data, success, fail) {
 function PROJECT_LIST(page=1) {
     return new Promise((resolve, reject) => {
         GET('/shoptemplate/projects', {
-            filter: {},
+            filter: {status: 1},
             range: [page, 20]
         }, res=> {
             resolve(res)
@@ -92,8 +92,61 @@ function PROJECT_INFO(id) {
     });
 }
 
+function HOME_BANNERS(id) {
+    return new Promise((resolve, reject) => {
+        GET(`/shoptemplate/banners`, {
+            filter: {project:id}
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function HOME_GOODS(page, pid) {
+    return new Promise((resolve, reject) => {
+        GET('/shoptemplate/products', {
+            filter: {project: pid},
+            range: [page, 20]
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function HOME_CATEGORYS(pid) {
+    return new Promise((resolve, reject) => {
+        GET('/shoptemplate/categorys', {
+            filter: {project: pid},
+            range: [1, 1000]
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function GOODS_INFO(id) {
+    return new Promise((resolve, reject) => {
+        GET(`/shoptemplate/product/${id}`, {
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
 export default {
     LOGIN,
     PROJECT_LIST,
-    PROJECT_INFO
+    PROJECT_INFO,
+    HOME_BANNERS,
+    HOME_GOODS,
+    HOME_CATEGORYS,
+    GOODS_INFO
 }

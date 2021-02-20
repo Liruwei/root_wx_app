@@ -2,10 +2,10 @@
 <import src='/pages/template/footer.wxml' />
 <view wx:if='{{banners.length > 0}}' class='HomeBanner HomeBox'>
 	<swiper circular='{{true}}' indicator-dots="{{false}}" autoplay="{{false}}" bindchange="onSwiperChange"
-		style="height: 300rpx;">
+		style="height: calc(100vw - 40rpx);">
 		<block wx:for="{{banners}}" wx:key="*this">
 			<swiper-item>
-				<view class="Item {{item}}"></view>
+				<image class="Item" src="{{item.photo}}"></image>
 			</swiper-item>
 		</block>
 	</swiper>
@@ -18,8 +18,8 @@
 	<scroll-view class="Scroll" scroll-x="true" bindscroll="onScrollViewScroll" style="width: 100%">
 		<view wx:for='{{categorys}}' wx:key='index' class='Item' catchtap="onCategoryTap" data-category="{{item}}">
 			<view class="Content">
-				<view class="Icon"></view>
-				<view class="Text">{{index}}</view>
+				<image class="Icon" src="{{item.photo}}"></image>
+				<view class="Text">{{item.name || index}}</view>
 			</view>
 		</view>
 	</scroll-view>
@@ -29,14 +29,14 @@
 </view>
 <view wx:if='{{goods.length > 0}}' class='HomeGoodsList'>
 	<view wx:for='{{goods}}' wx:key='id' class="Item" catchtap="onGoodsTap" data-item='{{item}}'>
-		<view class="Image"></view>
-		<text class="Name">这里是名字</text>
+		<image class="Image" src="{{item.photos[0]}}"></image>
+		<text class="Name">{{item.name}}</text>
 		<view class="Footer">
-			<text class="Money">¥90.00</text>
-			<view class="Icon"></view>
+			<text class="Money">¥{{item.showPrice}}</text>
+			<image class="Icon" src="/icons/buy.png"></image> 
 		</view>
 	</view>
 </view>
-<block wx:if='{{loading}}'>
+<block wx:if='{{loadMore}}'>
 	<template is="footer_loading" data="{{...item}}" />
 </block>

@@ -106,6 +106,10 @@ Page({
                     title: err,
                     icon: 'none'
                 })
+                wx.removeStorageSync('project')
+                wx.reLaunch({
+                    url: '/pages/shoplist/index',
+                })
             } else {
                 wx.hideLoading({
                     success: (res) => {

@@ -2,7 +2,9 @@
 page {
     background-color: #f2f4f5;
     box-sizing: border-box;
-    padding-bottom: 120rpx;
+    font-size: 28rpx;
+    color: #2c2c2c;
+    padding-bottom: 140rpx;
 }
 .Box {
     position: relative;
@@ -19,13 +21,13 @@ page {
     margin: 0 0 0 0;
     width: 100vw;
     background-color: #ffffff;
-    height: 300rpx;
+    height: 100vw;
     overflow: hidden;
     padding-bottom: 0;
 }
 
 .GoodsDetailImages .Item {
-    height: 300rpx;
+    height: 100vw;
 }
 
 .GoodsDetailMoneyAndShare {
@@ -37,29 +39,29 @@ page {
 }
 
 .GoodsDetailMoneyAndShare .Money {
+    margin-top: 20rpx;
     margin-left: 20rpx;
-    font-size: 60rpx;
-    color: lightpink;
+    font-size: 44rpx;
+    color: #fa5151;
     font-weight: bold;
 }
 
 .GoodsDetailMoneyAndShare .Share {
     margin-right: 20rpx;
-    width: 60rpx;
-    height: 60rpx;
-    background-color: lightgray;
+    margin-top: 20rpx;
+    width: 50rpx;
+    height: 50rpx;
 }
 .GoodsDetailName {
     background-color: #fff;
     padding: 10rpx 20rpx 10rpx 20rpx;
-    font-size: 30rpx;
     font-weight: bold;
+    font-size: 30rpx;
 }
 .GoodsDetailInfo {
     background-color: #fff;
     padding: 10rpx 20rpx 10rpx 20rpx;
-    color: lightgray;
-    font-size: 28rpx;
+    color: #acacac;
 }
 
 .GoodsDetailUtils {
@@ -72,26 +74,37 @@ page {
 }
 .GoodsDetailUtils .OldPrice{
     margin-left: 20rpx;
-    color: lightgray;
-    font-size: 28rpx;
+    color: #acacac;
 }
 .GoodsDetailUtils .Stock{
     margin-right: 20rpx;
-    color: lightgray;
-    font-size: 28rpx;
+    color: #acacac;
 }
 
 .GoodsDetailContent {
     margin-top: 20rpx;
-    height: 900rpx;
     background-color: #fff;
+    padding-bottom: 40rpx;
 }
 .GoodsDetailContent .Title {
-    font-size: 36rpx;
     padding-top: 20rpx;
     padding-bottom: 20rpx;
     width: 100%;
+    font-size: 30rpx;
     text-align: center;
+}
+.GoodsDetailDot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: width 0.25s;
+    background-color: red;
+    font-size: 18rpx;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15rpx;
 }
 .GoodsDetailTool {
     position: fixed;
@@ -114,7 +127,6 @@ page {
 .GoodsDetailTool .Cart {
     width: 60rpx;
     height: 60rpx;
-    background-color: lightgray;
 }
 
 .GoodsDetailTool .Right {
@@ -122,18 +134,17 @@ page {
     flex-direction: row;
     align-items: center;
     overflow: hidden;
-    border-radius: 40rpx;
-    height: 80rpx;
+    border-radius: 35rpx;
+    height: 70rpx;
 }
 
 .GoodsDetailTool .Right .AddCart {
     width: 180rpx;
     height: 100%;
-    background-color: lightsalmon;
+    background-color: #cc9c00;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28rpx;
     font-weight: bold;
     color: #fff;
 }
@@ -141,11 +152,10 @@ page {
 .GoodsDetailTool .Right .BuyNow {
     width: 150rpx;
     height: 100%;
-    background-color: lightsteelblue;
+    background-color: #FA5151;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28rpx;
     font-weight: bold;
     color: #fff;
 }
@@ -185,9 +195,8 @@ page {
     position: absolute;
     top: 20rpx;
     right: 20rpx;
-    width: 30rpx;
-    height: 30rpx;
-    background-color: lightgray;
+    width: 50rpx;
+    height: 50rpx;
 }
 
 .GoodsDetailAddView .GoodsInfo {
@@ -202,7 +211,7 @@ page {
 .GoodsDetailAddView .Image {
     width: 100rpx;
     height: 100rpx;
-    background-color: lightgray;
+    background-color: #acacac;
     
 }
 
@@ -217,7 +226,6 @@ page {
 }
 
 .GoodsDetailAddView .Name {
-    font-size: 30rpx;
     font-weight: bold;
 }
 
@@ -228,21 +236,20 @@ page {
 }
 
 .GoodsDetailAddView .Money {
-    color: lightcoral;
+    color: #FA5151;
     font-size: 30rpx;
     font-weight: bold;
 }
 
 .GoodsDetailAddView .Stock {
-    font-size: 28rpx;
     margin-left: 20rpx;
-    color: lightgray;
+    color: #acacac;
 }
 .GoodsDetailAddView .Buttons {
-    width: 300rpx;
+    width: 260rpx;
     margin-top: 35rpx;
     border: solid 0.5px #f2f4f5;
-    height: 80rpx;
+    height: 70rpx;
     border-radius: 10rpx;
     display: flex;
     flex-direction: row;
@@ -270,7 +277,7 @@ page {
 
 .GoodsDetailAddView .Num {
     height: 100%;
-    width: 140rpx;
+    width: 100rpx;
     display: flex;
     align-items: center;
     justify-content: center;

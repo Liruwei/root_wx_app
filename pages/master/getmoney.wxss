@@ -30,7 +30,7 @@ page {
 
 .GetMoneyInfo {
     font-size: 20rpx;
-    color: gray;
+    color: #d3d3d3;
 }
 
 .GetMoneyBtn {
@@ -42,7 +42,7 @@ page {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightcoral;
+    background-color: #FA5151;
     margin-top: 40rpx;
     margin-bottom: 20rpx;
     border-radius: 10rpx;

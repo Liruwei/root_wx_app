@@ -1,22 +1,30 @@
 // pages/home/index.js
+import API from '../../api'
+import TOOL from '../../utils/util'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    loading: false,
-    bannerPercent: 1 / 3 * 100,
+    loadMore: false,
+    bannerPercent: 1,
     categoryPercent: 0,
-    banners: ['A', 'B', 'C'],
-    categorys: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-    goods: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+    banners: [],
+    categorys: [],
+    goods: []
   },
-
+  page: 1,
+  loading: false,
+  hasMore: true,
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.startPullDownRefresh();
+    wx.setNavigationBarTitle({
+      title: getApp().globalData.projectInfo.name || '店铺首页',
+    })
 
   },
 
@@ -52,18 +60,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.loadFiestPage()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    let that = this
-    this.setData({ loading: true })
-    setTimeout(() => {
-      that.setData({ loading: false })
-    }, 2000)
+    this.loadNextPage()
   },
 
   /**
@@ -89,7 +93,50 @@ Page({
 
   onGoodsTap: function ({ currentTarget: { dataset: { item}}}) {
     wx.navigateTo({
-      url: '/pages/goods/detail',
+      url: '/pages/goods/detail?id=' + item.id,
     })
-  }
+  },
+
+  loadFiestPage: function() {
+    if (this.loading) return
+    let that = this
+    this.page = 1
+    this.loading = true
+    this.hasMore = true
+    const projectInfo = getApp().globalData.projectInfo
+    Promise.all([
+      API.HOME_BANNERS(projectInfo.id), 
+      API.HOME_CATEGORYS(projectInfo.id),
+      API.HOME_GOODS(this.page, projectInfo.id)
+    ]).then(([bannersRes, caregorysRes, goodsRes]) => {
+      wx.stopPullDownRefresh()
+      that.loading = false
+      that.hasMore = goodsRes.total > goodsRes.data.length
+      that.setData({
+        banners: bannersRes.data || [],
+        categorys: caregorysRes.data || [],
+        goods: (goodsRes.data || []).map(o => TOOL.formatGoodsInfo(o)),
+        bannerPercent: 1 / Math.max(1, bannersRes.data.length)
+      })
+    })
+  },
+
+  loadNextPage: function() {
+    if (this.loading || !this.hasMore) return
+    this.setData({ loadMore: true})
+    let that = this
+    this.page += 1
+    this.loading = true
+    const projectInfo = getApp().globalData.projectInfo
+    API.HOME_GOODS(this.page, projectInfo.id).then(({ data = [] }) => {
+      that.loading = false
+      if (data.length == 0) {
+        that.hasMore = false
+      } 
+      that.setData({
+        goods: [...that.data.goods, ...data.map(o => o => TOOL.formatGoodsInfo(o))],
+        loadMore: false
+      })
+    });
+  },
 })

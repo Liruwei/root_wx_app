@@ -122,7 +122,7 @@ page {
 }
 
 .PayGoods .Num {
-    color: gray;
+    color: #d3d3d3;
 }
 
 .PayGoods .Name {
@@ -134,7 +134,7 @@ page {
 }
 
 .PayGoods .Money {
-    color: lightcoral;
+    color: #FA5151;
 }
 
 .PayRow {
@@ -149,7 +149,7 @@ page {
 }
 
 .PayRow .Value {
-    color: gray;
+    color: #d3d3d3;
 }
 
 .PayRemarkContent {
@@ -213,7 +213,7 @@ page {
 }
 
 .PayType .Right {
-    color: gray;
+    color: #d3d3d3;
 }
 
 .PayFooter {
@@ -238,7 +238,7 @@ page {
 }
 
 .PayFooter .Money {
-    color: lightcoral;
+    color: #FA5151;
     font-weight: bold;
     font-size: 30rpx;
 }
@@ -251,7 +251,7 @@ page {
     width: 180rpx;
     height: 70rpx;
     border-radius: 35rpx;
-    background-color: lightcoral;
+    background-color: #FA5151;
 }
 
 .PayOrderType {

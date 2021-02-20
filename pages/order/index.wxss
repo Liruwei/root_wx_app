@@ -120,7 +120,7 @@ page {
 
 .OrderItem .Top .Time {
     font-size: 24rpx;
-    color: gray;
+    color: #d3d3d3;
 }
 
 .OrderItem .Top .Status {
@@ -165,7 +165,7 @@ page {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    color: gray;
+    color: #d3d3d3;
     margin-top: 30rpx;
 }
 
@@ -185,7 +185,7 @@ page {
 }
 
 .OrderItem .Footer0 .Money0 {
-    color: lightcoral;
+    color: #FA5151;
     font-size: 30rpx;
     font-weight: bold;
 }
@@ -200,7 +200,7 @@ page {
 }
 
 .OrderItem .PayButton {
-    background-color: lightcoral;
+    background-color: #FA5151;
     color: #fff;
     height: 70rpx;
     border-radius: 35rpx;
@@ -211,7 +211,7 @@ page {
 }
 
 .OrderItem .CancelButton {
-    color: gray;
+    color: #d3d3d3;
     border: solid 0.5px lightgray;
     height: 70rpx;
     border-radius: 35rpx;
