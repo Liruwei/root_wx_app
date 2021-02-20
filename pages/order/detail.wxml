@@ -60,9 +60,18 @@
 		<view class="Title">支付方式：</view>
 		<view class="Value">微信支付</view>
 	</view>
+	<view class="Item">
+		<view class="Title">快递单号：</view>
+		<view class="Right">
+			<view class="Value">dsadsdsdsad</view>
+			<view class="Copy">复制</view>
+		</view>
+	</view>
+
 	<view class="Footer">
-    <view class="Complate">完成订单</view>
-		<view class="Pay">立即付款</view>
-		<view class="Delete">删除订单</view>
+		<view class="Button Red">确定收货</view>
+		<view class="Button Red">完成订单</view>
+		<view class="Button Red">立即付款</view>
+		<view class="Button Gray">删除订单</view>
 	</view>
 </view>

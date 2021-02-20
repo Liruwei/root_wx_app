@@ -212,4 +212,26 @@ page {
     right: 0;
     bottom: 0;
     border-top: solid 0.5px #f2f4f5;
+    box-sizing: border-box;
+    padding: 0 20rpx
+}
+
+.OrderDetail .Footer .Button {
+    width: 150rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60rpx;
+    border-radius: 30rpx;
+    margin-left: 20rpx;
+}
+
+.OrderDetail .Footer .Red {
+    background-color: lightcoral;
+    color: #fff;
+}
+
+.OrderDetail .Footer .Gray {
+    border: solid 0.5px lightgray;
+    color: gray;
 }

@@ -1,0 +1,54 @@
+/* pages/master/getmoney.wxss */
+page {
+    background-color: #f2f4f5;
+    font-size: 28rpx;
+}
+
+.GetMoney {
+    margin-top: 20rpx;
+    width: calc(100vw - 80rpx);
+    margin-left: 40rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx;
+}
+
+.GetMoneyTitle {
+    padding-bottom: 30rpx;
+}
+
+.GetMoneyInput {
+    width: 100%;
+    font-size: 60rpx;
+    border-bottom: solid 0.5px #f2f4f5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20rpx;
+}
+
+.GetMoneyInfo {
+    font-size: 20rpx;
+    color: gray;
+}
+
+.GetMoneyBtn {
+    width: calc(100vw - 120rpx);
+    height: 80rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightcoral;
+    margin-top: 40rpx;
+    margin-bottom: 20rpx;
+    border-radius: 10rpx;
+}
+
+.GetMoneyInputEl {
+    height: 100rpx;
+    margin-left: 20rpx;
+}

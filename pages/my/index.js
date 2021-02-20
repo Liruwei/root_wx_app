@@ -68,5 +68,17 @@ Page({
     wx.navigateTo({
       url: '/pages/order/index',
     })
+  },
+
+  onMasterTap: function () {
+    wx.navigateTo({
+      url: '/pages/master/money',
+    })
+  },
+
+  onMasterOrderTap: function () {
+    wx.navigateTo({
+      url: '/pages/order/index?master=1',
+    })
   }
 })

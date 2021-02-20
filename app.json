@@ -10,6 +10,9 @@
     "pages/goods/detail",
     "pages/order/index",
     "pages/order/detail",
+    "pages/master/index",
+    "pages/master/money",
+    "pages/master/getmoney",
     "pages/my/index"
   ],
   "window":{

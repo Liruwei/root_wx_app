@@ -2,35 +2,50 @@
 <view class="OrderTop">
 	<view class="Bg"></view>
 	<view class="Top">
-		<view class="Title">订单信息</view>
-		<view class="Info">消费订单：0</view>
+		<view class="Title">{{master ? '店铺订单信息' : '订单信息'}}</view>
+		<view class="Info">{{master ? '订单总数' : '消费订单'}}：0</view>
 	</view>
 	<view class="OrderBox">
 		<view class="OrderOrder">
-			<view class="Item" catchtap="onOrderTap">
-				<view class="Name">待付款</view>
-				<view class="Title">0</view>
-			</view>
-			<view class="Item">
-				<view class="Name">待发货</view>
-				<view class="Title">1</view>
-			</view>
-			<view class="Item">
-				<view class="Name">待签收</view>
-				<view class="Title">2</view>
-			</view>
-			<view class="Item">
-				<view class="Name">到店自提</view>
-				<view class="Title">2</view>
-			</view>
-			<view class="Item">
-				<view class="Name">已完成</view>
-				<view class="Title">3</view>
-			</view>
+			<block wx:if='{{!master}}'>
+				<view class="Item">
+					<view class="Name">待付款</view>
+					<view class="Title">0</view>
+				</view>
+				<view class="Item">
+					<view class="Name">待发货</view>
+					<view class="Title">1</view>
+				</view>
+				<view class="Item">
+					<view class="Name">待签收</view>
+					<view class="Title">2</view>
+				</view>
+				<view class="Item">
+					<view class="Name">到店自提</view>
+					<view class="Title">2</view>
+				</view>
+				<view class="Item">
+					<view class="Name">已完成</view>
+					<view class="Title">3</view>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="Item">
+					<view class="Name">待发货</view>
+					<view class="Title">1</view>
+				</view>
+				<view class="Item">
+					<view class="Name">到店自提</view>
+					<view class="Title">2</view>
+				</view>
+				<view class="Item"></view>
+				<view class="Item"></view>
+				<view class="Item"></view>
+			</block>
 		</view>
 	</view>
 	<view class="OrderLine">
-		<view class="Line" style='margin-left: calc(20% * 2)'></view>
+		<view class="Line" style='margin-left: calc(20% * {{typeIndex}})'></view>
 	</view>
 	<block wx:for='{{orders}}' wx:key='index'>
 		<view class="OrderItem" catchtap="onOrderDetailTap">

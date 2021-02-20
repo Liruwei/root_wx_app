@@ -5,14 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orders: [{}, {}, {}]
+    orders: [{}, {}, {}],
+    master: false,
+    typeIndex: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const { master = '0'} = options
+    this.setData({ master: master === '1'})
+    wx.setNavigationBarTitle({
+      title: master === '1' ? '订单管理' : '我的订单',
+    })
   },
 
   /**

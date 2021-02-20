@@ -13,6 +13,22 @@
 		</view>
 	</view>
 	<view class="MyBox">
+		<view class="MyTitle">店主服务</view>
+		<view class="MyOrder">
+			<view class="Item" catchtap="onMasterOrderTap">
+				<view class="Icon"></view>
+				<view class="Title">订单管理</view>
+			</view>
+			<view class="Item" catchtap="onMasterTap">
+				<view class="Icon"></view>
+				<view class="Title">余额</view>
+			</view>
+			<view class="Item">
+			</view>
+			<view class="Item"></view>
+		</view>
+	</view>
+	<view class="MyBox">
 		<view class="MyTitle">我的订单</view>
 		<view class="MyOrder">
 			<view class="Item" catchtap="onOrderTap">
@@ -38,7 +54,11 @@
 		<view class="MyOrder">
 			<view class="Item">
 				<view class="Icon"></view>
-				<view class="Title">联系客服</view>
+				<view class="Title">平台客服</view>
+			</view>
+			<view class="Item">
+				<view class="Icon"></view>
+				<view class="Title">联系商家</view>
 			</view>
 			<view class="Item">
 				<view class="Icon"></view>
@@ -46,9 +66,9 @@
 			</view>
 			<view class="Item">
 				<view class="Icon"></view>
-				<view class="Title">我是店主</view>
+				<view class="Title">邀请入驻</view>
 			</view>
-			<view class="Item"></view>
 		</view>
 	</view>
+
 </view>
