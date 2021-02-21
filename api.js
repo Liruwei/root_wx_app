@@ -32,10 +32,11 @@ function GET(url, data, success, fail) {
 }
 
 function POST(url, data, success, fail) {
-    let token = ''
+    let otherHeader = {}
     let userInfo = getApp().globalData.userInfo
     if (userInfo) {
-        token = userInfo.token || ''
+        otherHeader['Token'] = userInfo.token || ''
+        otherHeader['Open-Id'] = userInfo.openid || ''
     }
     wx.request({
         url: `${API_HOST}${url}`,
@@ -43,7 +44,7 @@ function POST(url, data, success, fail) {
         data: data,
         header: {
             'content-type': 'application/json',
-            'Token': token
+            ...otherHeader
         },
         success(res) {
             if (res.data.message === 'Success') {
@@ -174,6 +175,34 @@ function ORDER_INFO(id) {
     });    
 }
 
+function ORDER_LIST(page, pid, filter={}, pageSize=10) {
+    return new Promise((resolve, reject) => {
+        GET('/shoptemplate/wxorders', {
+            filter: {
+                project: pid,
+                ...filter
+            },
+            sort: ['create_time', 'DESC'],
+            range: [page, pageSize]
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function ORDER_CHECK(id) {
+    return new Promise((resolve, reject) => {
+        GET(`/shoptemplate/ordercheck/${id}`, {
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });    
+}
+
 export default {
     LOGIN,
     PROJECT_LIST,
@@ -183,5 +212,7 @@ export default {
     HOME_CATEGORYS,
     GOODS_INFO,
     ORDER_CREATE,
-    ORDER_INFO
+    ORDER_INFO,
+    ORDER_CHECK,
+    ORDER_LIST
 }

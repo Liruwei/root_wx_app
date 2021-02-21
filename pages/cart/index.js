@@ -199,7 +199,9 @@ Page({
       items[index].num -= 1
       delete items[index].didUpdate
       that.setData({ items: [...items] })
+      that.upFooter(items)
     })
+    
   },
   onAdd: function ({ currentTarget: { dataset: { index } } }) {
     let that = this
@@ -208,6 +210,7 @@ Page({
       items[index].num += 1
       delete items[index].didUpdate
       that.setData({ items: [...items] })
+      that.upFooter(items)
     })
   }
 })

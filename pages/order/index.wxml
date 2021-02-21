@@ -1,42 +1,43 @@
 <!--pages/order/index.wxml-->
+<import src='/pages/template/footer.wxml' />
 <view class="OrderTop">
 	<view class="Bg"></view>
 	<view class="Top">
 		<view class="Title">{{master ? '店铺订单信息' : '订单信息'}}</view>
-		<view class="Info">{{master ? '订单总数' : '消费订单'}}：0</view>
+		<view class="Info">{{master ? '订单总数' : '消费订单'}}：{{totals[5]}}</view>
 	</view>
 	<view class="OrderBox">
 		<view class="OrderOrder">
 			<block wx:if='{{!master}}'>
-				<view class="Item">
+				<view class="Item" catchtap="onTypeTap" data-index="0">
 					<view class="Name">待付款</view>
-					<view class="Title">0</view>
+					<view class="Title">{{totals[0]}}</view>
 				</view>
-				<view class="Item">
+				<view class="Item" catchtap="onTypeTap" data-index="1">
 					<view class="Name">待发货</view>
-					<view class="Title">1</view>
+					<view class="Title">{{totals[1]}}</view>
 				</view>
-				<view class="Item">
+				<view class="Item" catchtap="onTypeTap" data-index="2">
 					<view class="Name">待签收</view>
-					<view class="Title">2</view>
+					<view class="Title">{{totals[2]}}</view>
 				</view>
-				<view class="Item">
+				<view class="Item" catchtap="onTypeTap" data-index="3">
 					<view class="Name">到店自提</view>
-					<view class="Title">2</view>
+					<view class="Title">{{totals[3]}}</view>
 				</view>
-				<view class="Item">
+				<view class="Item" catchtap="onTypeTap" data-index="4">
 					<view class="Name">已完成</view>
-					<view class="Title">3</view>
+					<view class="Title">{{totals[4]}}</view>
 				</view>
 			</block>
 			<block wx:else>
-				<view class="Item">
+				<view class="Item" catchtap="onTypeTap" data-index="0">
 					<view class="Name">待发货</view>
-					<view class="Title">1</view>
+					<view class="Title">{{totals[1]}}</view>
 				</view>
-				<view class="Item">
+				<view class="Item" catchtap="onTypeTap" data-index="1">
 					<view class="Name">到店自提</view>
-					<view class="Title">2</view>
+					<view class="Title">{{totals[3]}}</view>
 				</view>
 				<view class="Item"></view>
 				<view class="Item"></view>
@@ -50,29 +51,38 @@
 	<block wx:for='{{orders}}' wx:key='index'>
 		<view class="OrderItem" catchtap="onOrderDetailTap">
 			<view class="Top">
-				<view class="Time">2020-02-02 20:21:12</view>
-				<view class="Status">待付款</view>
+				<view class="Time">{{item.create_time}}</view>
+				<block wx:if='{{!master}}'>
+					<view class="Status" style='{{typeIndex!==0?"color:#acacac;":""}}'>{{['待付款', '待发货', '待签收', '已付款', '已完成'][typeIndex]}}</view>
+				</block>
+				<block wx:else>
+					<view class="Status" style='color:#acacac;'>{{['待发货', '已付款'][typeIndex]}}</view>
+				</block>
+
 			</view>
-			<block wx:for='{{[1,2]}}' wx:key='index'>
+			<block wx:for='{{item.products}}' wx:for-item='product' wx:key='index'>
 				<view class="Center">
-					<view class="Image"></view>
+					<image class="Image" src="{{product.photo}}"></image>
 					<view class="Content">
-						<view class="Name">NameNameNameNameNameNameNameNameNameNameNameNameNameNameNameName</view>
+						<view class="Name">{{product.name}}</view>
 						<view class="Bottom">
-							<view class="Money">¥100.00</view>
-							<view class="Num">x10</view>
+							<view class="Money">¥{{product.showPrice}}</view>
+							<view class="Num">x{{product.num}}</view>
 						</view>
 					</view>
 				</view>
 			</block>
 			<view class="Footer0">
-				<view>共3件商品，总金额：</view>
-				<view class="Money0">¥20.00</view>
+				<view>共{{item.products.length}}件商品，总金额：</view>
+				<view class="Money0">¥{{item.money}}</view>
 			</view>
 			<view class="Footer">
 				<view class="CancelButton" catchtap="onCancelOrderTap">取消订单</view>
 				<view class="PayButton">立即付款</view>
 			</view>
 		</view>
+	</block>
+	<block wx:if='{{loadingNext}}'>
+		<template is="footer_loading"/>
 	</block>
 </view>

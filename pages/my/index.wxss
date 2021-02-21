@@ -1,7 +1,8 @@
 /* pages/my/index.wxss */
 page {
     background-color: #f2f4f5;
-    font-size: 32rpx;
+    font-size: 28rpx;
+    color: #2c2c2c;
 }
 
 .MyTop {
@@ -15,9 +16,7 @@ page {
     top: 0;
     right: 0;
     height: 300rpx;
-    background-color: #ff7b2f;
-    /* border-bottom-right-radius: 10vw;
-    border-bottom-left-radius: 10vw; */
+    background-color: #cc9c00;
 }
 
 .MyTop .Top {
@@ -44,7 +43,6 @@ page {
 
 .MyTop .ID {
     color: #ffffffbe;
-    font-size: 28rpx;
 }
 
 .MyBox {
@@ -55,11 +53,14 @@ page {
 }
 
 .MyTitle {
-    font-size: 28rpx;
     width: 100%;
     box-sizing: border-box;
     border-bottom: dashed 1px #f2f4f5 ;
     padding: 20rpx 20rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .MyOrder {
@@ -81,12 +82,10 @@ page {
 }
 
 .MyOrder .Title {
-    font-size: 24rpx;
     margin-top: 20rpx;
 }
 
 .MyOrder .Icon {
     height: 60rpx;
     width: 60rpx;
-    background-color: lightgray;
 }

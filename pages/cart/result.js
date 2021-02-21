@@ -41,7 +41,7 @@ Page({
     let that = this
     if (that.loading) return
     this.loading = true
-    API.ORDER_INFO(this.order_id).then(({ data }) => {
+    API.ORDER_CHECK(this.order_id).then(({ data }) => {
       that.loading = false
       loading && wx.hideLoading({})
       let tmp = TOOL.formatOrderInfo(data)

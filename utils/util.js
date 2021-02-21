@@ -31,11 +31,23 @@ const formatGoodsInfo = (o, isDetal=false) => {
 }
 
 const formatOrderInfo = (item) => {
+  let products = []
+  if (item.products) {
+    try {
+      products = JSON.parse(item.products).map(o => ({
+        name: o.name,
+        showPrice: o.is_discounts ? (o.discounts_price / 100).toFixed(2) : (o.price / 100).toFixed(2),
+        photo: o.photo,
+        num: o.num
+      }))
+    } catch(e) {}
+  }
   return {
     ...item,
     pay_time: item.pay_time ? (new Date(1 * item.pay_time)).toLocaleString() : null,
     create_time: item.create_time ? (new Date(1 * item.create_time)).toLocaleString() : null,
-    money: (item.money / 100).toFixed(2)
+    money: (item.money / 100).toFixed(2),
+    products: products
   }
 }
 

@@ -1,24 +1,34 @@
 // pages/order/index.js
+import API from '../../api'
+import TOOL from '../../utils/util'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orders: [{}, {}, {}],
+    orders: [],
+    totals: [0,0,0,0,0,0],
     master: false,
-    typeIndex: 1
+    typeIndex: 1,
+    loadingNext: false
   },
-
+  loading: false,
+  hasMore: true,
+  page: 1,
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { master = '0'} = options
-    this.setData({ master: master === '1'})
+    const { master = '0', index = '0'} = options
+    this.setData({ 
+      master: master === '1',
+      typeIndex: index * 1
+    })
     wx.setNavigationBarTitle({
       title: master === '1' ? '订单管理' : '我的订单',
     })
+    this.loadFiestPage(true)
   },
 
   /**
@@ -60,7 +70,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.loadNextPage()
   },
 
   /**
@@ -78,5 +88,72 @@ Page({
 
   onCancelOrderTap: function () {
 
+  },
+
+  loadFiestPage: function(showLoading) {
+    if (this.loading) return
+    wx.stopPullDownRefresh({})
+    this.hasMore = true
+    this.page = 1
+    this.loadData(showLoading)    
+  },
+
+  loadNextPage: function() {
+    if (this.loading || !this.hasMore) return
+    this.page += 1
+    this.loadData()
+  },
+
+  loadData: function(showLoading) {
+    let that = this
+    this.loading = true
+    const {userInfo, projectInfo} = getApp().globalData
+    let { master, typeIndex, orders} = this.data
+    let filter = {}
+    if (master) {
+      filter.status = 1
+      filter.order_type = [1,0][typeIndex]
+    } else {
+      filter.status = [0, 1, 3, 1, 2][typeIndex]
+      filter.order_type = [undefined, 1, 1, 0, undefined][typeIndex]
+      filter.user_id = userInfo.id
+    }
+    showLoading && wx.showLoading()
+    this.page != 1 && this.setData({ loadingNext: true})
+    API.ORDER_LIST(this.page, projectInfo.id, filter).then(res => {
+      showLoading && wx.hideLoading()
+      that.loading = false
+      let tmp = that.page === 1 ? [] : [...orders]
+      tmp = [...tmp, ...(res.data.map(o => TOOL.formatOrderInfo(o)))]
+      that.setData({
+        totals: [
+          res.unpaytotal, 
+          res.unsendtotal, 
+          res.unreceivetotal, 
+          res.instoretotal, 
+          res.finishtotal, 
+          res.unpaytotal + res.unsendtotal + res.unreceivetotal + res.instoretotal + res.finishtotal
+        ],
+        orders: tmp,
+        loadingNext: false
+      })
+      that.hasMore = tmp.length < res.total
+    }).catch(err => {
+      console.log(err)
+      showLoading && wx.hideLoading()
+      that.loading = false
+      wx.showToast({
+        title: err,
+        icon: 'none'
+      })
+      that.setData({
+        loadingNext: false
+      })
+    })    
+  },
+
+  onTypeTap: function ({ currentTarget: { dataset : {index}}}) {
+    this.setData({  typeIndex: index })
+    this.loadFiestPage(true)
   }
 })

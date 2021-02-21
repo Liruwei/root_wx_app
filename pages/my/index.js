@@ -64,9 +64,9 @@ Page({
 
   },
 
-  onOrderTap: function () {
+  onOrderTap: function ({ currentTarget: {dataset: {index}}}) {
     wx.navigateTo({
-      url: '/pages/order/index',
+      url: `/pages/order/index?index=${index}`,
     })
   },
 

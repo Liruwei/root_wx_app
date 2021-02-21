@@ -16,11 +16,11 @@
 		<view class="MyTitle">店主服务</view>
 		<view class="MyOrder">
 			<view class="Item" catchtap="onMasterOrderTap">
-				<view class="Icon"></view>
+				<image class="Icon" src="/icons/icon-order-manager.png"></image>
 				<view class="Title">订单管理</view>
 			</view>
 			<view class="Item" catchtap="onMasterTap">
-				<view class="Icon"></view>
+				<image class="Icon" src="/icons/icon-money.png"></image>
 				<view class="Title">余额</view>
 			</view>
 			<view class="Item">
@@ -29,22 +29,22 @@
 		</view>
 	</view>
 	<view class="MyBox">
-		<view class="MyTitle">我的订单</view>
+		<view class="MyTitle">我的订单<span style='font-size:20rpx;color:gray;' catchtap="onOrderTap" data-index='0'>查看全部</span></view>
 		<view class="MyOrder">
-			<view class="Item" catchtap="onOrderTap">
-				<view class="Icon"></view>
+			<view class="Item" catchtap="onOrderTap" data-index='0'>
+				<image class="Icon" src="/icons/icon-unpay.png"></image>
 				<view class="Title">待付款</view>
 			</view>
-			<view class="Item">
-				<view class="Icon"></view>
+			<view class="Item" catchtap="onOrderTap" data-index='1'>
+				<image class="Icon" src="/icons/icon-packing.png"></image>
 				<view class="Title">待发货</view>
 			</view>
-			<view class="Item">
-				<view class="Icon"></view>
+			<view class="Item" catchtap="onOrderTap" data-index='2'>
+				<image class="Icon" src="/icons/icon-wait.png"></image>
 				<view class="Title">待签收</view>
 			</view>
-			<view class="Item">
-				<view class="Icon"></view>
+			<view class="Item" catchtap="onOrderTap" data-index='3'>
+				<image class="Icon" src="/icons/icon-instore.png"></image>
 				<view class="Title">到店自提</view>
 			</view>
 		</view>
@@ -53,19 +53,19 @@
 		<view class="MyTitle">我的服务</view>
 		<view class="MyOrder">
 			<view class="Item">
-				<view class="Icon"></view>
+				<image class="Icon" src="/icons/icon-chat.png"></image>
 				<view class="Title">平台客服</view>
 			</view>
 			<view class="Item">
-				<view class="Icon"></view>
+				<image class="Icon" src="/icons/icon-phone.png"></image>
 				<view class="Title">联系商家</view>
 			</view>
 			<view class="Item">
-				<view class="Icon"></view>
+				<image class="Icon" src="/icons/icon-address.png"></image>
 				<view class="Title">地址信息</view>
 			</view>
 			<view class="Item">
-				<view class="Icon"></view>
+				<image class="Icon" src="/icons/icon-in.png"></image>
 				<view class="Title">邀请入驻</view>
 			</view>
 		</view>

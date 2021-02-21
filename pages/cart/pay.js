@@ -13,11 +13,12 @@ Page({
         total: 0,
         remark: undefined
     },
-
+    fromDetail: false,
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function ({fromDetail}) {
+        this.fromDetail = fromDetail === '1'
         wx.setNavigationBarTitle({
             title: '提交订单',
         })
@@ -36,16 +37,12 @@ Page({
     onShow: function () {
         let that = this
         const projectInfo = getApp().globalData.projectInfo
-
-        getApp().getCurrentCartInfo(res => {
-            let goods = res.map(o => ({ ...o, check: false }))
-            that.setData({
-                goods: [...goods],
-                sendMoney: projectInfo.open_send > 0 ? `¥${(projectInfo.send_money / 100).toFixed(2)}` : '免运费'
-            })
-            that.upFooter()
+        let goods = getApp().globalData.orderGoods.map(o => ({ ...o, check: false }))
+        that.setData({
+            goods: [...goods],
+            sendMoney: projectInfo.open_send > 0 ? `¥${(projectInfo.send_money / 100).toFixed(2)}` : '免运费'
         })
-
+        that.upFooter()
         wx.showLoading({ title: '加载中' })
         getApp().loadProjectInfo(projectInfo.id, (res, err) => {
             wx.hideLoading({})
@@ -138,20 +135,18 @@ Page({
         })
         this.checkGoodsInfo().then(() => createOrderPromise()).then(({ data }) => {
             wx.requestPayment({
-                timeStamp: '',
-                nonceStr: '',
-                package: '',
-                signType: 'MD5',
-                paySign: '',
+                timeStamp: data.payinfo.timeStamp,
+                nonceStr: data.payinfo.nonceStr,
+                package: data.payinfo.package,
+                signType: data.payinfo.signType,
+                paySign: data.payinfo.paySign,
                 success(_) {
-                    wx.redirectTo({
-                        url: `/pages/cart/result?order_id=${data.id}&status=1`,
-                    })
+                    !that.fromDetail && getApp().deleGoodsInCartAfterPay()
+                    wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
                 },
                 fail(_) {
-                    wx.redirectTo({
-                        url: `/pages/cart/result?order_id=${data.id}&status=0`,
-                    })
+                    !that.fromDetail && getApp().deleGoodsInCartAfterPay()
+                    wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=0` })
                 }
             })
         }).catch(err => wx.showToast({ title: err, icon: 'none', duration: 3500 }))
@@ -186,5 +181,6 @@ Page({
 
     onRemarkInput: function ({ detail: { value } }) {
         this.setData({ remark: value })
-    }
+    },
+
 })

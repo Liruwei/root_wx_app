@@ -78,10 +78,8 @@ App({
     cart[project] = [...list]
     wx.setStorageSync('cart', cart)
   },
-  delGoodsFromCart: function (ids = [], cb) {
-    wx.showLoading({
-      title: '请求中',
-    })
+  delGoodsFromCart: function (ids = [], cb, loading=true) {
+    loading && wx.showLoading({ title: '请求中' })
     let that = this
     const project = this.globalData.projectInfo.id
     this.getCartInfo(res => {
@@ -99,11 +97,11 @@ App({
         data: { ...res },
         key: 'cart',
         success: _ => {
-          wx.hideLoading({})
+          loading && wx.hideLoading({})
           cb && cb()
         },
         fail: _ => {
-          wx.hideLoading({})
+          loading && wx.hideLoading({})
         }
       })
     })
@@ -219,6 +217,9 @@ App({
     }).catch(err => {
       cb && cb(err, orderGoods)
     })
+  },
+  deleGoodsInCartAfterPay: function () {
+    this.delGoodsFromCart(this.globalData.orderGoods.map(o => o.id), null, false)
   },
   globalData: {
     userInfo: null,

@@ -1,8 +1,9 @@
 /* pages/order/index.wxss */
-
+@import '/pages/template/footer.wxss';
 page {
     background-color: #f2f4f5;
     font-size: 28rpx;
+    color: #2c2c2c;
 }
 
 .OrderTop {
@@ -16,7 +17,7 @@ page {
     top: 0;
     right: 0;
     height: 300rpx;
-    background-color: #ff7b2f;
+    background-color: #cc9c00;
     /* border-bottom-right-radius: 10vw;
     border-bottom-left-radius: 10vw; */
 }
@@ -29,26 +30,22 @@ page {
 }
 
 .OrderTop .Title {
-    font-size: 30rpx;
     color: #fff;
     font-weight: bold;
     margin-bottom: 20rpx;
 }
 
 .OrderTop .Info {
-    font-size: 28rpx;
     color: #ffffffbe;
 }
 
 .OrderTop .Name {
     color: #fff;
-    font-weight: bold;
     margin-bottom: 5rpx;
 }
 
 .OrderTop .ID {
     color: #ffffffbe;
-    font-size: 28rpx;
 }
 
 .OrderBox {
@@ -87,12 +84,11 @@ page {
 .OrderLine .Line {
     height: 100%;
     width: 20%;
-    background-color: #ff7b2f;
+    background-color: #cc9c00;
     transform: scaleX(0.5);
 }
 
 .OrderOrder .Item .Name {
-    font-size: 30rpx;
     color: black;
 }
 
@@ -136,8 +132,8 @@ page {
 }
 
 .OrderItem .Image {
-    width: 100rpx;
-    min-width: 100rpx;
+    width: 120rpx;
+    min-width: 120rpx;
     height: 120rpx;
     background-color: lightgray;
     margin-right: 20rpx;

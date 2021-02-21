@@ -168,11 +168,22 @@ Page({
       })
       return
     }
-    let that = this
     if (!this.data.addViewShow) {
       this.onShowAddView()
     } else {
-      that.setData({ num: 1})
+      getApp().globalData.orderGoods = [{
+        id: this.data.goods.id,
+        name: this.data.goods.name,
+        showPrice: this.data.goods.showPrice,
+        photo: this.data.goods.photos[0],
+        check: true,
+        num: this.data.num
+      }]
+      this.onCloseAddView()
+      this.setData({ num: 1})
+      wx.navigateTo({
+        url: '/pages/cart/pay?fromDetail=1',
+      })
     }
   },
 
