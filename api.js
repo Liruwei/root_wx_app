@@ -163,6 +163,17 @@ function ORDER_CREATE(data={}) {
     });
 }
 
+function ORDER_INFO(id) {
+    return new Promise((resolve, reject) => {
+        GET(`/shoptemplate/order/${id}`, {
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });    
+}
+
 export default {
     LOGIN,
     PROJECT_LIST,
@@ -171,5 +182,6 @@ export default {
     HOME_GOODS,
     HOME_CATEGORYS,
     GOODS_INFO,
-    ORDER_CREATE
+    ORDER_CREATE,
+    ORDER_INFO
 }

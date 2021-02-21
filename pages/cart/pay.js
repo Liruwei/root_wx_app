@@ -119,43 +119,47 @@ Page({
         let that = this
         const { nickName, avatarUrl } = userInfo
         const { remark, goods, orderType, address } = this.data
-        let checkInfoPromise = this.checkGoodsInfo()
-        let createOrderPromise = API.ORDER_CREATE({
-            products: JSON.stringify(goods.map(o => ({ id: o.id, num: o.num}))),
+        if (orderType === 1 && !address) {
+            wx.showToast({
+                title: '请选择配送地址',
+                icon: 'none'
+            })
+            return
+        }
+        let createOrderPromise = () => API.ORDER_CREATE({
+            products: JSON.stringify(goods.map(o => ({ id: o.id, num: o.num }))),
             order_type: orderType === 2 ? 0 : 1,
             remark: remark,
             useravatar: avatarUrl,
             username: nickName,
-            ...(orderType===1?{
+            ...(orderType === 1 ? {
                 send_address: `${address.userName} ${address.telNumber} ${address.provinceName}${address.cityName}${address.countyName}${address.detailInfo}`
             } : {})
         })
-        Promise.all([checkInfoPromise, createOrderPromise]).then(([_, orderInfo]) => {
+        this.checkGoodsInfo().then(() => createOrderPromise()).then(({ data }) => {
             wx.requestPayment({
                 timeStamp: '',
                 nonceStr: '',
                 package: '',
                 signType: 'MD5',
                 paySign: '',
-                success(res) { },
-                fail(res) { }
+                success(_) {
+                    wx.redirectTo({
+                        url: `/pages/cart/result?order_id=${data.id}&status=1`,
+                    })
+                },
+                fail(_) {
+                    wx.redirectTo({
+                        url: `/pages/cart/result?order_id=${data.id}&status=0`,
+                    })
+                }
             })
-        }).catch(err => {
-            wx.showToast({
-                title: err,
-                icon: 'none',
-                duration: 3500
-            })
-        })
-
-
-        // wx.redirectTo({
-        //     url: '/pages/cart/result',
-        // })
+        }).catch(err => wx.showToast({ title: err, icon: 'none', duration: 3500 }))
     },
 
     onOrderTypeTap: function ({ currentTarget: { dataset: { value } } }) {
         this.setData({ orderType: value })
+        this.upFooter()
     },
 
     upFooter: function () {
@@ -164,7 +168,10 @@ Page({
         goods.forEach(o => {
             total += o.showPrice * 1 * o.num
         })
-        total += orderType === 1 ? sendMoney * 1 : 0
+        if (orderType === 1 && sendMoney !== '免运费') {
+            total += sendMoney.substr(1) * 1
+        }
+
         this.setData({ total: total.toFixed(2) })
     },
 

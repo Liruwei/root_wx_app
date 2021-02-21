@@ -30,7 +30,17 @@ const formatGoodsInfo = (o, isDetal=false) => {
   return o
 }
 
+const formatOrderInfo = (item) => {
+  return {
+    ...item,
+    pay_time: item.pay_time ? (new Date(1 * item.pay_time)).toLocaleString() : null,
+    create_time: item.create_time ? (new Date(1 * item.create_time)).toLocaleString() : null,
+    money: (item.money / 100).toFixed(2)
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
-  formatGoodsInfo
+  formatGoodsInfo,
+  formatOrderInfo
 }

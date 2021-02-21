@@ -1,16 +1,28 @@
 <!--pages/cart/result.wxml-->
-<view class="Result">
-	<view class="Icon"></view>
-	<view class="Title">订单支付失败</view>
+<view class="Result" wx:if='{{order}}'>
+	<view class="Icon">
+		<block wx:if='{{pageType === 0}}'>
+			<icon type="warn" size="60" color="#fa5151"></icon>
+		</block>
+		<block wx:else>
+			<icon type="{{order.status > 0 ? 'success' : 'waiting'}}" size="60" color="#cc9c00"></icon>
+		</block>
+	</view>
+	<block wx:if='{{pageType === 0}}'>
+		<view class="Title">订单支付失败</view>
+	</block>
+	<block wx:else>
+		<view class="Title">{{order.status > 0 ? '订单支付成功' : '订单支付结果查询中'}}</view>
+	</block>
+	
 	<view>
 		<view class="Item">
 			<view class="Name">订单编号</view>
-			<view class="Value">sdsdsadklj21323lk23 </view>
+			<view class="Value">{{order.order_no}}</view>
 		</view>
-
 		<view class="Item">
 			<view class="Name">下单日期</view>
-			<view class="Value">2020-01-01 20:23:31</view>
+			<view class="Value">{{order.create_time}}</view>
 		</view>
 		<view class="Item">
 			<view class="Name">支付方式</view>
@@ -18,13 +30,17 @@
 		</view>
 		<view class="Item">
 			<view class="Name">支付金额</view>
-			<view class="Value">23312.00</view>
+			<view class="Value">¥{{order.money}}</view>
 		</view>
-		<view class="Item">
-			<view class="Name">失败原因</view>
-			<view class="Value">取消支付</view>
-		</view>
+		<block wx:if='{{pageType === 0}}'>
+			<view class="Item">
+				<view class="Name">失败原因</view>
+				<view class="Value">支付失败</view>
+			</view>
+		</block>
 	</view>
-	<view class="RePay" catchtap="toOrderTap">重新支付</view>
+	<block wx:if='{{pageType === 0}}'>
+		<view class="RePay" catchtap="toOrderTap">重新支付</view>
+	</block>
 	<view class="ToHome" catchtap="toHomeTap">返回首页</view>
 </view>
