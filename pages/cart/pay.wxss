@@ -38,7 +38,6 @@ page {
 .PayAddress .Icon {
     width: 30rpx;
     height: 30rpx;
-    background-color: lightgray;
 }
 
 .PayAddressSelect {
@@ -56,7 +55,6 @@ page {
 .PayAddressSelect .Icon {
     width: 30rpx;
     height: 30rpx;
-    background-color: lightgray;
 }
 
 .PayAddressSelect .Left {
@@ -84,6 +82,7 @@ page {
 }
 
 .PayGoods {
+    position: relative;
     width: 100%;
     background-color: #fff;
     box-sizing: border-box;
@@ -203,7 +202,6 @@ page {
 .PayType .Icon {
     height: 60rpx;
     width: 60rpx;
-    background-color: lightgray;
     margin-right: 20rpx;
 }
 
@@ -251,8 +249,11 @@ page {
     color: #fff;
     width: 180rpx;
     height: 70rpx;
+    font-size: 28rpx;
+    font-weight: normal;
     border-radius: 35rpx;
     background-color: #FA5151;
+    padding: 0;
 }
 
 .PayOrderType {
@@ -286,6 +287,23 @@ page {
 
 .PayOrderType .Select {
     color: #333333;
+}
+
+.PayGoodsMask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.PayGoodsChange {
+    border: dotted 0.5px #cc9c00;
 }
 
 

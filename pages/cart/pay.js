@@ -1,14 +1,17 @@
 // pages/cart/pay.js
+import API from '../../api'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        address: {},
+        address: undefined,
         orderType: 2,
         goods: [{}, {}],
-        sendMoney: 0
+        sendMoney: 0,
+        total: 0,
+        remark: undefined
     },
 
     /**
@@ -16,7 +19,7 @@ Page({
      */
     onLoad: function (options) {
         wx.setNavigationBarTitle({
-          title: '提交订单',
+            title: '提交订单',
         })
     },
 
@@ -35,24 +38,24 @@ Page({
         const projectInfo = getApp().globalData.projectInfo
 
         getApp().getCurrentCartInfo(res => {
-          let goods = res.map(o => ({ ...o, check: false }))
-          that.setData({
-            goods: [...goods],
-            sendMoney: projectInfo.open_send > 0  ? `¥${(projectInfo.send_money  / 100).toFixed(2)}` : '免运费'
-          })
-          that.upFooter()
+            let goods = res.map(o => ({ ...o, check: false }))
+            that.setData({
+                goods: [...goods],
+                sendMoney: projectInfo.open_send > 0 ? `¥${(projectInfo.send_money / 100).toFixed(2)}` : '免运费'
+            })
+            that.upFooter()
         })
-        
+
         wx.showLoading({ title: '加载中' })
         getApp().loadProjectInfo(projectInfo.id, (res, err) => {
             wx.hideLoading({})
             if (!err) {
                 that.setData({
-                    sendMoney: res.open_send > 0  ? `¥${(res.send_money  / 100).toFixed(2)}` : '免运费'
+                    sendMoney: res.open_send > 0 ? `¥${(res.send_money / 100).toFixed(2)}` : '免运费'
                 })
-                that.upFooter()           
+                that.upFooter()
             }
-        }).then()
+        })
     },
 
     /**
@@ -90,17 +93,91 @@ Page({
 
     },
 
-    onPayTap: function () {
-        wx.redirectTo({
-          url: '/pages/cart/result',
+    checkGoodsInfo: function () {
+        return new Promise((resolve, reject) => {
+            let that = this
+            let { goods } = this.data
+            let gids = goods.map(o => o.id)
+            getApp().checkGoodsInfo((err, datas) => {
+                if (err) {
+                    datas.forEach(o => {
+                        let index = gids.indexOf(o.id)
+                        goods[index] = { ...goods[index], ...o }
+                    })
+                    that.setData({ goods: goods })
+                    that.upFooter()
+                    reject(typeof (err) === 'string' ? err : '失败',)
+                } else {
+                    resolve()
+                }
+            })
         })
     },
 
-    onOrderTypeTap: function ({ currentTarget: { dataset: { value}}}) {
-        this.setData({ orderType: value})
+    onPayTap: function ({ detail: { userInfo } }) {
+        if (!userInfo) return
+        let that = this
+        const { nickName, avatarUrl } = userInfo
+        const { remark, goods, orderType, address } = this.data
+        let checkInfoPromise = this.checkGoodsInfo()
+        let createOrderPromise = API.ORDER_CREATE({
+            products: JSON.stringify(goods.map(o => ({ id: o.id, num: o.num}))),
+            order_type: orderType === 2 ? 0 : 1,
+            remark: remark,
+            useravatar: avatarUrl,
+            username: nickName,
+            ...(orderType===1?{
+                send_address: `${address.userName} ${address.telNumber} ${address.provinceName}${address.cityName}${address.countyName}${address.detailInfo}`
+            } : {})
+        })
+        Promise.all([checkInfoPromise, createOrderPromise]).then(([_, orderInfo]) => {
+            wx.requestPayment({
+                timeStamp: '',
+                nonceStr: '',
+                package: '',
+                signType: 'MD5',
+                paySign: '',
+                success(res) { },
+                fail(res) { }
+            })
+        }).catch(err => {
+            wx.showToast({
+                title: err,
+                icon: 'none',
+                duration: 3500
+            })
+        })
+
+
+        // wx.redirectTo({
+        //     url: '/pages/cart/result',
+        // })
+    },
+
+    onOrderTypeTap: function ({ currentTarget: { dataset: { value } } }) {
+        this.setData({ orderType: value })
     },
 
     upFooter: function () {
-        
+        let total = 0
+        let { sendMoney, orderType, goods } = this.data
+        goods.forEach(o => {
+            total += o.showPrice * 1 * o.num
+        })
+        total += orderType === 1 ? sendMoney * 1 : 0
+        this.setData({ total: total.toFixed(2) })
+    },
+
+    onChooseAddress: function () {
+        let that = this
+        wx.chooseAddress({
+            success: (result) => {
+                that.setData({ address: result })
+            },
+        })
+    },
+
+    onRemarkInput: function ({ detail: { value } }) {
+        this.setData({ remark: value })
     }
 })

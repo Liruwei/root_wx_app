@@ -8,21 +8,21 @@
 	<view class='PayTop'>
 		<view wx:key='index' wx:for='{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}}' class="PayLine" style='background-color:{{index%2==0?"red": "blue"}}'></view>
 	</view>
-	<view wx:if='{{address}}' class='PayAddressSelect'>
+	<view wx:if='{{address}}' class='PayAddressSelect' catchtap="onChooseAddress">
 		<view class="Left">
-			<view class="Name">小明 18298983983</view>
-			<view class="Address">AddressAddressAddressAddressAd</view>
+			<view class="Name">{{address.userName}} {{address.telNumber}}</view>
+			<view class="Address">{{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}</view>
 		</view>
-		<view class="Icon"></view>
+		<image class="Icon" src="/icons/right.png"></image>
 	</view>
-	<view wx:else class='PayAddress'>
+	<view wx:else class='PayAddress' catchtap="onChooseAddress">
 		<text>设置收货地址</text>
-		<view class="Icon"></view>
+		<image class="Icon" src="/icons/right.png"></image>
 	</view>
 </block>
 <view class="PayGoodsTitle">共{{goods.length}}件商品</view>
 <view>
-	<view class="PayGoods" wx:for='{{goods}}' wx:key='index'>
+	<view class="PayGoods {{item.didUpdate?'PayGoodsChange':''}}" wx:for='{{goods}}' wx:key='index'>
 		<image class="Image" src="{{item.photo}}"></image>
 		<view class="Left">
 			<view class="Top">
@@ -31,6 +31,7 @@
 			</view>
 			<view class="Money">¥{{item.showPrice}}</view>
 		</view>
+		<view wx:if='{{item.num==0}}' class="PayGoodsMask">库存不足</view>
 	</view>
 </view>
 
@@ -41,14 +42,14 @@
 <view class="PayRemarkContent">
 	<view class="Title">备注信息</view>
 	<view class="Content">
-		<textarea style="width: 100%; height: 100%" placeholder="请添加备注（150字以内）"></textarea>
+		<textarea style="width: 100%; height: 100%" placeholder="请添加备注（150字以内）" maxlength='{{150}}' bindinput='onRemarkInput'></textarea>
 	</view>
 </view>
 <view class="PayType">
 	<view class="Title">支付方式</view>
 	<view class="Item">
 		<view class="Left">
-			<view class="Icon"></view>
+			<image class="Icon" src="/icons/wechat.png"></image>
 			<text>微信支付</text>
 		</view>
 		<view class="Line"></view>
@@ -58,7 +59,9 @@
 <view class="PayFooter">
 	<view class="Left">
 		<text>合计：</text>
-		<view class="Money">¥100.00</view>
+		<view class="Money">¥{{total}}</view>
 	</view>
-	<view class="Pay" catchtap="onPayTap">立即支付</view>
+	<view style="width: 180rpx">
+		<button class="Pay" open-type="getUserInfo" size='mini' bindgetuserinfo="onPayTap" >立即支付</button>
+	</view>
 </view>

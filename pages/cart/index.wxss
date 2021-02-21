@@ -69,7 +69,7 @@ page {
     color: #fff;
 }
 .CartItemChange {
-    border: solid 0.5px #fa515130;
+    border: dotted 0.5px #cc9c00;
 }
 
 .CartItem .Dot {

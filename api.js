@@ -32,12 +32,18 @@ function GET(url, data, success, fail) {
 }
 
 function POST(url, data, success, fail) {
+    let token = ''
+    let userInfo = getApp().globalData.userInfo
+    if (userInfo) {
+        token = userInfo.token || ''
+    }
     wx.request({
         url: `${API_HOST}${url}`,
         method: 'POST',
         data: data,
         header: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'Token': token
         },
         success(res) {
             if (res.data.message === 'Success') {
@@ -144,6 +150,19 @@ function GOODS_INFO(id) {
     });
 }
 
+function ORDER_CREATE(data={}) {
+    return new Promise((resolve, reject) => {
+        POST('/shoptemplate/orders', {
+            ...data,
+            project: getApp().globalData.projectInfo.id
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
 export default {
     LOGIN,
     PROJECT_LIST,
@@ -151,5 +170,6 @@ export default {
     HOME_BANNERS,
     HOME_GOODS,
     HOME_CATEGORYS,
-    GOODS_INFO
+    GOODS_INFO,
+    ORDER_CREATE
 }
