@@ -1,6 +1,7 @@
 /* pages/order/detail.wxss */
 page {
     background-color: #f2f4f5;
+    color: #2c2c2c;
     font-size: 28rpx;
     padding-bottom: 140rpx;
 }
@@ -21,7 +22,6 @@ page {
 
 .OrderDetail .Status .Top .Title {
     width: calc((100vw - 80rpx) / 4);
-    font-size: 28rpx;
     margin-right: 20rpx;
     display: flex;
     align-items: center;
@@ -59,7 +59,7 @@ page {
 }
 
 .OrderDetail .Status .Bottom .DotDone {
-    background-color: red;
+    background-color: #FA5151;
     transform: scale(1.5);
 }
 
@@ -71,7 +71,7 @@ page {
 }
 
 .OrderDetail .Status .Bottom .LineDone {
-    background-color: red;
+    background-color: #FA5151;
 }
 
 .OrderDetailTop {
@@ -103,7 +103,7 @@ page {
 }
 
 .OrderDetailAddressSelect .Name {
-    margin-bottom: 10rpx;
+
 }
 
 .OrderDetailAddressSelect .Address {
@@ -132,10 +132,11 @@ page {
 }
 
 .OrderDetail .GoodsImage {
-    width: 100rpx;
+    width: 120rpx;
+    min-width: 120rpx;
     height: 120rpx;
     margin-right: 20rpx;
-    background-color: lightgray;
+    background-color: #acacac;
 }
 
 .OrderDetail .GoodsRight {
@@ -146,7 +147,7 @@ page {
 .OrderDetail .GoodsName {
     text-overflow: ellipsis;
     overflow: hidden;
-    width: calc(100vw - 100rpx - 60rpx);
+    width: calc(100vw - 120rpx - 60rpx);
     margin-bottom: 40rpx;
 }
 
@@ -162,7 +163,7 @@ page {
 }
 
 .OrderDetail .GoodsNum {
-    color: #d3d3d3;
+    color: #acacac;
 }
 
 .OrderDetail .Item {
@@ -186,12 +187,12 @@ page {
 }
 
 .OrderDetail .Value {
-    color: #d3d3d3;
+    color: #acacac;
 }
 
 .OrderDetail .Copy {
-    color: #d3d3d3;
-    border: solid 0.5px #d3d3d3;
+    color: #acacac;
+    border: solid 0.5px #acacac;
     width: 80rpx;
     margin-left: 20rpx;
     display: flex;
@@ -232,6 +233,55 @@ page {
 }
 
 .OrderDetail .Footer .Gray {
-    border: solid 0.5px lightgray;
-    color: #d3d3d3;
+    border: solid 0.5px #acacac;
+    color: #acacac;
+}
+
+.OrderSendCode {
+    position: fixed;
+    z-index: 300;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: background-color 0.25s ease-in-out;
+}
+
+.OrderSendCodeContent {
+    position: absolute;
+    top: -250rpx;
+    left: 0;
+    width: 100vw;
+    background-color: #cc9c00;
+    padding: 0 40rpx;
+    height: 250rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;        
+    align-items: center;
+    justify-content: center;
+    transition: top 0.25s ease-in-out;
+}
+
+.OrderSendCodeBtn {
+    width: 80vw;
+    height: 60rpx;
+    border-radius: 10rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40rpx;
+    color: #fff;
+    background-color: #fa5151;
+}
+
+.OrderSendCodeInput {
+    width: 80vw;
+    background-color: #ffffff;
+    color: #2c2c2c;
+    height: 80rpx;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding: 0 20rpx;
 }

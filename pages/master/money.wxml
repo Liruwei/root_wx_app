@@ -1,7 +1,7 @@
 <!--pages/master/money.wxml-->
 <view class="MasterMoney">
-    <view class="MasterIcon"></view>
+    <image class="MasterIcon" src="/icons/mymoney.png"></image>
     <view class="MasterTitle">店铺余额</view>
-    <view class="MasterMoneyTotal">¥10.21</view>
+    <view class="MasterMoneyTotal">¥{{money}}</view>
     <view class="MasterOutput" catchtap="toGetMoneyTap">提现</view>
 </view>

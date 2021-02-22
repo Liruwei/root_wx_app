@@ -134,8 +134,8 @@ page {
     flex-direction: row;
     align-items: center;
     overflow: hidden;
-    border-radius: 35rpx;
-    height: 70rpx;
+    border-radius: 30rpx;
+    height: 60rpx;
 }
 
 .GoodsDetailTool .Right .AddCart {
@@ -246,15 +246,15 @@ page {
 .GoodsDetailAddView .Buttons {
     width: 260rpx;
     margin-top: 35rpx;
-    border: solid 0.5px #f2f4f5;
-    height: 70rpx;
+    border: solid 0.5px #acacac;
+    height: 60rpx;
     border-radius: 10rpx;
     display: flex;
     flex-direction: row;
 }
 
 .GoodsDetailAddView .Del {
-    border-right: solid 0.5px #f2f4f5;
+    border-right: solid 0.5px #acacac;
     height: 100%;
     width: 80rpx;
     display: flex;
@@ -264,7 +264,7 @@ page {
 }
 
 .GoodsDetailAddView .Add {
-    border-left: solid 0.5px #f2f4f5;
+    border-left: solid 0.5px #acacac;
     height: 100%;
     width: 80rpx;
     display: flex;
@@ -281,7 +281,6 @@ page {
     justify-content: center;
     font-weight: bold;    
 }
-
 
 
 

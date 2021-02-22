@@ -142,11 +142,27 @@ Page({
                 paySign: data.payinfo.paySign,
                 success(_) {
                     !that.fromDetail && getApp().deleGoodsInCartAfterPay()
-                    wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
+                    wx.requestSubscribeMessage({
+                        tmplIds: ['hMuSZePpSdryiyPHWdO74rFfzU-PYKqFRzfMiJt9mfs', 'dTCX8XZLoJ3EtDfjIBaOncR7Jg7uJA2MB-qX0m9egdM', 'HvmGYWg2gHNRkAfgSZa6Lds9ObvlXWkVm4rwWOeRu9o'],
+                        success: _ => { 
+                            wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
+                        },
+                        fail: _ => {
+                            wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
+                        }
+                    })
                 },
                 fail(_) {
                     !that.fromDetail && getApp().deleGoodsInCartAfterPay()
-                    wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=0` })
+                    wx.requestSubscribeMessage({
+                        tmplIds: ['hMuSZePpSdryiyPHWdO74rFfzU-PYKqFRzfMiJt9mfs', 'dTCX8XZLoJ3EtDfjIBaOncR7Jg7uJA2MB-qX0m9egdM', 'HvmGYWg2gHNRkAfgSZa6Lds9ObvlXWkVm4rwWOeRu9o'],
+                        success: _ => { 
+                            wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=0` })
+                        },
+                        fail: _ => {
+                            wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=0` })
+                        }
+                    })
                 }
             })
         }).catch(err => wx.showToast({ title: err, icon: 'none', duration: 3500 }))

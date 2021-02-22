@@ -9,7 +9,7 @@
 			<view class="Name">
 				<open-data type="userNickName"></open-data>
 			</view>
-			<view class="ID">ID：VID01</view>
+			<view class="ID">ID：VID{{userId}}</view>
 		</view>
 	</view>
 	<view class="MyBox">

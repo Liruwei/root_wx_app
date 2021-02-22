@@ -4,7 +4,7 @@
 	<view class="Bg"></view>
 	<view class="Top">
 		<view class="Title">{{master ? '店铺订单信息' : '订单信息'}}</view>
-		<view class="Info">{{master ? '订单总数' : '消费订单'}}：{{totals[5]}}</view>
+		<view class="Info">{{master ? '订单总数' : '消费订单'}}：{{!master ? totals[5] : totals[1]+totals[2]+totals[3]}}</view>
 	</view>
 	<view class="OrderBox">
 		<view class="OrderOrder">
@@ -36,10 +36,13 @@
 					<view class="Title">{{totals[1]}}</view>
 				</view>
 				<view class="Item" catchtap="onTypeTap" data-index="1">
+					<view class="Name">待签收</view>
+					<view class="Title">{{totals[2]}}</view>
+				</view>
+				<view class="Item" catchtap="onTypeTap" data-index="2">
 					<view class="Name">到店自提</view>
 					<view class="Title">{{totals[3]}}</view>
 				</view>
-				<view class="Item"></view>
 				<view class="Item"></view>
 				<view class="Item"></view>
 			</block>
@@ -49,7 +52,7 @@
 		<view class="Line" style='margin-left: calc(20% * {{typeIndex}})'></view>
 	</view>
 	<block wx:for='{{orders}}' wx:key='index'>
-		<view class="OrderItem" catchtap="onOrderDetailTap">
+		<view class="OrderItem" catchtap="onOrderDetailTap" data-id='{{item.id}}'>
 			<view class="Top">
 				<view class="Time">{{item.create_time}}</view>
 				<block wx:if='{{!master}}'>
@@ -77,12 +80,40 @@
 				<view class="Money0">¥{{item.money}}</view>
 			</view>
 			<view class="Footer">
-				<view class="CancelButton" catchtap="onCancelOrderTap">取消订单</view>
-				<view class="PayButton">立即付款</view>
+				<block wx:if='{{!master}}'>
+					<block wx:if='{{item.status === 0}}'>
+						<view class="CancelButton">取消订单</view>
+						<view class="PayButton">立即付款</view>
+					</block>
+					<block wx:elif='{{item.status === 1 && item.order_type === 1}}'>
+						<view class="PayButton">查看详情</view>
+					</block>
+					<block wx:elif='{{item.status === 3 && item.order_type === 1}}'>
+						<view class="PayButton">确认收货</view>
+					</block>
+					<block wx:elif='{{item.status === 1 && item.order_type === 0}}'>
+						<view class="PayButton">完成订单</view>
+					</block>
+					<block wx:elif='{{item.status === 2}}'>
+						<view class="PayButton">查看详情</view>
+					</block>
+				</block>
+				<block wx:else>
+					<block wx:if='{{item.status === 1 && item.order_type === 1}}'>
+						<view class="CancelButton">取消订单</view>
+						<view class="PayButton">发货</view>
+					</block>
+					<block wx:elif='{{item.status === 3 && item.order_type === 1}}'>
+						<view class="PayButton" style="width:200rpx;">修改物流单号</view>
+					</block>
+					<block wx:elif='{{item.status === 1 && item.order_type === 0}}'>
+						<view class="CancelButton" style="margin-right:0;">取消订单</view>
+					</block>
+				</block>
 			</view>
 		</view>
 	</block>
 	<block wx:if='{{loadingNext}}'>
-		<template is="footer_loading"/>
+		<template is="footer_loading" />
 	</block>
 </view>

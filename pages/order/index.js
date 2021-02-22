@@ -80,9 +80,15 @@ Page({
 
   },
 
-  onOrderDetailTap: function() {
+  onOrderDetailTap: function({ currentTarget: { dataset: { id}}}) {
+    let that = this
     wx.navigateTo({
-      url: '/pages/order/detail',
+      url: `/pages/order/detail?order_id=${id}&master=${this.data.master}`,
+      events: {
+        reloadData: function() {
+          that.loadFiestPage()
+        }
+      }
     })
   },
 
@@ -111,14 +117,14 @@ Page({
     let { master, typeIndex, orders} = this.data
     let filter = {}
     if (master) {
-      filter.status = 1
-      filter.order_type = [1,0][typeIndex]
+      filter.status = [1,3,1][typeIndex]
+      filter.order_type = [1,1,0][typeIndex]
     } else {
       filter.status = [0, 1, 3, 1, 2][typeIndex]
       filter.order_type = [undefined, 1, 1, 0, undefined][typeIndex]
       filter.user_id = userInfo.id
     }
-    showLoading && wx.showLoading()
+    showLoading && wx.showLoading({ title: '请求中'})
     this.page != 1 && this.setData({ loadingNext: true})
     API.ORDER_LIST(this.page, projectInfo.id, filter).then(res => {
       showLoading && wx.hideLoading()
@@ -139,7 +145,6 @@ Page({
       })
       that.hasMore = tmp.length < res.total
     }).catch(err => {
-      console.log(err)
       showLoading && wx.hideLoading()
       that.loading = false
       wx.showToast({

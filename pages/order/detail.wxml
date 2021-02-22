@@ -1,6 +1,6 @@
 <!--pages/order/detail.wxml-->
-<view class="OrderDetail">
-	<view class="Status">
+<view class="OrderDetail" wx:if='{{order}}'>
+	<view class="Status" wx:if='{{order.order_type===1}}'>
 		<view class="Top">
 			<view class="Title">待付款</view>
 			<view class="Title">待发货</view>
@@ -8,34 +8,81 @@
 			<view class="Title">已完成</view>
 		</view>
 		<view class="Bottom">
-			<view class="Dot DotDone">
-				<view class="DotWhite"></view>
-			</view>
-			<view class="Line"></view>
-			<view class="Dot"></view>
-			<view class="Line"></view>
-			<view class="Dot"></view>
-			<view class="Line"></view>
-			<view class="Dot"></view>
+			<block wx:if='{{order.status===0}}'>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+				<view class="Line"></view>
+				<view class="Dot"></view>
+				<view class="Line"></view>
+				<view class="Dot"></view>
+				<view class="Line"></view>
+				<view class="Dot"></view>
+			</block>
+			<block wx:elif='{{order.status===1}}'>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+				<view class="Line LineDone"></view>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+				<view class="Line"></view>
+				<view class="Dot"></view>
+				<view class="Line"></view>
+				<view class="Dot"></view>
+			</block>
+			<block wx:elif='{{order.status===3}}'>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+				<view class="Line LineDone"></view>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+				<view class="Line LineDone"></view>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+				<view class="Line"></view>
+				<view class="Dot"></view>
+			</block>
+			<block wx:else>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+				<view class="Line LineDone"></view>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+				<view class="Line LineDone"></view>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+				<view class="Line LineDone"></view>
+				<view class="Dot DotDone">
+					<view class="DotWhite"></view>
+				</view>
+			</block>
 		</view>
 	</view>
-	<view class='OrderDetailTop'>
+	<view class='OrderDetailTop' wx:if='{{order.order_type===1}}'>
 		<view wx:key='index' wx:for='{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}}' class="OrderDetailLine" style='background-color:{{index%2==0?"red": "blue"}}'></view>
 	</view>
-	<view class='OrderDetailAddressSelect'>
-		<view class="Name">小明 18298983983</view>
-		<view class="Address">AddressAddress</view>
+	<view class='OrderDetailAddressSelect' wx:if='{{order.order_type===1}}'>
+		<view class="Name">{{order.send_address}}</view>
+		<!-- <view class="Address">AddressAddress</view> -->
 	</view>
-	<view class="GoodsSection">共1件商品</view>
+	<view class="GoodsSection">共{{order.products.length}}件商品</view>
 	<view>
-		<block wx:for='{{[1,2]}}' wx:key='index'>
+		<block wx:for='{{order.products}}' wx:key='index'>
 			<view class="GoodsItem">
-				<view class="GoodsImage"></view>
+				<image class="GoodsImage" src="{{item.photo}}"></image>
 				<view class="GoodsRight">
-					<view class="GoodsName">NamenameNamenameNamenameNamenameNamenameNamenameNamename</view>
+					<view class="GoodsName">{{item.name}}</view>
 					<view class="GoodsInfo">
-						<view class="GoodsMoney">¥1000</view>
-						<view class="GoodsNum">x10</view>
+						<view class="GoodsMoney">¥{{item.showPrice}}</view>
+						<view class="GoodsNum">x{{item.num}}</view>
 					</view>
 				</view>
 			</view>
@@ -44,34 +91,101 @@
 	<view class="Item">
 		<view class="Title">订单编号：</view>
 		<view class="Right">
-			<view class="Value">dsadsdsdsad</view>
-			<view class="Copy">复制</view>
+			<view class="Value">{{order.order_no}}</view>
+			<view class="Copy" catchtap="onCopy" data-value='{{order.order_no}}'>复制</view>
 		</view>
 	</view>
 	<view class="Item">
-		<view class="Title">下单时间：</view>
-		<view class="Value">2020-01-02 20:12:21</view>
-	</view>
-	<view class="Item">
-		<view class="Title">支付状态：</view>
-		<view class="Value">未付款</view>
-	</view>
-	<view class="Item">
-		<view class="Title">支付方式：</view>
-		<view class="Value">微信支付</view>
-	</view>
-	<view class="Item">
-		<view class="Title">快递单号：</view>
+		<view class="Title">订单类型：</view>
 		<view class="Right">
-			<view class="Value">dsadsdsdsad</view>
-			<view class="Copy">复制</view>
+			<view class="Value">{{order.order_type===0?'到店自提订单':'配送订单'}}</view>
 		</view>
 	</view>
 
-	<view class="Footer">
-		<view class="Button Red">确定收货</view>
-		<view class="Button Red">完成订单</view>
-		<view class="Button Red">立即付款</view>
-		<view class="Button Gray">删除订单</view>
+	<view class="Item">
+		<view class="Title">下单时间：</view>
+		<view class="Value">{{order.create_time}}</view>
+	</view>
+	<view class="Item">
+		<view class="Title">订单状态：</view>
+		<block wx:if='{{order.close_result}}'>
+			<view class="Value" style="color:#fa5151;">订单已关闭</view>
+		</block>
+		<block wx:else>
+			<view class="Value">{{order.status===0?'未支付':'已支付'}}</view>
+		</block>
+	</view>
+	<view class="Item" wx:if='{{order.close_result}}'>
+		<view class="Title">关闭原因：</view>
+		<view class="Right">
+			<view class="Value">{{order.close_result}}</view>
+		</view>
+	</view>
+	<view class="Item" wx:if='{{order.status!==0}}'>
+		<view class="Title">支付方式：</view>
+		<view class="Value">微信支付</view>
+	</view>
+	<view class="Item" wx:if='{{order.order_type===1&&order.status>1}}'>
+		<view class="Title">快递单号：</view>
+		<view class="Right">
+			<view class="Value">{{order.send_code}}</view>
+			<view class="Copy" catchtap="onCopy" data-value='{{order.send_code}}'>复制</view>
+		</view>
+	</view>
+	<view class="Item" wx:if='{{order.update_time}}'>
+		<view class="Title">更新时间：</view>
+		<view class="Right">
+			<view class="Value">{{order.update_time}}</view>
+		</view>
+	</view>
+	<view style='margin-top:20rpx' wx:if='{{order.remark}}'>
+		<view class="Item">
+			<view class="Title" style="min-width: 100rpx">备注：</view>
+			<view class="Right">
+				<view class="Value">{{order.remark}}</view>
+			</view>
+		</view>
+	</view>
+	<block wx:if='{{!master}}'>
+		<view class="Footer" wx:if='{{(order.status===0)||(order.status===3&&order.order_type ===1)||(order.status===1&&order.order_type===0)||(order.status===2)}}'>
+			<block wx:if='{{order.status === 0}}'>
+				<view class="Button Red" catchtap="onPayOrer">立即付款</view>
+				<view class="Button Gray" catchtap="onDeleteOrder">删除订单</view>
+			</block>
+			<block wx:elif='{{order.status === 3 && order.order_type === 1}}'>
+				<view class="Button Red" catchtap="onFinishOrder">确认收货</view>
+			</block>
+			<block wx:elif='{{order.status === 1 && order.order_type === 0}}'>
+				<view class="Button Red" catchtap="onFinishOrder">完成订单</view>
+			</block>
+			<block wx:elif='{{order.status === 2}}'>
+				<view class="Button Red" catchtap="onRefundOrder">申请售后</view>
+				<view class="Button Gray" catchtap="onDeleteOrder">删除订单</view>
+			</block>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="Footer">
+			<block wx:if='{{order.status === 1 && order.order_type == 0}}'>
+				<view class="Button Gray" catchtap="onCancelOrder">取消订单</view>
+			</block>
+			<block wx:elif='{{order.status === 3 && order.order_type === 1}}'>
+				<view class="Button Red" catchtap="onShowAddView" style="width:200rpx">修改物流单号</view>
+			</block>
+			<block wx:elif='{{order.status === 1 && order.order_type === 1}}'>
+				<view class="Button Red" catchtap="onShowAddView">发货</view>
+				<view class="Button Gray" catchtap="onCancelOrder">取消订单</view>
+			</block>
+		</view>
+	</block>
+</view>
+<view class="OrderSendCode" style="top:{{showSendCode?'0':'100vh'}}; background-color:{{showSendCodeContent?'rgba(0,0,0,0.3)':'rgba(0,0,0,0)'}}" catchtap="onCloseAddView">
+	<view style="width:100%;height:100%;position:relative;" wx:if='{{showSendCode}}'>
+		<view class="OrderSendCodeContent" style='top:{{showSendCodeContent?"0":"-250rpx"}};' catchtap="onAddViewContentTap">
+			<view class="OrderSendCodeInput">
+				<input style="width:100%;height:100%;" value='{{order.send_code||""}}' bindinput='onSendCodeInput' placeholder="请输入物流单号"></input>
+			</view>
+			<view class="OrderSendCodeBtn" catchtap="onSendOrder">{{order.status === 1 ? '发货' : '修改'}}</view>
+		</view>
 	</view>
 </view>

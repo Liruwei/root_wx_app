@@ -13,12 +13,14 @@ Page({
   timer: null,
   order_id: null,
   loading: false,
+  fromDetail: false,
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function ({ order_id, status }) {
+  onLoad: function ({ order_id, status, fromDetail }) {
     let that = this
     this.order_id = order_id
+    this.fromDetail = fromDetail === '1'
     this.setData({ pageType: status * 1 })
     if (status * 1 === 0) {
       wx.setNavigationBarTitle({ title: '支付失败' })
@@ -113,7 +115,13 @@ Page({
   },
 
   toOrderTap: function () {
-
+    if (this.fromDetail) {
+      wx.navigateBack()
+    } else {
+      wx.reLaunch({
+        url: `/pages/order/detail?order_id=${this.data.order.id}`,
+      })  
+    }
   },
 
   toHomeTap: function () {

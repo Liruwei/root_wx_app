@@ -1,6 +1,35 @@
-const API_HOST = "http://localhost:5000"
-// const API_HOST = "http://192.168.10.188:5000"
+// const API_HOST = "http://localhost:5000"
+const API_HOST = "http://10.0.0.210:5000"
 
+function DELETE(url, data, success, fail) {
+    let userInfo = getApp().globalData.userInfo
+    let header = {}
+    if (userInfo) {
+        header.Token = userInfo.token
+    }
+    wx.request({
+        url: `${API_HOST}${url}`,
+        data: data,
+        method: 'DELETE',
+        header: {
+            'content-type': 'application/json',
+            ...header
+        },
+        success(res) {
+            if (res.data.message === 'Success') {
+                success && success(res.data)
+            }
+            else if (typeof(res.data.message) === 'string') {
+                fail && fail(res.data.message)
+            } else {
+                fail && fail(JSON.stringify(res.data.message))
+            }
+        },
+        fail(e) {
+            fail && fail(e)
+        }
+    })
+}
 
 function GET(url, data, success, fail) {
     let userInfo = getApp().globalData.userInfo
@@ -13,6 +42,36 @@ function GET(url, data, success, fail) {
         data: data,
         header: {
             'content-type': 'text/plain',
+            ...header
+        },
+        success(res) {
+            if (res.data.message === 'Success') {
+                success && success(res.data)
+            }
+            else if (typeof(res.data.message) === 'string') {
+                fail && fail(res.data.message)
+            } else {
+                fail && fail(JSON.stringify(res.data.message))
+            }
+        },
+        fail(e) {
+            fail && fail(e)
+        }
+    })
+}
+
+function PUT(url, data, success, fail) {
+    let userInfo = getApp().globalData.userInfo
+    let header = {}
+    if (userInfo) {
+        header.Token = userInfo.token
+    }
+    wx.request({
+        url: `${API_HOST}${url}`,
+        data: data,
+        method: 'PUT',
+        header: {
+            'content-type': 'application/json',
             ...header
         },
         success(res) {
@@ -164,6 +223,19 @@ function ORDER_CREATE(data={}) {
     });
 }
 
+function ORDER_REPAY(order_id) {
+    return new Promise((resolve, reject) => {
+        POST('/shoptemplate/wxorders/repay', {
+            order_id,
+            project: getApp().globalData.projectInfo.id
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
 function ORDER_INFO(id) {
     return new Promise((resolve, reject) => {
         GET(`/shoptemplate/order/${id}`, {
@@ -175,6 +247,42 @@ function ORDER_INFO(id) {
     });    
 }
 
+function ORDER_FINISH(id) {
+    return new Promise((resolve, reject) => {
+        PUT(`/shoptemplate/order/${id}`, {
+            status: 2
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function ORDER_CANCEL(id) {
+    return new Promise((resolve, reject) => {
+        PUT(`/shoptemplate/orderrefund/${id}`, {
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function ORDER_SEND(id ,code) {
+    return new Promise((resolve, reject) => {
+        PUT(`/shoptemplate/order/${id}`, {
+            status: 3,
+            send_code: code
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
 function ORDER_LIST(page, pid, filter={}, pageSize=10) {
     return new Promise((resolve, reject) => {
         GET('/shoptemplate/wxorders', {
@@ -182,7 +290,7 @@ function ORDER_LIST(page, pid, filter={}, pageSize=10) {
                 project: pid,
                 ...filter
             },
-            sort: ['create_time', 'DESC'],
+            sort: ['update_time', 'DESC'],
             range: [page, pageSize]
         }, res=> {
             resolve(res)
@@ -203,6 +311,17 @@ function ORDER_CHECK(id) {
     });    
 }
 
+function ORDER_DELETE(id) {
+    return new Promise((resolve, reject) => {
+        DELETE(`/shoptemplate/order/${id}`, {
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
 export default {
     LOGIN,
     PROJECT_LIST,
@@ -214,5 +333,10 @@ export default {
     ORDER_CREATE,
     ORDER_INFO,
     ORDER_CHECK,
-    ORDER_LIST
+    ORDER_LIST,
+    ORDER_DELETE,
+    ORDER_REPAY,
+    ORDER_FINISH,
+    ORDER_SEND,
+    ORDER_CANCEL
 }

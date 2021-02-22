@@ -16,7 +16,6 @@ page {
     height: 150rpx;
     border-radius: 75rpx;
     margin-bottom: 50rpx;
-    background-color: lightgray;
 }
 
 .MasterMoney .MasterTitle {

@@ -30,7 +30,7 @@ page {
 
 .GetMoneyInfo {
     font-size: 20rpx;
-    color: #d3d3d3;
+    color: #acacac;
 }
 
 .GetMoneyBtn {

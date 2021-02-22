@@ -1,18 +1,21 @@
 // pages/master/money.js
+import API from '../../api'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+      money: 0
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+      wx.setNavigationBarTitle({
+        title: '余额',
+      })
     },
 
     /**
@@ -26,7 +29,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+      wx.showLoading({ title: '请求中'})
+      let that = this
+      getApp().loadProjectInfo(getApp().globalData.projectInfo.id, () =>{
+        wx.hideLoading()
+        that.setData({ money: (getApp().globalData.projectInfo.money / 100).toFixed(2)})
+      });
     },
 
     /**

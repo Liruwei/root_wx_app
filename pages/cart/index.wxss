@@ -118,7 +118,7 @@ page {
     flex-direction: row;
     border: solid 0.5rpx #f2f4f5;
     border-radius: 10rpx;
-    height: 70rpx;
+    height: 60rpx;
 }
 
 .CartItem .Del {
@@ -192,23 +192,23 @@ page {
 }
 
 .CartFooter .Buy {
-    height: 70rpx;
+    height: 60rpx;
     width: 150rpx;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 35rpx;
+    border-radius: 30rpx;
     background-color: #cc9c00;
     color: #fff;
 }
 
 .CartFooter .Delete {
-    height: 70rpx;
+    height: 60rpx;
     width: 150rpx;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 35rpx;
+    border-radius: 30rpx;
     border: solid 0.5px #d3d3d3;
 }
 

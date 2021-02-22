@@ -112,7 +112,10 @@ Page({
                 })
             } else {
                 wx.hideLoading({
-                    success: (res) => {
+                    success: _ => {
+                        // wx.reLaunch({
+                        //     url: '/pages/order/detail?order_id=70&master=true',
+                        //   })          
                         wx.reLaunch({
                             url: '/pages/home/index',
                         })
