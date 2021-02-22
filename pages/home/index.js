@@ -21,10 +21,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.startPullDownRefresh();
     wx.setNavigationBarTitle({
       title: getApp().globalData.projectInfo.name || '店铺首页',
     })
+    this.onPullDownRefresh()
 
   },
 
@@ -39,7 +39,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -98,7 +98,10 @@ Page({
   },
 
   loadFiestPage: function() {
-    if (this.loading) return
+    if (this.loading) {
+      wx.stopPullDownRefresh({})
+      return
+    }
     let that = this
     this.page = 1
     this.loading = true

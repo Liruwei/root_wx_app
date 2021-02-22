@@ -299,5 +299,23 @@ Page({
                 send_code: value
             }
         })
+    },
+
+    onMapTap: function() {
+        let projectInfo = getApp().globalData.projectInfo
+        if (!projectInfo.latitude) {
+            wx.showToast({
+              title: '商家未设置导航位置! 请前往【我的】-【我的服务】-【联系商家】电话咨询。',
+              icon: 'none',
+              duration: 5000
+            })
+            return
+        }
+        wx.openLocation({
+            latitude: projectInfo.latitude * 1,
+            longitude: projectInfo.longitude * 1,
+            scale: 18,
+            name: projectInfo.name
+          })
     }
 })

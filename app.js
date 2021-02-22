@@ -61,22 +61,26 @@ App({
     })
   },
   delGoodsFromCartSync: function (goods) {
-    let project = this.globalData.projectInfo.id
-    let cart = wx.getStorageSync('cart')
-    let list = cart[project] || []
-    let ids = goods.map(o => o.id)
-    list = list.map(o => {
-      let index = ids.indexOf(o.id)
-      if (index >= 0) {
-        let tmp = {...goods[index]}
-        delete tmp.didUpdate
-        o = {...o, ...tmp}
-      }
-      return o
-    })
-    list = list.filter(o => o.num > 0)
-    cart[project] = [...list]
-    wx.setStorageSync('cart', cart)
+    try {
+      let project = this.globalData.projectInfo.id
+      let cart = wx.getStorageSync('cart') || {}
+      let list = cart[project] || []
+      let ids = goods.map(o => o.id)
+      list = list.map(o => {
+        let index = ids.indexOf(o.id)
+        if (index >= 0) {
+          let tmp = {...goods[index]}
+          delete tmp.didUpdate
+          o = {...o, ...tmp}
+        }
+        return o
+      })
+      list = list.filter(o => o.num > 0)
+      cart[project] = [...list]
+      wx.setStorageSync('cart', cart)
+    } catch (err) {
+      console.log(err)
+    }
   },
   delGoodsFromCart: function (ids = [], cb, loading=true) {
     loading && wx.showLoading({ title: '请求中' })

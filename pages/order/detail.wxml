@@ -66,12 +66,18 @@
 			</block>
 		</view>
 	</view>
+	<view wx:else>
+		<view class="OrderDetailToShop" catchtap="onMapTap">
+				<view>导航到门店</view>
+				<image class="OrderDetailToShopIcon"  src="/icons/right.png"></image>
+		</view>
+	</view>
 	<view class='OrderDetailTop' wx:if='{{order.order_type===1}}'>
 		<view wx:key='index' wx:for='{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}}' class="OrderDetailLine" style='background-color:{{index%2==0?"red": "blue"}}'></view>
 	</view>
 	<view class='OrderDetailAddressSelect' wx:if='{{order.order_type===1}}'>
 		<view class="Name">{{order.send_address}}</view>
-		<!-- <view class="Address">AddressAddress</view> -->
+		<view class="Copy" catchtap="onCopy" data-value='{{order.send_address}}' style="margin-left:5rpx">复制</view>
 	</view>
 	<view class="GoodsSection">共{{order.products.length}}件商品</view>
 	<view>
@@ -124,6 +130,12 @@
 	<view class="Item" wx:if='{{order.status!==0}}'>
 		<view class="Title">支付方式：</view>
 		<view class="Value">微信支付</view>
+	</view>
+	<view class="Item" wx:if='{{order.order_type===1}}'>
+		<view class="Title">快递费用：</view>
+		<view class="Right">
+			<view class="Value">{{order.send_money === 0 ?'免运费': ('¥'+order.send_money)}}</view>
+		</view>
 	</view>
 	<view class="Item" wx:if='{{order.order_type===1&&order.status>1}}'>
 		<view class="Title">快递单号：</view>

@@ -42,13 +42,18 @@ const formatOrderInfo = (item) => {
       }))
     } catch(e) {}
   }
+  let send_money = 0
+  if (item.send_money) {
+    send_money = 1 * ((item.send_money || 0) / 100).toFixed(2)
+  }
   return {
     ...item,
     pay_time: item.pay_time ? (new Date(1 * item.pay_time)).toLocaleString() : null,
     create_time: item.create_time ? (new Date(1 * item.create_time)).toLocaleString() : null,
     update_time: item.update_time ? (new Date(1 * item.update_time)).toLocaleString() : null,
     money: (item.money / 100).toFixed(2),
-    products: products
+    products: products,
+    send_money: send_money
   }
 }
 

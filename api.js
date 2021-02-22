@@ -1,5 +1,30 @@
 // const API_HOST = "http://localhost:5000"
-const API_HOST = "http://10.0.0.210:5000"
+const API_HOST = "http://192.168.0.104:5000"
+
+const md5 = require('js-md5');
+function Sign(params) {
+    let accessKey = '-maves@shoptemplate-MjAyMTAxMDFINQ==';
+    let accessTime = (new Date()).getTime()
+    let secretKey = ''
+    if (getApp().globalData.userInfo) {
+        secretKey = getApp().globalData.userInfo.token
+    }     
+    let keys = Object.keys(params);
+    keys.sort();
+    let kv = keys.map( k => `${k}=${params[k]}`);
+    kv = [
+        `accessKey=${accessKey.toLocaleLowerCase()}`, 
+        `accessTime=${accessTime}`,
+        ...kv,
+        `secretKey=${secretKey.toLocaleLowerCase()}`
+    ];
+    let sign = md5(kv.join('&'));
+    return {
+        Token: secretKey,
+        'Access-Time': accessTime,
+        'Access-Sign': sign
+    }
+}
 
 function DELETE(url, data, success, fail) {
     let userInfo = getApp().globalData.userInfo
@@ -61,18 +86,13 @@ function GET(url, data, success, fail) {
 }
 
 function PUT(url, data, success, fail) {
-    let userInfo = getApp().globalData.userInfo
-    let header = {}
-    if (userInfo) {
-        header.Token = userInfo.token
-    }
     wx.request({
         url: `${API_HOST}${url}`,
         data: data,
         method: 'PUT',
         header: {
             'content-type': 'application/json',
-            ...header
+            ...(Sign(data))
         },
         success(res) {
             if (res.data.message === 'Success') {
@@ -96,6 +116,13 @@ function POST(url, data, success, fail) {
     if (userInfo) {
         otherHeader['Token'] = userInfo.token || ''
         otherHeader['Open-Id'] = userInfo.openid || ''
+    }
+    if (data._sign) {
+        delete data._sign
+        otherHeader = {
+            ...otherHeader,
+            ...Sign(data)
+        }
     }
     wx.request({
         url: `${API_HOST}${url}`,
@@ -139,6 +166,24 @@ function LOGIN(data) {
         POST('/shoptemplate/user/wxlogin', {
             code: data,
             object: -100
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function WITHDRAW(money) {
+    return new Promise((resolve, reject) => {
+        let openid = ''
+        if (getApp().globalData.userInfo) {
+            openid = getApp().globalData.userInfo.openid
+        }
+        POST('/shoptemplate/withdraw', {
+            openid: openid,
+            money: money,
+            _sign: true
         }, res=> {
             resolve(res)
         }, error => {
@@ -350,5 +395,6 @@ export default {
     ORDER_REPAY,
     ORDER_FINISH,
     ORDER_SEND,
-    ORDER_CANCEL
+    ORDER_CANCEL,
+    WITHDRAW
 }
