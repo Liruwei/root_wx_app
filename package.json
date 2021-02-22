@@ -1,0 +1,24 @@
+{
+  "name": "root_wx_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api.js",
+  "dependencies": {
+    "js-md5": "^0.7.3",
+    "throttle-debounce": "^2.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liruwei/root_wx_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Liruwei/root_wx_app/issues"
+  },
+  "homepage": "https://github.com/Liruwei/root_wx_app#readme"
+}
