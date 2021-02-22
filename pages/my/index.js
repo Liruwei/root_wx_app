@@ -82,5 +82,28 @@ Page({
     wx.navigateTo({
       url: '/pages/order/index?master=1',
     })
+  },
+
+  onPhoneTap: function() {
+    try {
+      wx.makePhoneCall({
+        phoneNumber: getApp().globalData.projectInfo.phone 
+      })  
+    } catch(_){
+      wx.showToast({
+        title: '商家暂未设置联系电话',
+        icon: 'none'
+      })
+    }
+  },
+
+  onAddressTap: function() {
+    wx.chooseAddress({
+      success: (result) => {},
+    })
+  },
+
+  onContectTap: function() {
+    
   }
 })

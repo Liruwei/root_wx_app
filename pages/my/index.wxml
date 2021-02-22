@@ -52,15 +52,15 @@
 	<view class="MyBox">
 		<view class="MyTitle">我的服务</view>
 		<view class="MyOrder">
-			<view class="Item">
+			<button class="Item" open-type="contact" bindcontact="onContectTap">
 				<image class="Icon" src="/icons/icon-chat.png"></image>
 				<view class="Title">平台客服</view>
-			</view>
-			<view class="Item">
+			</button>
+			<view class="Item" catchtap="onPhoneTap">
 				<image class="Icon" src="/icons/icon-phone.png"></image>
 				<view class="Title">联系商家</view>
 			</view>
-			<view class="Item">
+			<view class="Item" catchtap="onAddressTap">
 				<image class="Icon" src="/icons/icon-address.png"></image>
 				<view class="Title">地址信息</view>
 			</view>
