@@ -1,17 +1,17 @@
 <!--pages/home/index.wxml-->
 <import src='/pages/template/footer.wxml' />
 <view wx:if='{{banners.length > 0}}' class='HomeBanner HomeBox'>
-	<swiper circular='{{true}}' indicator-dots="{{false}}" autoplay="{{false}}" bindchange="onSwiperChange"
-		style="height: calc(100vw - 40rpx);">
+	<swiper circular='{{true}}' indicator-dots="{{true}}" indicator-active-color="#cc9c00" indicator-color="#dfdfdf" autoplay="{{false}}" bindchange="onSwiperChange"
+		style="height: calc((100vw - 40rpx) * 2 / 5);">
 		<block wx:for="{{banners}}" wx:key="*this">
 			<swiper-item>
 				<image class="Item" src="{{item.photo}}"></image>
 			</swiper-item>
 		</block>
 	</swiper>
-	<view class="HomeBoxProgress">
+	<!-- <view class="HomeBoxProgress">
 		<progress percent="{{bannerPercent}}" color="#10AEFF" stroke-width="3" border-radius='1.5' />
-	</view>
+	</view> -->
 </view>
 
 <view wx:if='{{categorys.length > 0}}' class='HomeCategory HomeBox'>
@@ -24,7 +24,7 @@
 		</view>
 	</scroll-view>
 	<view class="HomeBoxProgress">
-		<progress percent="{{categoryPercent}}" color="#10AEFF" stroke-width="3" border-radius='1.5' />
+		<progress percent="{{categoryPercent}}" color="#cc9c00" stroke-width="3" border-radius='1.5' />
 	</view>
 </view>
 <view wx:if='{{goods.length > 0}}' class='HomeGoodsList'>
@@ -38,5 +38,5 @@
 	</view>
 </view>
 <block wx:if='{{loadMore}}'>
-	<template is="footer_loading" data="{{...item}}" />
+	<template is="footer_loading" />
 </block>

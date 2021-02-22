@@ -1,16 +1,20 @@
 <!--pages/goods/category.wxml-->
+<import src='/pages/template/footer.wxml' />
 <view class="CategoryHeader">
   <view class="InputBg">
-    <input placeholder="搜索商品名称" class="Input" />
+    <input placeholder="搜索商品名称" class="Input" bindinput="onInput"  confirm-type="search" bindblur='onSearch'/>
   </view>
 </view>
 <view wx:if='{{goods.length > 0}}' class='HomeGoodsList'>
   <view wx:for='{{goods}}' wx:key='id' class="Item" catchtap="onGoodsTap" data-item='{{item}}'>
-    <view class="Image"></view>
-    <text class="Name">这里是名字</text>
+    <image class="Image" src="{{item.photo}}"></image>
+    <text class="Name">{{item.name}}</text>
     <view class="Footer">
-      <text class="Money">¥90.00</text>
-      <view class="Icon"></view>
+      <text class="Money">¥{{item.showPrice}}</text>
+      <image class="Icon" src="/icons/buy.png"></image> 
     </view>
   </view>
 </view>
+<block wx:if='{{loadingMore}}'>
+	<template is="footer_loading" />
+</block>

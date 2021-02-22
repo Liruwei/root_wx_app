@@ -1,11 +1,15 @@
 // pages/goods/category.js
+import API from '../../api'
+import TOOL from '../../utils/util'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goods: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+    goods: [],
+    search: '',
+    loadingMore: false
   },
 
   /**
@@ -26,7 +30,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.loadFirstPage()
   },
 
   /**
@@ -66,7 +70,66 @@ Page({
 
   onGoodsTap: function ({ currentTarget: { dataset: { item}}}) {
     wx.navigateTo({
-      url: '/pages/goods/detail',
+      url: '/pages/goods/detail?id=' + item.id,
+    })
+  },
+
+  onInput: function({ detail: { value}}) {
+    this.setData({ search: value})
+  },
+
+  onSearch: function() {
+    this.loadFirstPage()
+  },
+
+  page: 1,
+  loading: false,
+  hasMore: true,
+  loadFirstPage: function() {
+    if (this.loading) return
+    this.page = 1
+    this.hasMore = true
+    wx.showLoading({ title: '请求中'})
+    this.loadData(() => {
+      wx.hideLoading({})
+    })
+  },
+
+  loadNextPage: function() {
+    if (this.loading) return
+    this.page += 1
+    this.loadData()
+    this.setData({ loadingMore: true})
+  },
+
+  loadData: function(cb) {
+    let that = this
+    this.loading = true
+    let goods = this.page === 1 ? [] : [...this.data.goods]
+    API.HOME_GOODS(this.page, getApp().globalData.projectInfo.id, {
+      name: this.data.search,
+      category: '1'
+    }).then(({ data, total}) => {
+      cb && cb()
+      that.loading = false
+      goods = [...goods, ...(data.map(o => TOOL.formatGoodsInfo(o)))]
+      that.hasMore = goods.length < total
+      that.setData({
+        loadingMore: false,
+        goods: goods
+      })
+    }).catch(err => {
+      console.log(err)
+      wx.showToast({
+        title: err,
+        icon: 'none'
+      })
+      that.loading = false
+      cb && cb()
+      that.setData({
+        loadingMore: false
+      })
+
     })
   }
 })

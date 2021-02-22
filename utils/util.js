@@ -15,7 +15,7 @@ const formatNumber = n => {
 }
 
 const formatGoodsInfo = (o, isDetal=false) => {
-  o.photos = o.photos.split(',')
+  o.photos = (o.photos || '').split(',')
   o.showPrice = o.is_discounts === 1 ? (o.discounts_price / 100).toFixed(2) : (o.price / 100).toFixed(2)
   o.oldPrice = (o.price / 100).toFixed(2)
   if (!isDetal) {

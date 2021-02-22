@@ -1,15 +1,15 @@
 <block wx:if='{{goods}}'>
 	<view wx:if='{{goods.photos.length > 0}}' class='GoodsDetailImages Box'>
-		<swiper circular='{{true}}' indicator-dots="{{false}}" autoplay="{{false}}" bindchange="onSwiperChange" style="height: 100vw;">
+		<swiper circular='{{true}}' indicator-dots="{{true}}" autoplay="{{false}}" indicator-active-color="#cc9c00" indicator-color="#dfdfdf"  bindchange="onSwiperChange" style="height: 100vw;">
 			<block wx:for="{{goods.photos}}" wx:key="*this">
 				<swiper-item>
 					<image class="Item" src="{{item}}"></image>
 				</swiper-item>
 			</block>
 		</swiper>
-		<view class="Progress">
+		<!-- <view class="Progress">
 			<progress percent="{{imagePercent}}" color="#10AEFF" stroke-width="3" border-radius='1.5' />
-		</view>
+		</view> -->
 	</view>
 	<view class="GoodsDetailMoneyAndShare">
 		<view class="Money">¥{{goods.showPrice}}</view>
