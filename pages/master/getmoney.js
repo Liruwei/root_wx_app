@@ -1,12 +1,14 @@
 // pages/master/getmoney.js
+import API from '../../api'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        money: '100.00',
-        can: '90.00'
+        money: '0.00',
+        can: '0.00',
+        total: '0.00'
     },
 
     /**
@@ -27,7 +29,21 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        wx.showLoading({ title: '请求中'})
+        API.PROJECT_MONEY(getApp().globalData.projectInfo.id).then(({ data: { canMoney, totalMoney, currentMoney} }) => {
+            wx.hideLoading()
+            this.setData({
+                can: (canMoney / 100).toFixed(2),
+                total: (totalMoney / 100).toFixed(2),
+                money: (currentMoney / 100).toFixed(2)
+            })
+        }).catch(err => {
+            wx.hideLoading()
+            wx.showToast({
+              title: err,
+              icon: 'none'
+            })
+        })
     },
 
     /**

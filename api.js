@@ -158,6 +158,17 @@ function PROJECT_INFO(id) {
     });
 }
 
+function PROJECT_MONEY(id) {
+    return new Promise((resolve, reject) => {
+        GET(`/shoptemplate/projectmoney/${id}`, {
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
 function HOME_BANNERS(id) {
     return new Promise((resolve, reject) => {
         GET(`/shoptemplate/banners`, {
@@ -325,6 +336,7 @@ function ORDER_DELETE(id) {
 export default {
     LOGIN,
     PROJECT_LIST,
+    PROJECT_MONEY,
     PROJECT_INFO,
     HOME_BANNERS,
     HOME_GOODS,
