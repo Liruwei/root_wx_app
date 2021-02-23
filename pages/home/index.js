@@ -87,7 +87,7 @@ Page({
 
   onCategoryTap: function ({ currentTarget: {dataset: { category }} }) {
     wx.navigateTo({
-      url: '/pages/goods/category',
+      url: '/pages/goods/category?id=' + category.id,
     })
   },
 

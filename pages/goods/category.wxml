@@ -7,7 +7,7 @@
 </view>
 <view wx:if='{{goods.length > 0}}' class='HomeGoodsList'>
   <view wx:for='{{goods}}' wx:key='id' class="Item" catchtap="onGoodsTap" data-item='{{item}}'>
-    <image class="Image" src="{{item.photo}}"></image>
+    <image class="Image" src="{{item.photos[0]}}"></image>
     <text class="Name">{{item.name}}</text>
     <view class="Footer">
       <text class="Money">¥{{item.showPrice}}</text>

@@ -9,7 +9,8 @@ Page({
         money: '0.00',
         can: '0.00',
         total: '0.00',
-        getmoney: '0'
+        getmoney: '0.00',
+        commission: '0.00'
     },
 
     /**
@@ -35,12 +36,13 @@ Page({
 
     loadData: function() {
         wx.showLoading({ title: '请求中'})
-        API.PROJECT_MONEY(getApp().globalData.projectInfo.id).then(({ data: { canMoney, totalMoney, currentMoney} }) => {
+        API.PROJECT_MONEY(getApp().globalData.projectInfo.id).then(({ data: { canMoney, totalMoney, currentMoney, withdrawMoney} }) => {
             wx.hideLoading()
             this.setData({
                 can: (canMoney / 100).toFixed(2),
                 total: (totalMoney / 100).toFixed(2),
-                money: (currentMoney / 100).toFixed(2)
+                money: (currentMoney / 100).toFixed(2),
+                withdraw: (withdrawMoney / 100).toFixed(2),
             })
         }).catch(err => {
             wx.hideLoading()
@@ -117,18 +119,18 @@ Page({
 
     onBtnTap: function() {
         let that = this
-        // if (this.data.getmoney * 1 < 5) {
-        //     wx.showToast({
-        //       title: '最少提现¥5',
-        //       icon: 'none'
-        //     })
-        //     return
-        // }
+        if (this.data.getmoney * 1 < 5) {
+            wx.showToast({
+              title: '最少提现¥5',
+              icon: 'none'
+            })
+            return
+        }
         wx.showModal({
           cancelColor: '#cc9c00',
           confirmColor: '#dfdfdf',
           title: `提现`,
-          content: `提现金额为¥${(this.data.getmoney *1).toFixed(2)}，每次提现将收取¥0.01作为手续费。`,
+          content: `提现金额为¥${(this.data.getmoney *1).toFixed(2)}，每次提现将收取¥${this.data.withdraw}作为手续费。`,
           success: ({ confirm }) => {
               if (confirm) {
                   wx.showLoading({ title : '请求中'})

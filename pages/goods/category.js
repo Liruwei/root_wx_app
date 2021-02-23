@@ -15,8 +15,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function ({ id }) {
+    this.caregory_id = id
   },
 
   /**
@@ -108,7 +108,7 @@ Page({
     let goods = this.page === 1 ? [] : [...this.data.goods]
     API.HOME_GOODS(this.page, getApp().globalData.projectInfo.id, {
       name: this.data.search,
-      category: '1'
+      category: this.caregory_id
     }).then(({ data, total}) => {
       cb && cb()
       that.loading = false
