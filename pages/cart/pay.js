@@ -11,7 +11,8 @@ Page({
         goods: [{}, {}],
         sendMoney: 0,
         total: 0,
-        remark: undefined
+        remark: undefined,
+        open_send: false
     },
     fromDetail: false,
     /**
@@ -19,6 +20,9 @@ Page({
      */
     onLoad: function ({fromDetail}) {
         this.fromDetail = fromDetail === '1'
+        that.setData({
+             open_send: getApp().globalData.projectInfo.open_send == 1
+        })
         wx.setNavigationBarTitle({
             title: '提交订单',
         })

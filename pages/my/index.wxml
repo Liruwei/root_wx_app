@@ -64,7 +64,7 @@
 				<image class="Icon" src="/icons/icon-address.png"></image>
 				<view class="Title">地址信息</view>
 			</view>
-			<view class="Item">
+			<view class="Item" catchtap="onEnterTap">
 				<image class="Icon" src="/icons/icon-in.png"></image>
 				<view class="Title">邀请入驻</view>
 			</view>

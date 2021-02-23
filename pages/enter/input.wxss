@@ -1,0 +1,63 @@
+/* pages/enter/input.wxss */
+page {
+    font-size: 28rpx;
+    color: #2c2c2c;
+    background-color: #f2f4f5;
+    padding-bottom: 100rpx;
+}
+.EnterIput {
+    padding-top: 20rpx;
+}
+
+.EnterIput .Row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+    margin-bottom: 20rpx;
+    height: 100rpx;
+    background-color: #fff;
+}
+
+.EnterIput .Button {
+    background-color: #cc9c00;
+    margin-left: 40rpx;
+    height: 80rpx;
+    width: calc(100vw - 80rpx);
+    border-radius: 10rpx;
+    color: #fff;
+    margin-top: 40rpx;
+    font-weight: bold;
+    font-size: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.EnterIput .Icon {
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 20rpx;
+}
+
+.EnterIput .Right {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.EnterIput .Input {
+    flex: 1;
+    text-align: right;
+}
+
+.EnterIput .Man {
+    font-size: 28rpx;
+    color: #acacac;
+    text-align: center;
+    margin-top: 40rpx;
+}

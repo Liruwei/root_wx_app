@@ -1,0 +1,2 @@
+<!--pages/enter/picture.wxml-->
+<image class="Picturce" src="{{url}}" mode="aspectFill" style="width: 100%;"></image>

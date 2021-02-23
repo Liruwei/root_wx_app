@@ -105,5 +105,11 @@ Page({
 
   onContectTap: function() {
     
+  },
+
+  onEnterTap: function() {
+    wx.navigateTo({
+      url: '/pages/enter/index',
+    })
   }
 })

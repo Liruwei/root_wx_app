@@ -26,6 +26,16 @@ function Sign(params) {
     }
 }
 
+function DefaultHeader() {
+    let userInfo = getApp().globalData.userInfo
+    let header = {}
+    if (userInfo) {
+        header.Token = userInfo.token
+        header['Open-Id'] = userInfo.openid
+    }
+    return header
+}
+
 function DELETE(url, data, success, fail) {
     let userInfo = getApp().globalData.userInfo
     let header = {}
@@ -378,7 +388,32 @@ function ORDER_DELETE(id) {
     });
 }
 
+function ORDER_FINISH(id) {
+    return new Promise((resolve, reject) => {
+        PUT(`/shoptemplate/order/${id}`, {
+            status: 2
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function UPDATE_USER_INFO(id ,data) {
+    return new Promise((resolve, reject) => {
+        PUT(`/shoptemplate/user/${id}`, {
+            ...data
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
 export default {
+    IMAGE_UPLOAD_URL: `${API_HOST}/shoptemplate/imageupload`,
     LOGIN,
     PROJECT_LIST,
     PROJECT_MONEY,
@@ -396,5 +431,6 @@ export default {
     ORDER_FINISH,
     ORDER_SEND,
     ORDER_CANCEL,
-    WITHDRAW
+    WITHDRAW,
+    UPDATE_USER_INFO
 }

@@ -1,0 +1,63 @@
+<!--pages/enter/input.wxml-->
+<view class="EnterIput">
+	<view class="Row" wx:if='{{man}}'>
+		<view class="Left">邀请人：</view>
+		<view class="Right" style="color:#acacac">
+			{{man}}
+		</view>
+	</view>
+	<view class="Row">
+		<view class="Left"><span style='color:#fa5151'>*</span>店铺名称：</view>
+		<view class="Right">
+			<input class="Input" id='name' bindinput="onInput" placeholder="输入店铺名称"></input>
+		</view>
+	</view>
+	<view class="Row" catchtap="onLoationTap">
+		<view class="Left"><span style='color:#fa5151'>*</span>地理位置：</view>
+		<view class="Right">
+			<span>{{latitude}} {{longitude}}</span>
+			<image src="/icons/right.png" class="Icon"></image>
+		</view>
+	</view>
+	<view class="Row">
+		<view class="Left">店铺简介：</view>
+		<view class="Right">
+			<input class="Input" id='info' bindinput="onInput" placeholder="(可选）店铺简介"></input>
+		</view>
+	</view>
+	<view class="Row">
+		<view class="Left">店铺地址：</view>
+		<view class="Right">
+			<input class="Input" id='area' bindinput="onInput" placeholder="(可选）店铺地址"></input>
+		</view>
+	</view>
+
+	<view class="Row">
+		<view class="Left">配送功能：</view>
+		<view class="Right">
+			<switch color="#cc9c00" bindchange='onSendChange'></switch>
+		</view>
+	</view>
+	<view class="Row" wx:if='{{open_send === 1}}'>
+		<view class="Left">配送费用：</view>
+		<view class="Right">
+			<input type="digit" class="Input" id='send_money' bindinput="onInput" placeholder="输入配送费"></input>
+		</view>
+	</view>
+	<view class="Row" catchtap="onPhotoTap">
+		<view class="Left">店铺照片：</view>
+		<view class="Right">
+			{{photo ? '已上传' : ''}}
+			<image src="/icons/right.png" class="Icon"></image>
+		</view>
+	</view>
+	<view class="Row" catchtap="onLiceneseTap">
+		<view class="Left">营业执照：</view>
+		<view class="Right">
+			{{licenese ? '已上传' : ''}}
+			<image src="/icons/right.png" class="Icon"></image>
+		</view>
+	</view>
+	<view class="Button" catchtap="onEnterTap">入驻</view>
+
+</view>

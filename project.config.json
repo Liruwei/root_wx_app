@@ -142,6 +142,20 @@
 					"id": -1,
 					"name": "pages/master/orders",
 					"pathName": "pages/master/orders",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enter/index",
+					"pathName": "pages/enter/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enter/input",
+					"pathName": "pages/enter/input",
 					"scene": null
 				}
 			]

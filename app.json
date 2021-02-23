@@ -13,6 +13,9 @@
     "pages/master/index",
     "pages/master/money",
     "pages/master/getmoney",
+    "pages/enter/index",
+    "pages/enter/input",
+    "pages/enter/picture",
     "pages/my/index"
   ],
   "window":{
