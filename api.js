@@ -412,6 +412,53 @@ function UPDATE_USER_INFO(id ,data) {
     });
 }
 
+function ENTER(data) {
+    return new Promise((resolve, reject) => {
+        POST('/shoptemplate/projectenter', {
+            ...data
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function ENTER_PAY(data) {
+    return new Promise((resolve, reject) => {
+        POST('/shoptemplate/projectenter/pay', {
+            ...data
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function ENTER_PAY_RESULT(pay_no) {
+    return new Promise((resolve, reject) => {
+        GET(`/shoptemplate/projectenter/pay/${pay_no}`, {
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
+function PROJECT_UPDATE(id ,data) {
+    return new Promise((resolve, reject) => {
+        PUT(`/shoptemplate/project/${id}`, {
+            ...data
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
 export default {
     IMAGE_UPLOAD_URL: `${API_HOST}/shoptemplate/imageupload`,
     LOGIN,
@@ -432,5 +479,9 @@ export default {
     ORDER_SEND,
     ORDER_CANCEL,
     WITHDRAW,
-    UPDATE_USER_INFO
+    UPDATE_USER_INFO,
+    ENTER,
+    ENTER_PAY,
+    ENTER_PAY_RESULT,
+    PROJECT_UPDATE
 }

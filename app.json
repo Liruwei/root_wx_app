@@ -16,6 +16,7 @@
     "pages/enter/index",
     "pages/enter/input",
     "pages/enter/picture",
+    "pages/enter/result",
     "pages/my/index"
   ],
   "window":{

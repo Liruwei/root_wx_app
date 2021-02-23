@@ -16,7 +16,8 @@ Page({
         longitude: undefined,
         open_send: 0,
         send_money: 0,
-        man: '小姑2'
+        man: undefined,
+        id: undefined,
     },
 
     /**
@@ -24,7 +25,12 @@ Page({
      */
     onLoad: function (options) {
         wx.setNavigationBarTitle({
-          title: '填写入驻信息',
+            title: '填写入驻信息',
+        })
+        let userInfo = getApp().globalData.userInfo.project || {}
+        this.setData({
+            ...userInfo,
+            send_money: userInfo.send_money ? (userInfo.send_money / 100).toFixed(2) * 1 : 0
         })
     },
 
@@ -39,7 +45,31 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        try {
+            let projectInfo = getApp().globalData.userInfo.project
+            if (projectInfo.status === 1) {
+                wx.showToast({
+                    title: '您已入驻',
+                    icon: 'none',
+                    duration: 5000,
+                    mask: true
+                })
 
+                wx.setStorage({
+                    data: projectInfo.id,
+                    key: 'project',
+                    success: _ => {
+                        setTimeout(() => {
+                            wx.reLaunch({
+                                url: '/pages/home/index',
+                            })
+                        }, 5000);
+                    }
+                })
+            }
+        } catch (err) {
+            console.log(err)
+        }
     },
 
     /**
@@ -104,7 +134,8 @@ Page({
     },
 
     onEnterTap: function () {
-        const { name = '', phone = '', latitude = '', longitude = '', send_money, open_send } = this.data
+        let that = this
+        const { name = '', phone = '', latitude = '', send_money, open_send } = this.data
         if (phone.replace(/(^s*)|(s*$)/g, "").length == 0) {
             wx.showToast({ title: '请填写正确的“联系电话”', icon: 'none' })
             return
@@ -123,6 +154,40 @@ Page({
                 return
             }
         }
+
+        wx.showLoading({
+            title: '请求中',
+        })
+        let tmp = {
+            ...this.data,
+            send_money: this.data.send_money * 100
+        }
+        if (this.data.id) {
+            API.PROJECT_UPDATE(this.data.id, tmp).then(({ data }) => {
+                that.project = data.id
+                that.onPay()
+            }).catch(err => {
+                wx.hideLoading()
+                wx.showToast({
+                    title: err,
+                    icon: 'none'
+                })
+            })
+        } else {
+            API.ENTER({
+                ...tmp,
+                user_id: getApp().globalData.userInfo.id
+            }).then(({ data }) => {
+                that.project = data.id
+                that.onPay()
+            }).catch(err => {
+                wx.hideLoading()
+                wx.showToast({
+                    title: err,
+                    icon: 'none'
+                })
+            })
+        }
     },
 
     onPhotoTap: function () {
@@ -132,12 +197,12 @@ Page({
                 itemList: ['查看', '修改'],
                 success: ({ tapIndex }) => {
                     if (tapIndex === 1) {
-                        this.chooseImageWithType('photo')            
+                        this.chooseImageWithType('photo')
                     } else {
                         let tmp = encodeURIComponent(that.data.photo)
                         wx.navigateTo({
-                          url: '/pages/enter/picture?type=0&url=' + tmp,
-                        })                        
+                            url: '/pages/enter/picture?type=0&url=' + tmp,
+                        })
                     }
                 }
             })
@@ -153,12 +218,12 @@ Page({
                 itemList: ['查看', '修改'],
                 success: ({ tapIndex }) => {
                     if (tapIndex === 1) {
-                        this.chooseImageWithType('licenese')            
+                        this.chooseImageWithType('licenese')
                     } else {
                         let tmp = encodeURIComponent(that.data.licenese)
                         wx.navigateTo({
-                          url: '/pages/enter/picture?type=1&url=' + tmp,
-                        })                        
+                            url: '/pages/enter/picture?type=1&url=' + tmp,
+                        })
                     }
                 }
             })
@@ -176,7 +241,7 @@ Page({
             sourceType: ['album', 'camera'],
             success({ tempFilePaths }) {
                 wx.showLoading({
-                  title: '上传中',
+                    title: '上传中',
                 })
                 wx.uploadFile({
                     url: API.IMAGE_UPLOAD_URL,
@@ -199,15 +264,71 @@ Page({
                     },
                     fail() {
                         wx.showToast({
-                          title: '上传失败',
-                          icon: 'none'
+                            title: '上传失败',
+                            icon: 'none'
                         })
                     }
                 })
             }
         })
+    },
 
+    onPay: function () {
+        let that = this
+        API.ENTER_PAY({
+            project: this.project
+        }).then(({ data }) => {
+            wx.requestPayment({
+                timeStamp: data.timeStamp,
+                nonceStr: data.nonceStr,
+                package: data.package,
+                signType: data.signType,
+                paySign: data.paySign,
+                success(_) {
+                    that.checkPayResult(data.pay_no)
+                },
+                fail(_) {
+                    wx.hideLoading({})
+                    wx.showToast({
+                        title: '支付失败',
+                        icon: 'none'
+                    })
+                }
+            })
+        }).catch(err => {
+            wx.hideLoading({})
+            wx.showToast({
+                title: err,
+                icon: 'none'
+            })
+        })
+    },
+
+    checkPayResult: function (pay_no) {
+        let that = this
+        API.ENTER_PAY_RESULT(pay_no).then(({ data }) => {
+            if (data) {
+                wx.hideLoading()
+                wx.requestSubscribeMessage({
+                    tmplIds: ['hMuSZePpSdryiyPHWdO74rFfzU-PYKqFRzfMiJt9mfs', 'dTCX8XZLoJ3EtDfjIBaOncR7Jg7uJA2MB-qX0m9egdM', 'HvmGYWg2gHNRkAfgSZa6Lds9ObvlXWkVm4rwWOeRu9o'],
+                    success: _ => {
+                        wx.redirectTo({ url: '/pages/enter/result' })
+                    },
+                    fail: _ => {
+                        wx.redirectTo({ url: '/pages/enter/result' })
+                    }
+                })
+            } else {
+                setTimeout(() => {
+                    that.checkPayResult(pay_no)
+                }, 1000);
+            }
+        }).catch(err => {
+            wx.hideLoading()
+            wx.showToast({
+                title: err,
+                icon: 'none'
+            })
+        })
     }
-
-
 })

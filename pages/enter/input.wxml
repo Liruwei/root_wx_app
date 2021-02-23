@@ -7,41 +7,47 @@
 		</view>
 	</view>
 	<view class="Row">
+		<view class="Left"><span style='color:#fa5151'>*</span>联系方式：</view>
+		<view class="Right">
+			<input class="Input" id='phone' value='{{phone}}' bindinput="onInput" placeholder="输入联系方式"></input>
+		</view>
+	</view>
+	<view class="Row">
 		<view class="Left"><span style='color:#fa5151'>*</span>店铺名称：</view>
 		<view class="Right">
-			<input class="Input" id='name' bindinput="onInput" placeholder="输入店铺名称"></input>
+			<input class="Input" id='name' value='{{name}}' bindinput="onInput" placeholder="输入店铺名称"></input>
 		</view>
 	</view>
 	<view class="Row" catchtap="onLoationTap">
 		<view class="Left"><span style='color:#fa5151'>*</span>地理位置：</view>
 		<view class="Right">
-			<span>{{latitude}} {{longitude}}</span>
+			<span>{{latitude || ''}} {{longitude || ''}}</span>
 			<image src="/icons/right.png" class="Icon"></image>
 		</view>
 	</view>
 	<view class="Row">
 		<view class="Left">店铺简介：</view>
 		<view class="Right">
-			<input class="Input" id='info' bindinput="onInput" placeholder="(可选）店铺简介"></input>
+			<input class="Input" id='info'  value='{{info}}' bindinput="onInput" placeholder="(可选）店铺简介"></input>
 		</view>
 	</view>
 	<view class="Row">
 		<view class="Left">店铺地址：</view>
 		<view class="Right">
-			<input class="Input" id='area' bindinput="onInput" placeholder="(可选）店铺地址"></input>
+			<input class="Input" id='area'  value='{{area}}' bindinput="onInput" placeholder="(可选）店铺地址"></input>
 		</view>
 	</view>
 
 	<view class="Row">
 		<view class="Left">配送功能：</view>
 		<view class="Right">
-			<switch color="#cc9c00" bindchange='onSendChange'></switch>
+			<switch checked='{{open_send === 1}}' color="#cc9c00" bindchange='onSendChange'></switch>
 		</view>
 	</view>
 	<view class="Row" wx:if='{{open_send === 1}}'>
 		<view class="Left">配送费用：</view>
 		<view class="Right">
-			<input type="digit" class="Input" id='send_money' bindinput="onInput" placeholder="输入配送费"></input>
+			<input type="digit" class="Input" value='{{send_money}}' id='send_money' bindinput="onInput" placeholder="输入配送费"></input>
 		</view>
 	</view>
 	<view class="Row" catchtap="onPhotoTap">
@@ -59,5 +65,4 @@
 		</view>
 	</view>
 	<view class="Button" catchtap="onEnterTap">入驻</view>
-
 </view>

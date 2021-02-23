@@ -1,0 +1,2 @@
+/* pages/enter/result.wxss */
+@import '/pages/cart/result.wxss';

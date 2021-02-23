@@ -88,9 +88,12 @@ Page({
                     that.loadShopInfo(data)
                 },
                 fail: _ => {
+                    // wx.reLaunch({
+                    //     url: '/pages/shoplist/index',
+                    // })
                     wx.reLaunch({
-                        url: '/pages/shoplist/index',
-                    })
+                        url: '/pages/enter/input',
+                      })     
                 }
             })
         }
@@ -113,12 +116,12 @@ Page({
             } else {
                 wx.hideLoading({
                     success: _ => {
-                        // wx.reLaunch({
-                        //     url: '/pages/order/detail?order_id=70&master=true',
-                        //   })          
                         wx.reLaunch({
-                            url: '/pages/home/index',
-                        })
+                            url: '/pages/enter/input',
+                          })          
+                        // wx.reLaunch({
+                        //     url: '/pages/home/index',
+                        // })
                     },
                 })
             }
