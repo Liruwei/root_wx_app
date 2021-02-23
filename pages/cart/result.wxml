@@ -42,5 +42,8 @@
 	<block wx:if='{{pageType === 0}}'>
 		<view class="RePay" catchtap="toOrderTap">重新支付</view>
 	</block>
+	<block wx:else>
+		<view class="RePay" catchtap="toOrderDetailTap">返回订单</view>
+	</block>
 	<view class="ToHome" catchtap="toHomeTap">返回首页</view>
 </view>

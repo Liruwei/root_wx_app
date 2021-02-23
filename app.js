@@ -182,12 +182,12 @@ App({
       })
     })
   },
-  checkGoodsInfo: function (cb) {
+  checkGoodsInfo: function (cb, showLoading=true) {
     let that = this
     let orderGoods = [...this.globalData.orderGoods]
     let gids = this.globalData.orderGoods.map(o => o.id)
     let project = this.globalData.projectInfo.id
-    wx.showLoading({ title: '请求中' })
+    showLoading && wx.showLoading({ title: '请求中' })
     API.HOME_GOODS(1, project, { id: gids }, 10000).then(({ data }) => {
       let msg = undefined
       data.forEach(item => {
@@ -216,9 +216,10 @@ App({
         delete o.didChecked
       })
       that.delGoodsFromCartSync(orderGoods.filter(o => o.didUpdate))
-      wx.hideLoading({})
+      showLoading && wx.hideLoading({})
       cb && cb(msg, orderGoods)
     }).catch(err => {
+      showLoading && wx.hideLoading({})
       cb && cb(err, orderGoods)
     })
   },

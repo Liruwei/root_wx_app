@@ -128,5 +128,11 @@ Page({
     wx.reLaunch({
       url: '/pages/home/index',
     })
+  },
+
+  toOrderDetailTap: function() {
+    wx.navigateBack({
+      delta: 1,
+    })
   }
 })

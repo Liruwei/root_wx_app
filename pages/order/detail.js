@@ -156,9 +156,8 @@ Page({
 
     onPayOrer: function () {
         let that = this
-        wx.showLoading({ title: '请求中' })
+        wx.showLoading({ title: '请求中', mask: true })
         API.ORDER_REPAY(this.order_id).then(({ data }) => {
-            wx.hideLoading()
             wx.requestPayment({
                 timeStamp: data.payinfo.timeStamp,
                 nonceStr: data.payinfo.nonceStr,
@@ -172,9 +171,11 @@ Page({
                     wx.requestSubscribeMessage({
                         tmplIds: ['hMuSZePpSdryiyPHWdO74rFfzU-PYKqFRzfMiJt9mfs', 'dTCX8XZLoJ3EtDfjIBaOncR7Jg7uJA2MB-qX0m9egdM', 'HvmGYWg2gHNRkAfgSZa6Lds9ObvlXWkVm4rwWOeRu9o'],
                         success: _ => { 
+                            wx.hideLoading()
                             wx.navigateTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
                         },
                         fail: _ => {
+                            wx.hideLoading()
                             wx.navigateTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
                         }
                     })
@@ -183,16 +184,17 @@ Page({
                     wx.requestSubscribeMessage({
                         tmplIds: ['hMuSZePpSdryiyPHWdO74rFfzU-PYKqFRzfMiJt9mfs', 'dTCX8XZLoJ3EtDfjIBaOncR7Jg7uJA2MB-qX0m9egdM', 'HvmGYWg2gHNRkAfgSZa6Lds9ObvlXWkVm4rwWOeRu9o'],
                         success: _ => { 
+                            wx.hideLoading()
                             wx.navigateTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=0&fromDetail=1` })
                         },
                         fail: _ => {
+                            wx.hideLoading()
                             wx.navigateTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=0&fromDetail=1` })
                         }
                     })
                 }
             })
         }).catch(err => {
-            wx.hideLoading()
             wx.showToast({
                 title: err,
                 icon: 'none'

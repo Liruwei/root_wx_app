@@ -92,6 +92,7 @@ page {
 }
 
 .HomeCategory .Item .Content .Text {
+    font-size: 20rpx;
 }
 
 .HomeCategory .Item:last-child {

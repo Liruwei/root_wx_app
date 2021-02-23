@@ -1,5 +1,5 @@
-const API_HOST = "http://localhost:5000"
-// const API_HOST = "http://192.168.0.104:5000"
+// const API_HOST = "http://localhost:5000"
+const API_HOST = "http://192.168.31.75:5000"
 
 const md5 = require('js-md5');
 function Sign(params) {

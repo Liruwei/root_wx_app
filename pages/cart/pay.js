@@ -20,7 +20,7 @@ Page({
      */
     onLoad: function ({fromDetail}) {
         this.fromDetail = fromDetail === '1'
-        that.setData({
+        this.setData({
              open_send: getApp().globalData.projectInfo.open_send == 1
         })
         wx.setNavigationBarTitle({
@@ -111,7 +111,7 @@ Page({
                 } else {
                     resolve()
                 }
-            })
+            }, false)
         })
     },
 
@@ -137,6 +137,7 @@ Page({
                 send_address: `${address.userName} ${address.telNumber} ${address.provinceName}${address.cityName}${address.countyName}${address.detailInfo}`
             } : {})
         })
+        wx.showLoading({ title: '请求中', mask: true})
         this.checkGoodsInfo().then(() => createOrderPromise()).then(({ data }) => {
             wx.requestPayment({
                 timeStamp: data.payinfo.timeStamp,
@@ -149,9 +150,11 @@ Page({
                     wx.requestSubscribeMessage({
                         tmplIds: ['hMuSZePpSdryiyPHWdO74rFfzU-PYKqFRzfMiJt9mfs', 'dTCX8XZLoJ3EtDfjIBaOncR7Jg7uJA2MB-qX0m9egdM', 'HvmGYWg2gHNRkAfgSZa6Lds9ObvlXWkVm4rwWOeRu9o'],
                         success: _ => { 
+                            wx.hideLoading()
                             wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
                         },
                         fail: _ => {
+                            wx.hideLoading()
                             wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
                         }
                     })
@@ -161,15 +164,19 @@ Page({
                     wx.requestSubscribeMessage({
                         tmplIds: ['hMuSZePpSdryiyPHWdO74rFfzU-PYKqFRzfMiJt9mfs', 'dTCX8XZLoJ3EtDfjIBaOncR7Jg7uJA2MB-qX0m9egdM', 'HvmGYWg2gHNRkAfgSZa6Lds9ObvlXWkVm4rwWOeRu9o'],
                         success: _ => { 
+                            wx.hideLoading()
                             wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=0` })
                         },
                         fail: _ => {
+                            wx.hideLoading()
                             wx.redirectTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=0` })
                         }
                     })
                 }
             })
-        }).catch(err => wx.showToast({ title: err, icon: 'none', duration: 3500 }))
+        }).catch(err => {
+            wx.showToast({ title: err, icon: 'none', duration: 3500 })
+        })
     },
 
     onOrderTypeTap: function ({ currentTarget: { dataset: { value } } }) {
