@@ -1,5 +1,5 @@
-const API_HOST = "http://localhost:5000"
-// const API_HOST = "http://192.168.31.75:5000"
+// const API_HOST = "http://localhost:5000"
+const API_HOST = "http://192.168.10.209:5000"
 
 const md5 = require('js-md5');
 function Sign(params) {
@@ -412,6 +412,17 @@ function UPDATE_USER_INFO(id ,data) {
     });
 }
 
+function GET_USER_INFO(id) {
+    return new Promise((resolve, reject) => {
+        GET(`/shoptemplate/user/${id}`, {
+        }, res=> {
+            resolve(res)
+        }, error => {
+            reject(error)
+        });
+    });
+}
+
 function ENTER(data) {
     return new Promise((resolve, reject) => {
         POST('/shoptemplate/projectenter', {
@@ -480,6 +491,7 @@ export default {
     ORDER_CANCEL,
     WITHDRAW,
     UPDATE_USER_INFO,
+    GET_USER_INFO,
     ENTER,
     ENTER_PAY,
     ENTER_PAY_RESULT,

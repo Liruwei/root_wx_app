@@ -73,13 +73,6 @@ Page({
     this.loadNextPage()
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   onOrderDetailTap: function({ currentTarget: { dataset: { id}}}) {
     let that = this
     wx.navigateTo({

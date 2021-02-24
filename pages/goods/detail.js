@@ -98,7 +98,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      path: `/pages/index/index?project=${getApp().globalData.projectInfo.id}&product=${this.data.goods.id}`
+    }
   },
 
   onCloseAddView: function () {

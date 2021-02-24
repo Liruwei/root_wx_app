@@ -23,7 +23,21 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function ({ inviter }) {
+        let that = this
+        if (inviter) {
+            this.inviter = inviter * 1
+            API.GET_USER_INFO(this.inviter).then(({ data }) => {
+                if (data) {
+                    that.setData({
+                        man: data.name || undefined
+                    })
+                }
+            })
+        } else {
+            this.inviter = 0
+        }
+        
         wx.setNavigationBarTitle({
             title: '填写入驻信息',
         })
@@ -54,7 +68,7 @@ Page({
                     duration: 5000,
                     mask: true
                 })
-
+                getApp().globalData.projectInfo = projectInfo
                 wx.setStorage({
                     data: projectInfo.id,
                     key: 'project',
@@ -97,13 +111,6 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
 
     },
 
@@ -277,7 +284,7 @@ Page({
         let that = this
         API.ENTER_PAY({
             project: this.project,
-            inviter: 2
+            inviter: this.inviter
         }).then(({ data }) => {
             wx.requestPayment({
                 timeStamp: data.timeStamp,

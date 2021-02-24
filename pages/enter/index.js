@@ -62,12 +62,14 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      path: `/pages/index/index?inviter=${getApp().globalData.userInfo.id}`
+    }
+  },
 
     onInviteTap: function({ detail: { userInfo, errMsg }}) {
         if (errMsg !== 'getUserInfo:ok') return

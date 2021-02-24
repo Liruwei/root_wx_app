@@ -81,12 +81,6 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
 
     bindinput: function ({ detail: { value}}) {
         if (value.length === 1 && '0' === value) {

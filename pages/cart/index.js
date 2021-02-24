@@ -75,12 +75,7 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
-  },
 
   onEditTap: function () {
     let items = [...this.data.items.filter(o => o.num > 0)].map(o => {
