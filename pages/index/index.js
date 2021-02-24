@@ -2,6 +2,9 @@
 Page({
     data: {},
     onLoad: function (options) {
+        wx.setNavigationBarTitle({
+          title: '加载中',
+        })
         let that = this
         console.log(options)
         if (getApp().globalData.userInfo) {

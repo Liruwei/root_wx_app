@@ -1,1 +1,51 @@
 /* pages/index/index.wxss */
+page {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 28rpx;
+    color: #cc9c00;
+}
+.IndexIndexLoading{
+    width: 200rpx;
+    height: 20rpx;
+    margin: 0 0 0 70rpx;
+}
+.IndexIndexLoading span{
+    display: inline-block;
+    width: 20rpx;
+    height: 100%;
+    margin-right: 5px;
+    border-radius: 50%;
+    background: #cc9c00;
+    -webkit-animation: load 1.04s ease infinite;
+}
+.IndexIndexLoading span:last-child{
+    margin-right: 0px; 
+}
+@-webkit-keyframes load{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+.IndexIndexLoading span:nth-child(1){
+    -webkit-animation-delay:0.13s;
+}
+.IndexIndexLoading span:nth-child(2){
+    -webkit-animation-delay:0.26s;
+}
+.IndexIndexLoading span:nth-child(3){
+    -webkit-animation-delay:0.39s;
+}
+.IndexIndexLoading span:nth-child(4){
+    -webkit-animation-delay:0.52s;
+}
+.IndexIndexLoading span:nth-child(5){
+    -webkit-animation-delay:0.65s;
+}
