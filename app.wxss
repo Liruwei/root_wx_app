@@ -20,3 +20,49 @@
   align-items: center;
   justify-content: center;
 }
+
+.GlobalEmpty {
+  width: 100vw;
+  padding-top: 100rpx;
+  padding-bottom: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.GlobalEmptyIcon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 30rpx;
+}
+
+.GlobalEmptyText {
+  color: #acacac;
+  font-size: 28rpx;
+}
+
+.GlobalStore {
+  position: fixed;
+  bottom: 140rpx;
+  right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 10rpx 10rpx;
+  border-radius: 20rpx;
+  box-shadow: 1px 1px 5px #acacac;
+}
+
+.GlobalStoreIcon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 10rpx;
+}
+
+.GlobalText {
+  font-size: 20rpx;
+  color: #cc9c00;
+}

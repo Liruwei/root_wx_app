@@ -116,12 +116,12 @@ Page({
             } else {
                 wx.hideLoading({
                     success: _ => {
-                        wx.reLaunch({
-                            url: '/pages/enter/input',
-                          })          
                         // wx.reLaunch({
-                        //     url: '/pages/home/index',
-                        // })
+                        //     url: '/pages/enter/input',
+                        //   })          
+                        wx.reLaunch({
+                            url: '/pages/home/index',
+                        })
                     },
                 })
             }

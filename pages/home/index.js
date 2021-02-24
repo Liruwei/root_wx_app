@@ -12,7 +12,8 @@ Page({
     categoryPercent: 0,
     banners: [],
     categorys: [],
-    goods: []
+    goods: [],
+    hasProject: false,
   },
   page: 1,
   loading: false,
@@ -39,7 +40,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.setData({
+      hasProject: getApp().hasProject()
+    }) 
   },
 
   /**
@@ -142,4 +145,7 @@ Page({
       })
     });
   },
+  toMyProjectTap: function() {
+    getApp().toMyProject()
+  }
 })

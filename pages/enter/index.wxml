@@ -3,7 +3,7 @@
 	<image src="/icons/invite.png" style="width: 50rpx; height: 50rpx"></image>
 	<view style="margin-left:30rpx">邀请入驻</view>
 </button>
-<view class="EnterMe" catchtap="onSelfTap">
+<view wx:if='{{!isMaster}}' class="EnterMe" catchtap="onSelfTap">
 	<image src="/icons/enter.png" style="width: 50rpx; height: 50rpx"></image>
 	<view  style="margin-left:30rpx">我要开店</view>
 </view>

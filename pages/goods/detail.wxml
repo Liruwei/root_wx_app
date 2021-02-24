@@ -1,6 +1,6 @@
 <block wx:if='{{goods}}'>
 	<view wx:if='{{goods.photos.length > 0}}' class='GoodsDetailImages Box'>
-		<swiper circular='{{true}}' indicator-dots="{{true}}" autoplay="{{false}}" indicator-active-color="#cc9c00" indicator-color="#dfdfdf"  bindchange="onSwiperChange" style="height: 100vw;">
+		<swiper circular='{{true}}' indicator-dots="{{true}}" autoplay="{{false}}" indicator-active-color="#cc9c00" indicator-color="#dfdfdf" style="height: 100vw;height:100vw;">
 			<block wx:for="{{goods.photos}}" wx:key="*this">
 				<swiper-item>
 					<image class="Item" src="{{item}}"></image>
@@ -57,5 +57,12 @@
 				</view>
 			</view>
 		</view>
+	</view>
+</block>
+<block wx:if='{{hasProject}}'>
+	<view class="GlobalStore" catchtap="toMyProjectTap">
+		<image class="GlobalStoreIcon" src="/icons/icon-instore.png"></image>
+		<view class="GlobalText">我是店主</view>
+		<view class="GlobalText">点击前往</view>
 	</view>
 </block>

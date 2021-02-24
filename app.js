@@ -226,6 +226,38 @@ App({
   deleGoodsInCartAfterPay: function () {
     this.delGoodsFromCart(this.globalData.orderGoods.map(o => o.id), null, false)
   },
+  isMaster: function(){
+    try {
+      const { projectInfo, userInfo: { project }} = this.globalData
+      if (project.status === 1 && projectInfo.id == project.id) {
+        return true
+      }
+      return false
+    } catch(e) {
+      return false
+    }
+  },
+  hasProject: function(){
+    try {
+      const {projectInfo, userInfo: { project }} = this.globalData
+      if (project && project.status === 1 ) {
+        if (projectInfo && projectInfo.id === project.id) {
+          return false
+        }
+        return true
+      }
+      return false
+    } catch(e) {
+      return false
+    }
+  },
+  toMyProject: function() {
+    wx.setStorageSync('project', this.globalData.userInfo.project.id)
+    this.globalData.projectInfo = this.globalData.userInfo.project
+    wx.reLaunch({
+      url: '/pages/home/index',
+    })
+  },
   globalData: {
     userInfo: null,
     projectInfo: null,

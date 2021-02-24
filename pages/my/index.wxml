@@ -12,7 +12,7 @@
 			<view class="ID">ID：VID{{userId}}</view>
 		</view>
 	</view>
-	<view class="MyBox">
+	<view class="MyBox" wx:if='{{isMaster}}'>
 		<view class="MyTitle">店主服务</view>
 		<view class="MyOrder">
 			<view class="Item" catchtap="onMasterOrderTap">
@@ -70,5 +70,11 @@
 			</view>
 		</view>
 	</view>
-
 </view>
+<block wx:if='{{hasProject}}'>
+	<view class="GlobalStore" catchtap="toMyProjectTap">
+		<image class="GlobalStoreIcon" src="/icons/icon-instore.png"></image>
+		<view class="GlobalText">我是店主</view>
+		<view class="GlobalText">点击前往</view>
+	</view>
+</block>

@@ -18,3 +18,9 @@
 <block wx:if='{{loadingMore}}'>
 	<template is="footer_loading" />
 </block>
+<block wx:if='{{!(goods && goods.length > 0)}}'>
+	<view class="GlobalEmpty">
+		<image src="/icons/empty.png" class="GlobalEmptyIcon"></image>
+		<view class="GlobalEmptyText">暂无数据</view>
+	</view>
+</block>

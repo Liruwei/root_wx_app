@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+      project: undefined
     },
 
     /**
@@ -14,6 +14,14 @@ Page({
     onLoad: function (options) {
         wx.setNavigationBarTitle({
           title: '成功',
+        })
+        const project = getApp().globalData.userInfo.project
+
+        this.setData({
+          project: {
+            ...project,
+            create_time: (new Date(project.create_time * 1)).toLocaleString()
+          }
         })
     },
 
@@ -59,10 +67,9 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
+    toHomeTap: function () {
+      wx.reLaunch({
+        url: '/pages/home/index',
+      })
     }
 })

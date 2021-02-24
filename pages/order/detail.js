@@ -319,5 +319,8 @@ Page({
             scale: 18,
             name: projectInfo.name
           })
+    },
+    toMyProjectTap: function() {
+      getApp().toMyProject()
     }
 })

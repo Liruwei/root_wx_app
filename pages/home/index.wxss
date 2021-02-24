@@ -31,7 +31,8 @@ page {
 }
 
 .HomeBanner .Item {
-    height: 300rpx;
+    height: calc((100vw - 40rpx) * 2 / 5);
+    width: calc(100vw - 40rpx);
 }
 
 .HomeBanner .A {
@@ -83,9 +84,9 @@ page {
 }
 
 .HomeCategory .Item .Content .Icon {
-    width: 100rpx;
-    height: 100rpx;
-    margin-bottom: 10rpx;
+    width: 60rpx;
+    height: 60rpx;
+    margin-bottom: 20rpx;
     background-color: lightgray;
     box-sizing: border-box;
     overflow: hidden;
@@ -125,7 +126,6 @@ page {
 .HomeGoodsList .Item .Image {
     width: calc((100vw - 60rpx) * 0.5);
     height: calc((100vw - 60rpx) * 0.5);
-    background-color: lightgray;
     border-radius: 10rpx;
 }
 

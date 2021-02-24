@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userId: '-'
+    userId: '-',
+    isMaster: false,
+    hasProject: false
   },
 
   /**
@@ -28,7 +30,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      isMaster: getApp().isMaster(),
+      hasProject: getApp().hasProject()
+    })
   },
 
   /**
@@ -111,5 +116,8 @@ Page({
     wx.navigateTo({
       url: '/pages/enter/index',
     })
+  },
+  toMyProjectTap: function() {
+    getApp().toMyProject()
   }
 })

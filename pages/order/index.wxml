@@ -117,3 +117,10 @@
 		<template is="footer_loading" />
 	</block>
 </view>
+
+<block wx:if='{{!(orders && orders.length > 0)}}'>
+	<view class="GlobalEmpty">
+		<image src="/icons/empty.png" class="GlobalEmptyIcon"></image>
+		<view class="GlobalEmptyText">暂无数据</view>
+	</view>
+</block>

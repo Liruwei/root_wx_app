@@ -276,7 +276,8 @@ Page({
     onPay: function () {
         let that = this
         API.ENTER_PAY({
-            project: this.project
+            project: this.project,
+            inviter: 2
         }).then(({ data }) => {
             wx.requestPayment({
                 timeStamp: data.timeStamp,
@@ -309,6 +310,9 @@ Page({
         API.ENTER_PAY_RESULT(pay_no).then(({ data }) => {
             if (data) {
                 wx.hideLoading()
+                getApp().globalData.userInfo.project = data
+                getApp().globalData.projectInfo = data
+                wx.setStorageSync('project', data.id)
                 wx.requestSubscribeMessage({
                     tmplIds: ['hMuSZePpSdryiyPHWdO74rFfzU-PYKqFRzfMiJt9mfs', 'dTCX8XZLoJ3EtDfjIBaOncR7Jg7uJA2MB-qX0m9egdM', 'HvmGYWg2gHNRkAfgSZa6Lds9ObvlXWkVm4rwWOeRu9o'],
                     success: _ => {

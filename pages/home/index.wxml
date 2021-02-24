@@ -1,7 +1,7 @@
 <!--pages/home/index.wxml-->
 <import src='/pages/template/footer.wxml' />
 <view wx:if='{{banners.length > 0}}' class='HomeBanner HomeBox'>
-	<swiper circular='{{true}}' indicator-dots="{{true}}" indicator-active-color="#cc9c00" indicator-color="#dfdfdf" autoplay="{{false}}" bindchange="onSwiperChange"
+	<swiper circular='{{true}}' indicator-dots="{{true}}" indicator-active-color="#cc9c00" indicator-color="#dfdfdf" autoplay="{{false}}"
 		style="height: calc((100vw - 40rpx) * 2 / 5);">
 		<block wx:for="{{banners}}" wx:key="*this">
 			<swiper-item>
@@ -39,4 +39,11 @@
 </view>
 <block wx:if='{{loadMore}}'>
 	<template is="footer_loading" />
+</block>
+<block wx:if='{{hasProject}}'>
+	<view class="GlobalStore" catchtap="toMyProjectTap">
+		<image class="GlobalStoreIcon" src="/icons/icon-instore.png"></image>
+		<view class="GlobalText">我是店主</view>
+		<view class="GlobalText">点击前往</view>
+	</view>
 </block>

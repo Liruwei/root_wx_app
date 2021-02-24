@@ -10,20 +10,16 @@
 			<view class="Value">{{project.name}}</view>
 		</view>
 		<view class="Item">
-			<view class="Name">联系方式</view>
-			<view class="Value">{{order.phone}}</view>
-		</view>
-		<view class="Item">
 			<view class="Name">创建时间</view>
 			<view class="Value">{{project.create_time}}</view>
 		</view>
 		<view class="Item">
-			<view class="Name">入驻金额</view>
-			<view class="Value">¥{{project.create_time}}</view>
+			<view class="Name">联系方式</view>
+			<view class="Value">{{project.phone}}</view>
 		</view>
 		<view class="Item">
-			<view class="Name">支付方式</view>
-			<view class="Value">微信</view>
+			<view class="Name">配送功能</view>
+			<view class="Value">{{project.open_send === 1 ? '打开' : '关闭'}}</view>
 		</view>
 	</view>
 	<view class="ToHome" catchtap="toHomeTap">前往店铺</view>

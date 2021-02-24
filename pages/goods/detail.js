@@ -12,7 +12,8 @@ Page({
     cartNum: 0,
     imagePercent: 0,
     addViewShow: false,
-    addViewShowContent: false
+    addViewShowContent: false,
+    hasProject: false
   },
 
   /**
@@ -29,7 +30,6 @@ Page({
       that.setData({
         goods: TOOL.formatGoodsInfo(res.data, true)
       })
-      console.log(res)
     }).catch(err => {
       wx.showToast({
         title: err,
@@ -61,7 +61,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      hasProject: getApp().hasProject()
+    }) 
   },
 
   /**
@@ -97,10 +99,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  onSwiperChange: function ({ detail: { current } }) {
-    this.setData({ imagePercent: (current + 1) / (this.data.photos.length * 1.0) * 100 })
   },
 
   onCloseAddView: function () {
@@ -203,5 +201,8 @@ Page({
     this.setData({
       num: Math.min(this.data.goods.stock, this.data.num + 1)
     })
+  },
+  toMyProjectTap: function() {
+    getApp().toMyProject()
   }
 })

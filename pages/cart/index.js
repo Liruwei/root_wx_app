@@ -9,7 +9,8 @@ Page({
     idEdit: false,
     checkAll: false,
     total: 0.0,
-    checkNum: 0
+    checkNum: 0,
+    hasProject: false
   },
 
   /**
@@ -41,6 +42,9 @@ Page({
       })
       that.upFooter(items)
     })
+    this.setData({
+      hasProject: getApp().hasProject()
+    }) 
   },
 
   /**
@@ -212,5 +216,8 @@ Page({
       that.setData({ items: [...items] })
       that.upFooter(items)
     })
+  },
+  toMyProjectTap: function() {
+    getApp().toMyProject()
   }
 })
