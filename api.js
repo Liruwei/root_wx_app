@@ -1,5 +1,5 @@
 // const API_HOST = "http://localhost:5000"
-const API_HOST = "http://192.168.10.209:5000"
+const API_HOST = "https://api.liruwei.cn"
 
 const md5 = require('js-md5');
 function Sign(params) {
