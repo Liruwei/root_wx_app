@@ -13,7 +13,10 @@
 	</view>
 	<view class="GoodsDetailMoneyAndShare">
 		<view class="Money">¥{{goods.showPrice}}</view>
-		<image class="Share" src="/icons/share.png"></image>
+		<button open-type="share" class="GlobalButton" style="padding:0;margin:0;width:70rpx;height:70rpx;">
+			<image class="Share" src="/icons/share.png"></image>
+		</button>
+		
 	</view>
 	<view class="GoodsDetailName">{{goods.name}}</view>
 	<view class="GoodsDetailInfo">{{goods.info}}</view>

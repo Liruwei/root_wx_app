@@ -206,5 +206,11 @@ Page({
   },
   toMyProjectTap: function() {
     getApp().toMyProject()
+  },
+  onShareTap: function() {
+    console.log('===')
+    wx.showShareMenu({
+      withShareTicket: true,
+    })
   }
 })
