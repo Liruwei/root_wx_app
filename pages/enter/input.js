@@ -82,7 +82,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        wx.hideHomeButton({
+          success: (res) => {},
+        })
     },
 
     /**
@@ -129,12 +131,27 @@ Page({
         let that = this
         wx.getSetting({
             success(res) {
-                console.log(res)
+                console.log(!res.authSetting['scope.userLocation'])
                 if (!res.authSetting['scope.userLocation']) {
                     wx.authorize({
                         scope: 'scope.userLocation',
                         success() {
                             that.chooseLocation()
+                        },
+                        fail: ({ errMsg }) => {
+                            if (errMsg.includes('authorize:fail')) {
+                                wx.showModal({
+                                    title: '开启定位权限',
+                                    confirmText: '前往开启',
+                                    confirmColor: '#cc9c00',
+                                    success: ({ confirm}) => {
+                                        if (confirm) {
+                                            wx.openSetting({})
+                                        }
+                                    }
+                                })
+                            }
+                            console.log(err)
                         }
                     })
                 } else {
