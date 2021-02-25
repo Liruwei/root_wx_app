@@ -45,6 +45,10 @@ Page({
     this.setData({
       hasProject: getApp().hasProject()
     }) 
+    wx.hideHomeButton({
+      success: (res) => {},
+    })
+
   },
 
   /**

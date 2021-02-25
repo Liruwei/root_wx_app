@@ -29,7 +29,8 @@
 		</view>
 	</view>
 	<view class="MyBox">
-		<view class="MyTitle">我的订单<span style='font-size:20rpx;color:gray;' catchtap="onOrderTap" data-index='0'>查看全部</span></view>
+		<view class="MyTitle">我的订单<span style='font-size:20rpx;color:gray;' catchtap="onOrderTap"
+				data-index='0'>查看全部</span></view>
 		<view class="MyOrder">
 			<view class="Item" catchtap="onOrderTap" data-index='0'>
 				<image class="Icon" src="/icons/icon-unpay.png"></image>
@@ -64,10 +65,10 @@
 				<image class="Icon" src="/icons/icon-address.png"></image>
 				<view class="Title">地址信息</view>
 			</view>
-			<view class="Item" catchtap="onEnterTap">
+			<button class="Item" open-type="getUserInfo" bindgetuserinfo="onEnterTap">
 				<image class="Icon" src="/icons/icon-in.png"></image>
 				<view class="Title">邀请入驻</view>
-			</view>
+			</button>
 		</view>
 	</view>
 </view>

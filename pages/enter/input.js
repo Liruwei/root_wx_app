@@ -24,7 +24,33 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function ({ inviter }) {
-        let that = this
+        wx.setNavigationBarTitle({
+            title: '填写入驻信息',
+        })
+        wx.showLoading({title: '加载中'})
+        try {
+            let projectInfo = getApp().globalData.userInfo.project
+            wx.hideLoading({})
+            if (projectInfo.status === 1) {
+                
+                getApp().globalData.projectInfo = projectInfo
+                wx.setStorage({
+                    data: projectInfo.id,
+                    key: 'project',
+                    success: _ => {
+                        wx.redirectTo({ url: '/pages/enter/result' })
+                    }
+                })
+            } else {
+                wx.hideLoading({})
+                this.getManInfo(inviter)
+            }
+        } catch (err) {
+            this.getManInfo(inviter)
+        }
+    },
+
+    getManInfo: function(inviter) {
         if (inviter) {
             this.inviter = inviter * 1
             API.GET_USER_INFO(this.inviter).then(({ data }) => {
@@ -37,10 +63,6 @@ Page({
         } else {
             this.inviter = 0
         }
-        
-        wx.setNavigationBarTitle({
-            title: '填写入驻信息',
-        })
         let userInfo = getApp().globalData.userInfo.project || {}
         this.setData({
             ...userInfo,
@@ -59,31 +81,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        try {
-            let projectInfo = getApp().globalData.userInfo.project
-            if (projectInfo.status === 1) {
-                wx.showToast({
-                    title: '您已入驻',
-                    icon: 'none',
-                    duration: 5000,
-                    mask: true
-                })
-                getApp().globalData.projectInfo = projectInfo
-                wx.setStorage({
-                    data: projectInfo.id,
-                    key: 'project',
-                    success: _ => {
-                        setTimeout(() => {
-                            wx.reLaunch({
-                                url: '/pages/home/index',
-                            })
-                        }, 5000);
-                    }
-                })
-            }
-        } catch (err) {
-            console.log(err)
-        }
+
     },
 
     /**

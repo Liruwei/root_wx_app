@@ -639,7 +639,7 @@
 .bf-modal-root [class*=" bfi-"],
 .bf-modal-root [class^=bfi-] {
   font-family: braft-icons !important;
-  speak: none;
+  /* speak: none; */
   font-style: normal;
   font-weight: 400;
   font-variant: normal;

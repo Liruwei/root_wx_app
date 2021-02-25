@@ -67,7 +67,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      path: `/pages/index/index?inviter=${getApp().globalData.userInfo.id}`
+      path: `/pages/index/index?inviter=${getApp().globalData.userInfo.id}`,
     }
   },
 

@@ -1,4 +1,5 @@
 // pages/my/index.js
+import API from '../../api'
 Page({
 
   /**
@@ -107,10 +108,21 @@ Page({
     
   },
 
-  onEnterTap: function() {
-    wx.navigateTo({
-      url: '/pages/enter/index',
-    })
+  onEnterTap: function({ detail: { userInfo, errMsg }}) {
+    if (errMsg !== 'getUserInfo:ok') return
+    const id = getApp().globalData.userInfo.id
+    wx.showLoading({ title: '请求中'})
+    API.UPDATE_USER_INFO(id, { name: userInfo.nickName, avatar: userInfo.avatarUrl}).then(res => {
+        wx.hideLoading()
+        wx.navigateTo({
+          url: '/pages/enter/index',
+        })    
+    }).catch(err => {
+        wx.showToast({
+          title: err,
+          icon: 'none'
+        })
+    }) 
   },
   toMyProjectTap: function() {
     getApp().toMyProject()

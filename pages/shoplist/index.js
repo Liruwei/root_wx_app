@@ -15,6 +15,10 @@ Page({
     onLoad: function (options) {
         this.page = 1
         this.loadData()
+        wx.hideHomeButton({
+          success: (res) => {},
+        })
+    
     },
 
     /**

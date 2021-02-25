@@ -34,7 +34,7 @@ Page({
             clearInterval(that.timer)
           }
         })
-      }, 1000);
+      }, 2000);
     }
   },
 
@@ -112,7 +112,7 @@ Page({
     if (this.fromDetail) {
       wx.navigateBack()
     } else {
-      wx.reLaunch({
+      wx.redirectTo({
         url: `/pages/order/detail?order_id=${this.data.order.id}`,
       })  
     }
@@ -125,8 +125,14 @@ Page({
   },
 
   toOrderDetailTap: function() {
-    wx.navigateBack({
-      delta: 1,
-    })
+    if (this.fromDetail) {
+      wx.navigateBack({
+        delta: 1,
+      })  
+    } else {
+      wx.redirectTo({
+        url: `/pages/order/detail?order_id=${this.data.order.id}`,
+      })
+    }
   }
 })

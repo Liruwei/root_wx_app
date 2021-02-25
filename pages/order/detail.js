@@ -20,6 +20,7 @@ Page({
         this.order_id = order_id
         this.setData({ master: master === 'true' })
         wx.setNavigationBarTitle({ title: '订单详情' })
+        this.loadData(true)
     },
 
     /**
@@ -33,7 +34,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.loadData()
+        this.loadData(false)
+        wx.hideHomeButton({
+            success: (res) => {},
+          })      
     },
 
     /**
@@ -65,14 +69,19 @@ Page({
     },
 
 
-    loadData: function () {
+    loadData: function (showLoading) {
+        console.log(showLoading, this.isLoaing)
         let that = this
-        wx.showLoading({ title: '请求中'})
+        if (this.isLoaing) return
+        this.isLoaing = true
+        showLoading && wx.showLoading({ title: '请求中'})
         API.ORDER_INFO(this.order_id).then(res => {
-            wx.hideLoading({})
+            delete that.isLoaing
+            showLoading && wx.hideLoading({})
             that.setData({ order: TOOL.formatOrderInfo(res.data) })
         }).catch(err => {
-            wx.hideLoading({})
+            delete that.isLoaing
+            showLoading && wx.hideLoading({})
             wx.showToast({ title: err, icon: 'none' })
         })
     },
@@ -88,7 +97,6 @@ Page({
                 if (!confirm) return
                 wx.showLoading({ title: '请求中' })
                 API.ORDER_DELETE(that.order_id).then(res => {
-                    wx.hideLoading({})
                     try {
                         that.getOpenerEventChannel().emit('reloadData');    
                     } catch (_) {}
@@ -98,7 +106,6 @@ Page({
                     })
                     setTimeout(() => wx.navigateBack(), 2000)
                 }).catch(err => {
-                    wx.hideLoading({})
                     wx.showToast({
                         title: err,
                         icon: 'none'
@@ -128,7 +135,6 @@ Page({
                 if (!confirm) return
                 wx.showLoading({ title: '请求中' })
                 API.ORDER_FINISH(that.order_id).then(res => {
-                    wx.hideLoading({})
                     wx.showToast({
                         title: '修改成功',
                         duration: 2000
@@ -136,9 +142,8 @@ Page({
                     try {
                         that.getOpenerEventChannel().emit('reloadData');
                     } catch(_) {}
-                    setTimeout(() => that.loadData(), 2000)
+                    setTimeout(() => that.loadData(true), 2000)
                 }).catch(err => {
-                    wx.hideLoading({})
                     wx.showToast({
                         title: err,
                         icon: 'none'
@@ -166,11 +171,11 @@ Page({
                         tmplIds: ['hMuSZePpSdryiyPHWdO74rFfzU-PYKqFRzfMiJt9mfs', 'dTCX8XZLoJ3EtDfjIBaOncR7Jg7uJA2MB-qX0m9egdM', 'HvmGYWg2gHNRkAfgSZa6Lds9ObvlXWkVm4rwWOeRu9o'],
                         success: _ => { 
                             wx.hideLoading()
-                            wx.navigateTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
+                            wx.navigateTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1&fromDetail=1` })
                         },
                         fail: _ => {
                             wx.hideLoading()
-                            wx.navigateTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1` })
+                            wx.navigateTo({ url: `/pages/cart/result?order_id=${data.order.id}&status=1&fromDetail=1` })
                         }
                     })
                 },
@@ -218,14 +223,12 @@ Page({
                 if (!confirm) return
                 wx.showLoading({ title: '请求中' })
                 API.ORDER_SEND(that.order_id, that.data.order.send_code).then(_ => {
-                    wx.hideLoading({})
                     wx.showToast({ title: '成功', duration: 2000})
                     try {
                         that.getOpenerEventChannel().emit('reloadData');    
                     } catch (_) {}
-                    setTimeout(() => that.loadData(), 2000)
+                    setTimeout(() => that.loadData(true), 2000)
                 }).catch(err => {
-                    wx.hideLoading({})
                     wx.showToast({ title: err, icon: 'none' })
                 })
             }
@@ -244,7 +247,6 @@ Page({
                 if (!confirm) return
                 wx.showLoading({ title: '请求中' })
                 API.ORDER_CANCEL(that.order_id).then(_ => {
-                    wx.hideLoading({})
                     wx.showToast({
                         title: '成功',
                         duration: 2000
@@ -254,7 +256,6 @@ Page({
                     } catch (_) {}
                     setTimeout(() => wx.navigateBack(), 2000)
                 }).catch(err => {
-                    wx.hideLoading({})
                     wx.showToast({
                         title: err,
                         icon: 'none'

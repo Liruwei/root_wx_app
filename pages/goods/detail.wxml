@@ -69,3 +69,8 @@
 		<view class="GlobalText">点击前往</view>
 	</view>
 </block>
+<block wx:if='{{isSinglePage}}'>
+	<view class="GlobalStore" catchtap="toHomePage" style="right:auto;left:20rpx;bottom:auto;top:20rpx;padding:15rpx 15rpx;">
+		<view class="GlobalText">返回首页</view>
+	</view>
+</block>

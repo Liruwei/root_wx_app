@@ -13,13 +13,17 @@ Page({
     imagePercent: 0,
     addViewShow: false,
     addViewShowContent: false,
-    hasProject: false
+    hasProject: false,
+    isSinglePage: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      isSinglePage: getCurrentPages().length === 1
+    })
     const { id } = options
     wx.showLoading({
       title: '加载中',
@@ -64,6 +68,10 @@ Page({
     this.setData({
       hasProject: getApp().hasProject()
     }) 
+    wx.hideHomeButton({
+      success: (res) => {},
+    })
+
   },
 
   /**
@@ -211,6 +219,12 @@ Page({
     console.log('===')
     wx.showShareMenu({
       withShareTicket: true,
+    })
+  },
+
+  toHomePage: function() {
+    wx.reLaunch({
+      url: '/pages/home/index',
     })
   }
 })

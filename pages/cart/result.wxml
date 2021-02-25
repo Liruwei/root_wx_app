@@ -43,7 +43,13 @@
 		<view class="RePay" catchtap="toOrderTap">重新支付</view>
 	</block>
 	<block wx:else>
-		<view class="RePay" catchtap="toOrderDetailTap">返回订单</view>
+		<view class="RePay" catchtap="toOrderDetailTap">查看详情</view>
 	</block>
 	<view class="ToHome" catchtap="toHomeTap">返回首页</view>
+</view>
+<view class="Result" wx:else>
+	<view class="Icon">
+		<icon type="waiting" size="60" color="#cc9c00"></icon>
+	</view>
+	<view class="Title">查询中、请耐心等待</view>
 </view>

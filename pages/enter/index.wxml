@@ -1,5 +1,5 @@
 <!--pages/enter/index.wxml-->
-<button class="EnterInvite" open-type="getUserInfo" bindgetuserinfo="onInviteTap">
+<button class="EnterInvite" open-type="share">
 	<image src="/icons/invite.png" style="width: 50rpx; height: 50rpx"></image>
 	<view style="margin-left:30rpx">邀请入驻</view>
 </button>

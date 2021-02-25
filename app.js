@@ -2,7 +2,7 @@
 import API from './api';
 App({
   onLaunch: function () {
-    this.login()
+    // this.login()
     // wx.getSetting({
     //   success: res => {
     //     if (res.authSetting['scope.userInfo']) {
@@ -37,8 +37,14 @@ App({
   loadProjectInfo: function (id, cb) {
     let that = this;
     API.PROJECT_INFO(id).then(res => {
-      that.globalData.projectInfo = res.data
-      cb && cb(res.data, null)
+      wx.setStorage({
+        data: res.data.id,
+        key: 'project',
+        success: _ => {
+          that.globalData.projectInfo = res.data
+          cb && cb(res.data, null)    
+        }
+      })
     }).catch(err => {
       cb && cb(null, err)
     })

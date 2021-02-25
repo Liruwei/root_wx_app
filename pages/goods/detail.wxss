@@ -7,9 +7,19 @@ page {
     color: #2c2c2c;
     padding-bottom: 140rpx;
 }
+img {
+    width: 100vw;
+}
+p {
+    background-color: blue;
+}
 .image-wrap {
-    width: 100%;
-    max-width: 100%;
+    max-width: 100vw;
+    width: 100vw;
+}
+.media-wrap {
+    max-width: 100vw;
+    width: 100vw;
 }
 .Box {
     position: relative;
@@ -89,6 +99,9 @@ page {
 
 .GoodsDetailContent {
     margin-top: 20rpx;
+    max-width: 100vw;
+    width: 100vw;
+    box-sizing: border-box;
     background-color: #fff;
     padding-bottom: 40rpx;
 }
