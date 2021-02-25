@@ -27,12 +27,12 @@ Page({
         wx.setNavigationBarTitle({
             title: '填写入驻信息',
         })
-        wx.showLoading({title: '加载中'})
+        wx.showLoading({ title: '加载中' })
         try {
             let projectInfo = getApp().globalData.userInfo.project
             wx.hideLoading({})
             if (projectInfo.status === 1) {
-                
+
                 getApp().globalData.projectInfo = projectInfo
                 wx.setStorage({
                     data: projectInfo.id,
@@ -50,7 +50,8 @@ Page({
         }
     },
 
-    getManInfo: function(inviter) {
+    getManInfo: function (inviter) {
+        let that = this
         if (inviter) {
             this.inviter = inviter * 1
             API.GET_USER_INFO(this.inviter).then(({ data }) => {
@@ -125,6 +126,25 @@ Page({
     },
 
     onLoationTap: function () {
+        let that = this
+        wx.getSetting({
+            success(res) {
+                console.log(res)
+                if (!res.authSetting['scope.userLocation']) {
+                    wx.authorize({
+                        scope: 'scope.userLocation',
+                        success() {
+                            that.chooseLocation()
+                        }
+                    })
+                } else {
+                    that.chooseLocation()
+                }
+            }
+        })
+    },
+
+    chooseLocation: function() {
         let that = this
         wx.chooseLocation({
             success: ({ errMsg, latitude, longitude }) => {

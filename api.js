@@ -227,7 +227,8 @@ function PROJECT_MONEY(id) {
 function HOME_BANNERS(id) {
     return new Promise((resolve, reject) => {
         GET(`/shoptemplate/banners`, {
-            filter: {project:id}
+            filter: {project:id},
+            sort: ['weight', 'DESC']
         }, res=> {
             resolve(res)
         }, error => {
@@ -243,6 +244,7 @@ function HOME_GOODS(page, pid, filter={}, pageSize=20) {
                 project: pid,
                 ...filter
             },
+            range: [1, 1000],
             range: [page, pageSize]
         }, res=> {
             resolve(res)
@@ -256,7 +258,8 @@ function HOME_CATEGORYS(pid) {
     return new Promise((resolve, reject) => {
         GET('/shoptemplate/categorys', {
             filter: {project: pid},
-            range: [1, 1000]
+            range: [1, 1000],
+            sort: ['weight', 'DESC']
         }, res=> {
             resolve(res)
         }, error => {
